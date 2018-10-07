@@ -1,0 +1,67 @@
+{
+  "name": "publify",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "tslint --project tsconfig.json components/**/*.ts components/**/*.tsx pages/**/*.ts pages/**/*.tsx",
+    "lint:css": "stylelint components/**/*.css pages/**/*.css",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "ignore": [],
+    "linters": {
+      "*.{ts,tsx}": [
+        "yarn lint:js",
+        "git add"
+      ],
+      "*.css": [
+        "yarn lint:css",
+        "git add"
+      ]
+    }
+  },
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "next": "^7.0.1",
+    "next-compose-plugins": "^2.1.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "tti-polyfill": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.6",
+    "@types/next": "^6.1.6",
+    "@types/react": "^16.4.10",
+    "babel-core": "^6.26.3",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "cssnano": "^4.1.4",
+    "fork-ts-checker-webpack-plugin": "^0.4.8",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "lost": "^8.3.0",
+    "postcss-conditionals": "^2.1.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-for": "^2.1.1",
+    "postcss-functions": "^3.0.0",
+    "postcss-import": "^12.0.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-reporter": "^5.0.0",
+    "postcss-simple-vars": "^4.1.0",
+    "prettier": "^1.14.3",
+    "stylelint": "^9.4.0",
+    "stylelint-config-prettier": "^4.0.0",
+    "stylelint-declaration-strict-value": "^1.0.4",
+    "stylelint-order": "^1.0.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "tslint-language-service": "^0.9.9",
+    "typescript": "^3.0.1",
+    "typings-for-css-modules-loader": "^1.7.0"
+  }
+}

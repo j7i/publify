@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "off",
+  "css.validate": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "tslint.autoFixOnSave": true,
+  "tslint.alwaysShowStatus": true,
+  "tslint.enable": true,
+  "tslint.ignoreDefinitionFiles": false,
+  "tslint.configFile": "tslint.json",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

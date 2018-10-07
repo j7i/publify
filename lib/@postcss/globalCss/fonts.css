@@ -1,0 +1,6 @@
+/* Font light */
+@font-face {
+  font-family: $fontFamily;
+  font-display: fallback;
+  src: url('https://fonts.googleapis.com/css?family=Open+Sans');
+}

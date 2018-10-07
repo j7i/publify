@@ -1,0 +1,6 @@
+.pageBottom {
+  width: 100%;
+  height: 54px;
+  padding: $spacingBig;
+  background-color: $grey3;
+}

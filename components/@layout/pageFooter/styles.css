@@ -1,0 +1,6 @@
+.pageFooter {
+  width: 100%;
+  height: 240px;
+  padding: $spacingBig;
+  background-color: $grey2;
+}

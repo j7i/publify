@@ -1,0 +1,19 @@
+{
+  "presets": ["next/babel", "@zeit/next-typescript/babel"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "cwd": "babelrc",
+        "alias": {
+          "@layout": "./components/@layout",
+          "@locations": "./components/@locations",
+          "@helpers": "./lib/@helpers",
+          "@config": "./lib/@config",
+          "@postcss": "./lib/@postcss"
+        }
+      }
+    ]
+  ]
+}
