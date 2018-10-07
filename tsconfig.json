@@ -16,6 +16,8 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
+      "@auth/*": ["./components/@auth/*"],
+      "@core/*": ["./components/@core/*"],
       "@layout/*": ["./components/@layout/*"],
       "@config/*": ["./lib/@config/*"],
       "@helpers/*": ["./lib/@helpers/*"],

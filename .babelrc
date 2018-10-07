@@ -7,6 +7,8 @@
         "root": ["."],
         "cwd": "babelrc",
         "alias": {
+          "@auth": "./components/@auth",
+          "@core": "./components/@core",
           "@layout": "./components/@layout",
           "@locations": "./components/@locations",
           "@helpers": "./lib/@helpers",

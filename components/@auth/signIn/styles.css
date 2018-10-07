@@ -1,0 +1,69 @@
+.signUp {
+  display: flex;
+  height: 100vh;
+  padding: 8px 32px;
+  justify-content: center;
+  align-items: center;
+  background-color: $grey1;
+}
+
+.signUpContainer {
+  background-color: $grey1;
+  padding: $spacingBase $spacingBig;
+  border-radius: 2px;
+
+  & h2 {
+    margin-bottom: 0;
+  }
+}
+
+.toggleSignUp {
+  color: $primary;
+  cursor: pointer;
+  margin-top: $spacingBase;
+
+  &:hover {
+    color: $primaryDarken2;
+  }
+}
+
+.navigateBack {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: $spacingBig;
+
+  & input {
+    margin-bottom: $spacingBase;
+  }
+}
+
+.button {
+  display: flex;
+  width: 120px;
+  padding: $spacingSmall $spacingBase;
+  border: none;
+  margin: $spacingSmall;
+  background: $primary;
+  color: $white;
+  font-size: $fontSizeMedium;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &:hover {
+    background-color: $primaryLighten1;
+  }
+}
