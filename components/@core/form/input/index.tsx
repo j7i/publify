@@ -5,9 +5,18 @@ import styles from './styles.css'
 
 export default class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
-    const { type, name, label, id, value, handleChange, handleBlur, handleFocus, isFocused } = this.props
-
+    const { type, name, label, id, formChildProps } = this.props
+    const { values, focused, handleChange, handleBlur, handleFocus } = formChildProps
+    let value
+    let isFocused
+    // let isTouched
     let validityHint: string
+
+    if (name) {
+      value = values[name]
+      isFocused = focused[name]
+      // isTouched = touched[name]
+    }
 
     switch (type) {
       case 'email':

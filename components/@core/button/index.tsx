@@ -5,11 +5,11 @@ import styles from './styles.css'
 
 export default class Button extends PureComponent<IButtonProps> {
   public render(): JSX.Element {
-    const { children, type, target } = this.props
+    const { children, target } = this.props
 
     return (
       <>
-        {type === 'link' ? (
+        {target ? (
           <Link href={target}>
             <a className={styles.button}>{children}</a>
           </Link>

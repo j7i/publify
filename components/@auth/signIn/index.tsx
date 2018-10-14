@@ -35,7 +35,9 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
     return (
       <main className={styles.signUp}>
         <div className={styles.navigateBack}>
-          <Button target="/">Back</Button>
+          <Button target="/" type="link">
+            Back
+          </Button>
         </div>
         <div className={styles.signUpContainer}>
           {user ? (
@@ -50,38 +52,15 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
             <>
               <h1>{isSignUp ? `Create an Account` : `Login`}</h1>
               <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
-                {(formChildProps: IFormChildProps): JSX.Element => {
-                  const { values, touched, focused, handleChange, handleBlur, handleFocus } = formChildProps
-                  return (
-                    <>
-                      <Input
-                        type={'email'}
-                        name="email"
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        handleFocus={handleFocus}
-                        value={values.email}
-                        isFocused={focused.email}
-                        isTouched={touched.email}
-                        label={'Email'}
-                      />
-                      <Input
-                        type={'password'}
-                        name="password"
-                        handleChange={handleChange}
-                        handleBlur={handleBlur}
-                        handleFocus={handleFocus}
-                        value={values.password}
-                        isFocused={focused.password}
-                        isTouched={touched.password}
-                        label={'Password'}
-                      />
-                      <button className={styles.button} type="submit">
-                        {isSignUp ? `Sign up` : `Login`}
-                      </button>
-                    </>
-                  )
-                }}
+                {(formChildProps: IFormChildProps): JSX.Element => (
+                  <>
+                    <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
+                    <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
+                    <button className={styles.button} type="submit">
+                      {isSignUp ? `Sign up` : `Login`}
+                    </button>
+                  </>
+                )}
               </Form>
             </>
           )}
