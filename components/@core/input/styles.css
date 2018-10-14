@@ -1,0 +1,77 @@
+.input {
+  position: relative;
+  width: 100%;
+  margin-top: $spacingBase;
+
+  &:not(:last-child) {
+    margin-bottom: $spacingHalf;
+  }
+
+  & input:not([type='submit']):not([type='file']) {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    color: $black;
+    font-size: $fontSizeMedium;
+    background-color: $white;
+    border-bottom: 2px solid $grey2;
+    outline: none;
+
+    &:focus {
+      color: $black;
+      background-color: lighten($primary, 4%);
+      border-bottom: 2px solid $grey4;
+      outline: none;
+      opacity: 1;
+      transition: all .2s ease-out;
+
+      .label {
+        top: -12px;
+      }
+    }
+
+    &::placeholder {
+      color: $grey5;
+    }
+
+    &:placeholder-shown {
+      border-bottom: 2px solid $grey2;
+      &:required {
+        background-color: $grey4;
+        &:focus {
+          background-color: $grey4;
+        }
+      }
+    }
+
+    &:not(:placeholder-shown):not(:focus) {
+      &:valid {
+        border-bottom: 2px solid $success;
+        transition: border-bottom 200ms ease-out;
+      }
+      &:invalid {
+        border-bottom: 2px solid $danger;
+        transition: border-bottom 200ms ease-out;
+      }
+    }
+  }
+}
+
+.label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: $grey5;
+  font-size: $fontSizeMedium;
+  transition: all 200ms ease-in-out;
+}
+
+.focused {
+  .label {
+    top: -20px;
+    left: 0;
+    color: $grey7;
+    font-size: $fontSizeBase;
+  }
+}

@@ -1,9 +1,9 @@
 import { IButtonProps } from '@core/button/types.d'
 import Link from 'next/link'
-import { Component } from 'react'
+import { PureComponent } from 'react'
 import styles from './styles.css'
 
-export default class Button extends Component<IButtonProps> {
+export default class Button extends PureComponent<IButtonProps> {
   public render(): JSX.Element {
     const { children, type, target } = this.props
 

@@ -1,4 +1,7 @@
 import Button from '@core/button'
+import Form from '@core/form'
+import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
+import Input from '@core/input'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import React, { PureComponent } from 'react'
@@ -8,8 +11,6 @@ import { ISignInState } from './types'
 export default class SignIn extends PureComponent<{}, ISignInState> {
   public state: ISignInState = {
     user: null,
-    email: '',
-    password: '',
     isSignUp: false
   }
 
@@ -24,23 +25,17 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
     })
   }
 
-  public handleLogin = (): void => {
-    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-  }
-
   public toggleRegister = (): void => {
     this.setState({ isSignUp: !this.state.isSignUp })
   }
 
   public render(): JSX.Element {
-    const { user, email, password, isSignUp }: ISignInState = this.state
+    const { user, isSignUp }: ISignInState = this.state
 
     return (
       <main className={styles.signUp}>
         <div className={styles.navigateBack}>
-          <Button type="link" target="/">
-            Back
-          </Button>
+          <Button target="/">Back</Button>
         </div>
         <div className={styles.signUpContainer}>
           {user ? (
@@ -54,13 +49,41 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
           ) : (
             <>
               <h1>{isSignUp ? `Create an Account` : `Login`}</h1>
-              <form className={styles.registerForm} onSubmit={this.handleSubmit}>
-                <input type={'email'} placeholder={'Email'} onChange={this.handleEmail} value={email} />
-                <input type={'password'} placeholder={'Password'} onChange={this.handlePassword} value={password} />
-                <button className={styles.button} type="submit">
-                  {isSignUp ? `Sign up` : `Login`}
-                </button>
-              </form>
+              <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
+                {(formChildProps: IFormChildProps): JSX.Element => {
+                  const { values, touched, focused, handleChange, handleBlur, handleFocus } = formChildProps
+                  return (
+                    <>
+                      <Input
+                        type={'email'}
+                        name="email"
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        handleFocus={handleFocus}
+                        value={values.email}
+                        isFocused={focused.email}
+                        isTouched={touched.email}
+                        label={'Email'}
+                      />
+                      <Input
+                        type={'password'}
+                        name="password"
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        handleFocus={handleFocus}
+                        value={values.password}
+                        isFocused={focused.password}
+                        isTouched={touched.password}
+                        label={'Password'}
+                      />
+                      <button className={styles.button} type="submit">
+                        {isSignUp ? `Sign up` : `Login`}
+                      </button>
+                      <pre>{JSON.stringify(formChildProps, null, 2)}</pre>
+                    </>
+                  )
+                }}
+              </Form>
               <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
                 {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
               </p>
@@ -71,42 +94,38 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
     )
   }
 
-  private handleEmail = (event: React.FormEvent<HTMLInputElement>): void => {
-    this.setState({ email: event.currentTarget.value })
-  }
+  // private handleLogin = (): void => {
+  //   firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+  // }
 
-  private handlePassword = (event: React.FormEvent<HTMLInputElement>): void => {
-    this.setState({ password: event.currentTarget.value })
-  }
+  private handleSubmit = async (values: IFormValues): Promise<void> => {
+    // const {email, password} = event.target
+    const { email, password } = values
 
-  private handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault()
-    {
-      this.state.isSignUp
-        ? firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            // tslint:disable-next-line:no-any
-            .catch((error: any) => {
-              // Handle Errors here.
-              // const errorCode = error.code
-              // const errorMessage = error.message
-              // ...
-              // tslint:disable-next-line:no-console
-              console.log(error)
-            })
-        : firebase
-            .auth()
-            .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
-              this.setState({ isSignUp: false })
-            })
-            // tslint:disable-next-line:no-any
-            .catch((error: any) => {
-              // tslint:disable-next-line:no-console
-              console.log(error)
-            })
-    }
+    this.state.isSignUp
+      ? firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          // tslint:disable-next-line:no-any
+          .catch((error: any) => {
+            // Handle Errors here.
+            // const errorCode = error.code
+            // const errorMessage = error.message
+            // ...
+            // tslint:disable-next-line:no-console
+            console.log(error)
+          })
+      : firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            this.setState({ isSignUp: false })
+          })
+          // tslint:disable-next-line:no-any
+          .catch((error: any) => {
+            // tslint:disable-next-line:no-console
+            console.log(error)
+          })
   }
 
   private handleLogout = async (event: React.SyntheticEvent): Promise<void> => {
