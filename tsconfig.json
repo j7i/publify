@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@auth/*": ["./components/@auth/*"],
+      "@user/*": ["./components/@user/*"],
       "@core/*": ["./components/@core/*"],
       "@layout/*": ["./components/@layout/*"],
       "@config/*": ["./lib/@config/*"],

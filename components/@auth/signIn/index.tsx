@@ -1,3 +1,4 @@
+import UserSpecificContent from '@auth/userSpecificContent'
 import Button from '@core/button'
 import Form from '@core/form'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
@@ -10,19 +11,7 @@ import { ISignInState } from './types'
 
 export default class SignIn extends PureComponent<{}, ISignInState> {
   public state: ISignInState = {
-    user: null,
     isSignUp: false
-  }
-
-  public componentDidMount = (): void => {
-    // tslint:disable-next-line:no-any
-    firebase.auth().onAuthStateChanged((user: any) => {
-      if (user) {
-        this.setState({ user })
-      } else {
-        this.setState({ user: null })
-      }
-    })
   }
 
   public toggleRegister = (): void => {
@@ -30,7 +19,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
   }
 
   public render(): JSX.Element {
-    const { user, isSignUp }: ISignInState = this.state
+    const { isSignUp }: ISignInState = this.state
 
     return (
       <main className={styles.signUp}>
@@ -40,30 +29,35 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
           </Button>
         </div>
         <div className={styles.signUpContainer}>
-          {user ? (
-            <>
-              <h2>Congrats 🎉 </h2>
-              <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
-              <button className={styles.button} onClick={this.handleLogout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <h1>{isSignUp ? `Create an Account` : `Login`}</h1>
-              <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
-                {(formChildProps: IFormChildProps): JSX.Element => (
-                  <>
-                    <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
-                    <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
-                    <button className={styles.button} type="submit">
-                      {isSignUp ? `Sign up` : `Login`}
-                    </button>
-                  </>
-                )}
-              </Form>
-            </>
-          )}
+          <UserSpecificContent>
+            {// tslint:disable-next-line:no-any
+            (user: any): JSX.Element => {
+              return user ? (
+                <>
+                  <h2>Congrats 🎉 </h2>
+                  <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
+                  <button className={styles.button} onClick={this.handleLogout}>
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <h1>{isSignUp ? `Create an Account` : `Login`}</h1>
+                  <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
+                    {(formChildProps: IFormChildProps): JSX.Element => (
+                      <>
+                        <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
+                        <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
+                        <button className={styles.button} type="submit">
+                          {isSignUp ? `Sign up` : `Login`}
+                        </button>
+                      </>
+                    )}
+                  </Form>
+                </>
+              )
+            }}
+          </UserSpecificContent>
         </div>
         <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
           {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
