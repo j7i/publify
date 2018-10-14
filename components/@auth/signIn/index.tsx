@@ -1,7 +1,7 @@
 import Button from '@core/button'
 import Form from '@core/form'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
-import Input from '@core/input'
+import Input from '@core/form/input'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import React, { PureComponent } from 'react'
@@ -79,7 +79,6 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                       <button className={styles.button} type="submit">
                         {isSignUp ? `Sign up` : `Login`}
                       </button>
-                      <pre>{JSON.stringify(formChildProps, null, 2)}</pre>
                     </>
                   )
                 }}

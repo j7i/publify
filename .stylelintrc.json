@@ -58,7 +58,7 @@
       }
     ],
     "scale-unlimited/declaration-strict-value": [
-      ["/color/", "font-family", "font-size", "z-index"],
+      ["/color/", "font-family", "font-size"],
       {
         "ignoreKeywords": {
           "": ["inherit", "currentColor", "transparent"]

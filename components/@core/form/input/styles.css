@@ -1,0 +1,59 @@
+.input {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+
+  &::placeholder {
+    color: $grey6;
+  }
+
+  input {
+    z-index: 1;
+    padding: $spacingSmall 0;
+    border: none;
+    color: $black;
+    font-size: $fontSizeMedium;
+    border-bottom: 2px solid $grey4;
+    margin-top: $spacingBase;
+    background-color: transparent;
+    outline: none;
+
+    &:not(:placeholder-shown):not(:focus) {
+      &:valid {
+        border-bottom: 2px solid $success;
+        transition: border-bottom 200ms ease-out;
+      }
+      &:invalid {
+        border-bottom: 2px solid $danger;
+        transition: border-bottom 200ms ease-out;
+      }
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $spacingBase;
+  }
+}
+
+.label {
+  position: absolute;
+  z-index: 2;
+  bottom: $spacingMedium;
+  left: 0;
+  color: $grey5;
+  font-size: $fontSizeMedium;
+  transition: all 150ms ease-in-out;
+}
+
+.focused {
+  input {
+    border-bottom: 2px solid $primary;
+    transition: border-bottom 150ms ease-out;
+  }
+
+  .label {
+    bottom: $spacingGrande;
+    color: $primary;
+    font-size: $fontSizeBase;
+  }
+}

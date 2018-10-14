@@ -1,4 +1,4 @@
-import { IInputProps } from '@core/input/types'
+import { IInputProps } from '@core/form/input/types'
 import classNames from 'classnames'
 import { PureComponent } from 'react'
 import styles from './styles.css'
