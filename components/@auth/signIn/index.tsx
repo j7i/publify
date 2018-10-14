@@ -83,12 +83,12 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                   )
                 }}
               </Form>
-              <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
-                {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
-              </p>
             </>
           )}
         </div>
+        <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
+          {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
+        </p>
       </main>
     )
   }

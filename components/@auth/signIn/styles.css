@@ -1,5 +1,6 @@
 .signUp {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   padding: 8px 32px;
   justify-content: center;
@@ -8,12 +9,17 @@
 }
 
 .signUpContainer {
-  background-color: $grey1;
+  width: 400px;
   padding: $spacingBase $spacingBig;
+  background-color: $white;
   border-radius: 2px;
 
-  & h2 {
+  & h1 {
     margin-bottom: 0;
+  }
+
+  & button {
+    margin-right: 0;
   }
 }
 
@@ -64,6 +70,6 @@
   flex-wrap: wrap;
 
   &:hover {
-    background-color: $primaryLighten1;
+    background-color: $primaryDarken1;
   }
 }

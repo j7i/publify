@@ -14,18 +14,29 @@
     color: $black;
     font-size: $fontSizeMedium;
     border-bottom: 2px solid $grey4;
-    margin-top: $spacingBase;
     background-color: transparent;
     outline: none;
 
     &:not(:placeholder-shown):not(:focus) {
       &:valid {
         border-bottom: 2px solid $success;
-        transition: border-bottom 200ms ease-out;
+        transition: border-bottom 150ms ease-out;
+
+        & ~ .label {
+          color: $success;
+        }
       }
       &:invalid {
         border-bottom: 2px solid $danger;
-        transition: border-bottom 200ms ease-out;
+        transition: border-bottom 150ms ease-out;
+
+        & ~ .validityHint {
+          opacity: 1;
+        }
+
+        & ~ .label {
+          color: $danger;
+        }
       }
     }
   }
@@ -43,6 +54,16 @@
   color: $grey5;
   font-size: $fontSizeMedium;
   transition: all 150ms ease-in-out;
+}
+
+.validityHint {
+  position: absolute;
+  right: 0;
+  bottom: $spacingMedium;
+  padding: $spacingHalf 0 $spacingHalf $spacingSmall;
+  background-color: $whiteAlpha9;
+  color: $danger;
+  opacity: 0;
 }
 
 .focused {
