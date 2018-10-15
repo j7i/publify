@@ -5,7 +5,7 @@ import styles from './styles.css'
 
 export default class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
-    const { type, name, label, id, formChildProps } = this.props
+    const { type, name, label, id, formChildProps, required } = this.props
     const { values, focused, handleChange, handleBlur, handleFocus } = formChildProps
     let value
     let isFocused
@@ -32,6 +32,7 @@ export default class Input extends PureComponent<IInputProps> {
     return (
       <div className={classNames(styles.input, { [styles.focused]: isFocused || value })}>
         <input
+          required={required}
           id={id}
           type={type}
           name={name}
