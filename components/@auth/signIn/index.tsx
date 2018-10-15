@@ -1,8 +1,9 @@
 import UserSpecificContent from '@auth/userSpecificContent'
-import Button from '@core/button'
 import Form from '@core/form'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import React, { PureComponent } from 'react'
@@ -23,11 +24,6 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
 
     return (
       <main className={styles.signUp}>
-        <div className={styles.navigateBack}>
-          <Button target="/" type="link">
-            Back
-          </Button>
-        </div>
         <div className={styles.signUpContainer}>
           <UserSpecificContent>
             {// tslint:disable-next-line:no-any
@@ -37,7 +33,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                   <h2>Congrats 🎉 </h2>
                   <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
                   <button className={styles.button} onClick={this.handleLogout}>
-                    Logout
+                    <FontAwesomeIcon icon={faSignOutAlt} /> Logout
                   </button>
                 </>
               ) : (
@@ -59,9 +55,18 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
             }}
           </UserSpecificContent>
         </div>
-        <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
-          {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
-        </p>
+        <UserSpecificContent>
+          {// tslint:disable-next-line:no-any
+          (user: any): JSX.Element => {
+            return !user ? (
+              <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
+                {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
+              </p>
+            ) : (
+              <></>
+            )
+          }}
+        </UserSpecificContent>
       </main>
     )
   }

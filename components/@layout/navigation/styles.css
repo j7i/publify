@@ -1,0 +1,17 @@
+.navigation {
+  display: flex;
+  height: 72px;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: $primary;
+  padding-right: $spacingMedium;
+
+  a {
+    padding: $spacingBase;
+    text-decoration: none;
+    outline: none;
+    color: $white;
+    font-size: $fontSizeMedium;
+    font-weight: 600;
+  }
+}
