@@ -9,9 +9,10 @@ const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+const credentials = Buffer.from(process.env.SERVER_CREDENTIALS, 'base64').toString()
 
 const firebase = admin.initializeApp({
-  credential: admin.credential.cert(require('./credentials/server')),
+  credential: admin.credential.cert(JSON.parse(credentials)),
   databaseURL: 'https://publify-hsr18fe.firebaseio.com'
 })
 

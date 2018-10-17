@@ -5,18 +5,9 @@
   "engines": {
     "node": "9.x.x"
   },
-  "files": [
-    {
-      "file": "credentials/client.js",
-      "sha": "514b5ffa5ef016df7f5f42370157d49f97526a42",
-      "size": 145
-    },
-    {
-      "file": "credentials/server.js",
-      "sha": "9d8b952309b28f468919f4a585e18b63a14457f2",
-      "size": 161
-    }
-  ],
+  "env": {
+    "SERVER_CREDENTIALS": "@server_credentials"
+  },
   "scale": {
     "bru1": {
       "min": 1,

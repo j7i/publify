@@ -1,4 +1,6 @@
 .next/
 node_modules/
 yarn-error.log
-credentials/
+credentials/*
+!credentials/client.js
+now-secrets.json
