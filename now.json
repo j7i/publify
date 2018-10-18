@@ -5,6 +5,9 @@
   "engines": {
     "node": "9.x.x"
   },
+  "env": {
+    "SERVER_CREDENTIALS": "@server_credentials"
+  },
   "scale": {
     "bru1": {
       "min": 1,
