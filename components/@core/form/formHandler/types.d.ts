@@ -10,7 +10,7 @@ export interface IFormHandlerState {
 }
 
 interface IFormValues {
-  [key: string]: string
+  [key: string]: string | boolean
 }
 
 interface IFormTouched {

@@ -1,6 +1,6 @@
 import UserSpecificContent from '@auth/userSpecificContent'
 import Form from '@core/form'
-import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
+import { IFormChildProps } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,7 +9,7 @@ import 'isomorphic-unfetch'
 import Router from 'next/router'
 import React, { PureComponent } from 'react'
 import styles from './styles.css'
-import { ISignInState } from './types'
+import { ILoginFormValues, ISignInState } from './types'
 
 export default class SignIn extends PureComponent<{}, ISignInState> {
   public state: ISignInState = {
@@ -81,7 +81,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
   //   firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
   // }
 
-  private handleSubmit = async (values: IFormValues): Promise<void> => {
+  private handleSubmit = async (values: ILoginFormValues): Promise<void> => {
     const { firstName, lastName, email, password } = values
     const firestore = firebase.firestore()
 

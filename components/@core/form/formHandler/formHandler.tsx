@@ -9,15 +9,24 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
   }
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target
+    const { name, value, type, checked } = event.target
 
     event.persist()
-    this.setState((prevState: IFormHandlerState) => ({
-      values: {
-        ...prevState.values,
-        [name]: value
-      }
-    }))
+    if (type === 'checkbox') {
+      this.setState((prevState: IFormHandlerState) => ({
+        values: {
+          ...prevState.values,
+          [name]: checked
+        }
+      }))
+    } else {
+      this.setState((prevState: IFormHandlerState) => ({
+        values: {
+          ...prevState.values,
+          [name]: value
+        }
+      }))
+    }
   }
 
   public handleBlur = (event: React.FocusEvent<HTMLInputElement>): void => {

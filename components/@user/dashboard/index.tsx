@@ -33,6 +33,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
                       ))}
                     </div>
                     <p>{demand.description}</p>
+                    <p>{demand.published && `I'm public`}</p>
                   </div>
                 ))}
             </div>
@@ -49,7 +50,8 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
     const firestore = firebase.firestore()
     const { user } = this.props
 
-    let demands = []
+    // tslint:disable-next-line:no-any
+    let demands: any[] = []
     firestore
       .collection('demands')
       .where('userId', '==', user!.uid)

@@ -5,8 +5,9 @@ import styles from './styles.css'
 
 export default class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
-    const { type, name, label, id, formChildProps, required } = this.props
+    const { type, name, label, id, formChildProps, required, checked } = this.props
     const { values, focused, handleChange, handleBlur, handleFocus } = formChildProps
+    const isCheckbox = type === 'checkbox'
     let value
     let isFocused
     // let isTouched
@@ -30,21 +31,30 @@ export default class Input extends PureComponent<IInputProps> {
     }
 
     return (
-      <div className={classNames(styles.input, { [styles.focused]: isFocused || value })}>
+      <div
+        className={classNames({
+          [styles.input]: !isCheckbox,
+          [styles.checkbox]: isCheckbox,
+          [styles.focused]: !isCheckbox && (isFocused || value)
+        })}
+      >
         <input
           required={required}
           id={id}
           type={type}
           name={name}
           value={value}
+          checked={checked}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           placeholder={' '}
           pattern={type === 'password' ? '.{0}|.{8,}' : '{5,}'}
         />
-        <label className={styles.label}>{label}</label>
-        <div className={styles.validityHint}>{validityHint}</div>
+        <label className={styles.label} htmlFor={name}>
+          {label}
+        </label>
+        {validityHint && !isCheckbox && <div className={styles.validityHint}>{validityHint}</div>}
       </div>
     )
   }

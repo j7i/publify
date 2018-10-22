@@ -16,9 +16,10 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
           <>
             <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
             <Input required type={'text'} name="categories" label={'Categorie'} formChildProps={formChildProps} />
-            <input type="checkbox" /> Published
-            <select multiple={true} value={['Haushalt', 'Finanzen', 'Pflege']} />
+            <Input type={'checkbox'} id="published" name="published" label="Publish" formChildProps={formChildProps} />
+            {/* <select multiple={true} value={['Haushalt', 'Finanzen', 'Pflege']} /> */}
             <Button type="submit">Submit</Button>
+            {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}
           </>
         )}
       </Form>
@@ -30,15 +31,16 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
     // Initialize Cloud Firestore through Firebase
     const firestore = firebase.firestore()
 
-    const { description, categories } = values
-    categories.split(',')
+    const { description, published } = values
+    const categories = Array.of(values.categories)
 
     // tslint:disable:no-any no-console
     firestore
-      .collection('seekings')
+      .collection('demands')
       .add({
-        description,
         categories,
+        description,
+        published,
         userId: user.uid
       })
       .then((docRef: any) => {
