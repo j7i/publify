@@ -6,6 +6,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
+import Router from 'next/router'
 import React, { PureComponent } from 'react'
 import styles from './styles.css'
 import { ISignInState } from './types'
@@ -15,10 +16,6 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
     isSignUp: false
   }
 
-  public toggleRegister = (): void => {
-    this.setState({ isSignUp: !this.state.isSignUp })
-  }
-
   public render(): JSX.Element {
     const { isSignUp }: ISignInState = this.state
 
@@ -26,8 +23,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
       <main className={styles.signUp}>
         <div className={styles.signUpContainer}>
           <UserSpecificContent>
-            {// tslint:disable-next-line:no-any
-            (user: any): JSX.Element => {
+            {(user: firebase.User): JSX.Element => {
               return user ? (
                 <>
                   <h2>Congrats 🎉 </h2>
@@ -44,6 +40,13 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                       <>
                         <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
                         <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
+                        {isSignUp && (
+                          <>
+                            <Input type={'text'} name="firstName" label={'Firstname'} formChildProps={formChildProps} />
+                            <Input type={'text'} name="lastName" label={'Lastname'} formChildProps={formChildProps} />
+                          </>
+                        )}
+
                         <button className={styles.button} type="submit">
                           {isSignUp ? `Sign up` : `Login`}
                         </button>
@@ -56,8 +59,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
           </UserSpecificContent>
         </div>
         <UserSpecificContent>
-          {// tslint:disable-next-line:no-any
-          (user: any): JSX.Element => {
+          {(user: firebase.User): JSX.Element => {
             return !user ? (
               <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
                 {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
@@ -71,20 +73,34 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
     )
   }
 
+  private toggleRegister = (): void => {
+    this.setState({ isSignUp: !this.state.isSignUp })
+  }
+
   // private handleLogin = (): void => {
   //   firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
   // }
 
   private handleSubmit = async (values: IFormValues): Promise<void> => {
-    // const {email, password} = event.target
-    const { email, password } = values
+    const { firstName, lastName, email, password } = values
+    const firestore = firebase.firestore()
 
     this.state.isSignUp
       ? firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
-          // tslint:disable-next-line:no-any
-          .catch((error: any) => {
+          .then((resp: firebase.auth.UserCredential) => {
+            firestore
+              .collection('users')
+              .doc(resp.user!.uid)
+              .set({
+                firstName,
+                lastName,
+                initials: firstName[0] + lastName[0],
+                email
+              })
+          })
+          .catch((error: firebase.auth.Error) => {
             // Handle Errors here.
             // const errorCode = error.code
             // const errorMessage = error.message
@@ -97,9 +113,9 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
           .signInWithEmailAndPassword(email, password)
           .then(() => {
             this.setState({ isSignUp: false })
+            Router.push('/dashboard')
           })
-          // tslint:disable-next-line:no-any
-          .catch((error: any) => {
+          .catch((error: firebase.auth.Error) => {
             // tslint:disable-next-line:no-console
             console.log(error)
           })
@@ -113,8 +129,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
       .then(() => {
         // Sign-out successful.
       })
-      // tslint:disable-next-line:no-any
-      .catch((error: any) => {
+      .catch((error: firebase.auth.Error) => {
         // tslint:disable-next-line:no-console
         console.log(error)
       })

@@ -1,7 +1,7 @@
+import clientCredentials from '@config/firebase/client.js'
 import Layout from '@layout/Layout'
 import firebase from 'firebase'
 import App, { Container } from 'next/app'
-import clientCredentials from '../credentials/client.js'
 
 export default class MyApp extends App {
   // We could pass router props as well
@@ -14,12 +14,15 @@ export default class MyApp extends App {
 
   //   return { pageProps }
   // }
-  //
-  // <Component {...pageProps} />
 
   public componentWillMount(): void {
     if (!firebase.apps.length) {
+      // Initialize Firebase
       firebase.initializeApp(clientCredentials)
+
+      // Initialize Firestore
+      const firestore = firebase.firestore()
+      firestore.settings({ timestampsInSnapshots: true })
     }
   }
 

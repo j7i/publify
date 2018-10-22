@@ -1,36 +1,66 @@
-import UserSpecificContent from '@auth/userSpecificContent'
-import Button from '@core/button'
+import firebase from 'firebase'
+import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 import styles from './styles.css'
 import TestDataForm from './testDataForm'
+import { IDashboardProps, IDashboardState, IDemand } from './types'
 
-export default class Dashboard extends PureComponent {
+export default class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
+  public state: IDashboardState = {
+    demands: []
+  }
+
+  public componentDidMount(): void {
+    this.getUserSpecificSeekings()
+  }
+
   public render(): JSX.Element {
+    const { user } = this.props
+    const { demands } = this.state
     return (
       <div className={styles.devTestAre}>
-        <UserSpecificContent>
-          {// tslint:disable-next-line:no-any
-          (user: any): JSX.Element => {
-            return user ? (
-              <div className={styles.testWrapper}>
-                <div className={styles.testUserData}>
-                  <pre>{JSON.stringify(user, null, 2)}</pre>
-                </div>
-                <div className={styles.testForm}>
-                  <TestDataForm />
-                </div>
-              </div>
-            ) : (
-              <>
-                <h1>You need to login first</h1>
-                <Button type="link" target="/login">
-                  Login
-                </Button>
-              </>
-            )
-          }}
-        </UserSpecificContent>
+        {user && (
+          <div className={styles.testWrapper}>
+            <div className={styles.testUserData}>
+              {demands !== [] &&
+                demands.map((demand: IDemand, index: number) => (
+                  <div key={index}>
+                    <h6>{demand.id}</h6>
+                    <h6>{demand.userId}</h6>
+                    <div>
+                      {demand.categories.map((categorie: string, i: number) => (
+                        <span key={i}>{categorie}</span>
+                      ))}
+                    </div>
+                    <p>{demand.description}</p>
+                  </div>
+                ))}
+            </div>
+            <div className={styles.testForm}>
+              <TestDataForm user={user} />
+            </div>
+          </div>
+        )}
       </div>
     )
+  }
+
+  private getUserSpecificSeekings = async (): Promise<void> => {
+    const firestore = firebase.firestore()
+    const { user } = this.props
+
+    let demands = []
+    firestore
+      .collection('demands')
+      .where('userId', '==', user!.uid)
+      .get()
+      .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
+        querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
+          demands.push({ id: doc.id, ...doc.data() })
+        })
+      })
+      .then(() => {
+        this.setState({ demands })
+      })
   }
 }

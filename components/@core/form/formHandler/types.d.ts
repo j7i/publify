@@ -5,7 +5,6 @@ export interface IFormHandlerProps {
 
 export interface IFormHandlerState {
   values: IFormValues
-  // tslint:disable-next-line:no-any
   touched: IFormTouched
   focused: IFormFocused
 }

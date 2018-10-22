@@ -9,8 +9,7 @@ export default class UserSpecificContent extends PureComponent<IUserSpecificCont
   }
 
   public componentWillMount = (): void => {
-    // tslint:disable-next-line:no-any
-    firebase.auth().onAuthStateChanged((user: any) => {
+    firebase.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
         this.setState({ user })
       } else {
