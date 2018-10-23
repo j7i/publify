@@ -5,20 +5,20 @@ import Input from '@core/form/input'
 import firebase from 'firebase'
 import { PureComponent } from 'react'
 import { IDashboardProps } from '../types'
+import Categories from './categories'
 import styles from './styles.css'
 
 export default class TestDataForm extends PureComponent<IDashboardProps> {
   public render(): JSX.Element {
     return (
-      // tslint:disable-next-line:no-any
       <Form onSubmit={this.handleSubmit} className={styles.testForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
             <Input required type={'text'} name="categories" label={'Categorie'} formChildProps={formChildProps} />
-            <Input type={'checkbox'} id="published" name="published" label="Publish" formChildProps={formChildProps} />
-            {/* <select multiple={true} value={['Haushalt', 'Finanzen', 'Pflege']} /> */}
-            <Button type="submit">Submit</Button>
+            <Categories />
+            <Input type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
+            <Button type="submit">Add to Firestore</Button>
             {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}
           </>
         )}

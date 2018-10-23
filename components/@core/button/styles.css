@@ -1,6 +1,7 @@
 .button {
   display: flex;
-  width: 120px;
+  min-width: 120px;
+  max-width: 200px;
   padding: $spacingSmall $spacingBase;
   border: none;
   margin: $spacingSmall;

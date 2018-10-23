@@ -21,7 +21,7 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["mixin", "define-mixin", "for", "if", "else"]
+        "ignoreAtRules": ["mixin", "define-mixin", "for", "if", "else", "lost"]
       }
     ],
     "at-rule-no-vendor-prefix": true,
@@ -45,7 +45,7 @@
     "property-no-unknown": [
       true,
       {
-        "ignoreProperties": ["composes", "lost-column"]
+        "ignoreProperties": ["composes", "/^lost-/"]
       }
     ],
     "property-no-vendor-prefix": true,

@@ -40,7 +40,7 @@ export default class Input extends PureComponent<IInputProps> {
       >
         <input
           required={required}
-          id={id}
+          id={id ? id : name}
           type={type}
           name={name}
           value={value}
@@ -54,7 +54,7 @@ export default class Input extends PureComponent<IInputProps> {
         <label className={styles.label} htmlFor={name}>
           {label}
         </label>
-        {validityHint && !isCheckbox && <div className={styles.validityHint}>{validityHint}</div>}
+        {validityHint && !isCheckbox && <span className={styles.validityHint}>{validityHint}</span>}
       </div>
     )
   }

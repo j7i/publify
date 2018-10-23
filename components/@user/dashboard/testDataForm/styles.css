@@ -1,10 +1,10 @@
 .testForm {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-top: $spacingBig;
 
-  & input {
-    margin-bottom: $spacingBase;
+  & button {
+    align-self: flex-end;
   }
 }
