@@ -7,7 +7,6 @@ export default class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
     const { type, name, label, id, formChildProps, required, checked } = this.props
     const { values, focused, handleChange, handleBlur, handleFocus } = formChildProps
-    const isCheckbox = type === 'checkbox'
     let value
     let isFocused
     // let isTouched
@@ -31,13 +30,7 @@ export default class Input extends PureComponent<IInputProps> {
     }
 
     return (
-      <div
-        className={classNames({
-          [styles.input]: !isCheckbox,
-          [styles.checkbox]: isCheckbox,
-          [styles.focused]: !isCheckbox && (isFocused || value)
-        })}
-      >
+      <div className={classNames(styles.input, { [styles.focused]: isFocused || value })}>
         <input
           required={required}
           id={id ? id : name}
@@ -54,7 +47,7 @@ export default class Input extends PureComponent<IInputProps> {
         <label className={styles.label} htmlFor={name}>
           {label}
         </label>
-        {validityHint && !isCheckbox && <span className={styles.validityHint}>{validityHint}</span>}
+        {validityHint && <span className={styles.validityHint}>{validityHint}</span>}
       </div>
     )
   }

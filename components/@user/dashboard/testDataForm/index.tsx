@@ -1,5 +1,6 @@
 import Button from '@core/button'
 import Form from '@core/form'
+import Checkbox from '@core/form/checkbox'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
 import firebase from 'firebase'
@@ -17,7 +18,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
             <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
             <Input required type={'text'} name="categories" label={'Categorie'} formChildProps={formChildProps} />
             <Categories />
-            <Input type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
+            <Checkbox type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
             <Button type="submit">Add to Firestore</Button>
             {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}
           </>
