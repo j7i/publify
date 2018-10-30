@@ -1,4 +1,4 @@
-import FormHandler from '@core/form/formHandler/formHandler'
+import FormHandler from '@core/form/formHandler'
 import { IFormChildProps } from '@core/form/formHandler/types'
 import { IFormProps } from '@core/form/types'
 import { PureComponent } from 'react'

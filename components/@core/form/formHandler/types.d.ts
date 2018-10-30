@@ -10,7 +10,7 @@ export interface IFormHandlerState {
 }
 
 interface IFormValues {
-  [key: string]: string | boolean
+  [key: string]: string | boolean | string[]
 }
 
 interface IFormTouched {
@@ -24,5 +24,6 @@ export interface IFormChildProps extends IFormHandlerState {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void
   handleFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+  handleCategories: (selection: string[]) => void
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }

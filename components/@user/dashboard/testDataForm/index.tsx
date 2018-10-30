@@ -16,8 +16,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
-            <Input required type={'text'} name="categories" label={'Categorie'} formChildProps={formChildProps} />
-            <Categories />
+            <Categories formChildProps={formChildProps} />
             <Checkbox type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
             <Button type="submit">Add to Firestore</Button>
             {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}
@@ -32,8 +31,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
     // Initialize Cloud Firestore through Firebase
     const firestore = firebase.firestore()
 
-    const { description, published } = values
-    const categories = Array.of(values.categories)
+    const { description, published, categories } = values
 
     // tslint:disable:no-any no-console
     firestore

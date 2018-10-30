@@ -9,7 +9,6 @@
 }
 
 .categorie {
-  padding: $spacingMedium;
   cursor: pointer;
   lost-column: 1/4;
   lost-align: center;
@@ -17,7 +16,7 @@
   margin-bottom: $spacingSemi;
   border-radius: 4px;
 
-  &:hover {
+  &:not(.selected):hover {
     background-color: $grey3;
     color: $primary;
 
@@ -25,10 +24,14 @@
       color: $primary;
     }
   }
+}
 
-  & .selected {
+.selected {
+  color: $white;
+  background-color: $primary;
+
+  & svg {
     color: $white;
-    background-color: $primary;
   }
 }
 
@@ -36,6 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: $spacingMedium;
 
   & svg {
     padding-bottom: $spacingSmall;

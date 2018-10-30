@@ -57,6 +57,15 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     }))
   }
 
+  public handleCategories = (selection: string[]): void => {
+    this.setState((prevState: IFormHandlerState) => ({
+      values: {
+        ...prevState.values,
+        categories: selection
+      }
+    }))
+  }
+
   public handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     // validate
@@ -72,6 +81,7 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
       handleFocus: this.handleFocus,
+      handleCategories: this.handleCategories,
       handleSubmit: this.handleSubmit
     }
 
