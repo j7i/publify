@@ -5,13 +5,12 @@ export interface IFormHandlerProps {
 
 export interface IFormHandlerState {
   values: IFormValues
-  // tslint:disable-next-line:no-any
   touched: IFormTouched
   focused: IFormFocused
 }
 
 interface IFormValues {
-  [key: string]: string
+  [key: string]: string | boolean | string[]
 }
 
 interface IFormTouched {
@@ -25,5 +24,6 @@ export interface IFormChildProps extends IFormHandlerState {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void
   handleFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+  handleCategories: (selection: string[]) => void
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }

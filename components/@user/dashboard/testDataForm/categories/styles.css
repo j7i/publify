@@ -1,0 +1,47 @@
+@lost flexbox flex;
+@lost gutter 12px;
+@lost rounder 100;
+
+.categories {
+  width: 100%;
+  margin: $spacingBase 0;
+  lost-center: 100%;
+}
+
+.categorie {
+  cursor: pointer;
+  lost-column: 1/4;
+  lost-align: center;
+  background-color: $grey2;
+  margin-bottom: $spacingSemi;
+  border-radius: 4px;
+
+  &:not(.selected):hover {
+    background-color: $grey3;
+    color: $primary;
+
+    & svg {
+      color: $primary;
+    }
+  }
+}
+
+.selected {
+  color: $white;
+  background-color: $primary;
+
+  & svg {
+    color: $white;
+  }
+}
+
+.categorieInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacingMedium;
+
+  & svg {
+    padding-bottom: $spacingSmall;
+  }
+}

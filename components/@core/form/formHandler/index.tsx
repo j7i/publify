@@ -9,15 +9,24 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
   }
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target
+    const { name, value, type, checked } = event.target
 
     event.persist()
-    this.setState((prevState: IFormHandlerState) => ({
-      values: {
-        ...prevState.values,
-        [name]: value
-      }
-    }))
+    if (type === 'checkbox') {
+      this.setState((prevState: IFormHandlerState) => ({
+        values: {
+          ...prevState.values,
+          [name]: checked
+        }
+      }))
+    } else {
+      this.setState((prevState: IFormHandlerState) => ({
+        values: {
+          ...prevState.values,
+          [name]: value
+        }
+      }))
+    }
   }
 
   public handleBlur = (event: React.FocusEvent<HTMLInputElement>): void => {
@@ -48,6 +57,15 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     }))
   }
 
+  public handleCategories = (selection: string[]): void => {
+    this.setState((prevState: IFormHandlerState) => ({
+      values: {
+        ...prevState.values,
+        categories: selection
+      }
+    }))
+  }
+
   public handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     // validate
@@ -63,6 +81,7 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
       handleFocus: this.handleFocus,
+      handleCategories: this.handleCategories,
       handleSubmit: this.handleSubmit
     }
 

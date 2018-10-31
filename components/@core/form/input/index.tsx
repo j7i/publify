@@ -5,7 +5,7 @@ import styles from './styles.css'
 
 export default class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
-    const { type, name, label, id, formChildProps, required } = this.props
+    const { type, name, label, id, formChildProps, required, checked } = this.props
     const { values, focused, handleChange, handleBlur, handleFocus } = formChildProps
     let value
     let isFocused
@@ -33,18 +33,21 @@ export default class Input extends PureComponent<IInputProps> {
       <div className={classNames(styles.input, { [styles.focused]: isFocused || value })}>
         <input
           required={required}
-          id={id}
+          id={id ? id : name}
           type={type}
           name={name}
           value={value}
+          checked={checked}
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           placeholder={' '}
           pattern={type === 'password' ? '.{0}|.{8,}' : '{5,}'}
         />
-        <label className={styles.label}>{label}</label>
-        <div className={styles.validityHint}>{validityHint}</div>
+        <label className={styles.label} htmlFor={name}>
+          {label}
+        </label>
+        {validityHint && <span className={styles.validityHint}>{validityHint}</span>}
       </div>
     )
   }
