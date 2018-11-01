@@ -18,21 +18,17 @@
 
   &:not(.selected):hover {
     background-color: $grey3;
-    color: $primary;
+    color: $black;
 
+    .categorieName,
     & svg {
-      color: $primary;
+      color: $black;
     }
   }
 }
 
-.selected {
-  color: $white;
-  background-color: $primary;
-
-  & svg {
-    color: $white;
-  }
+.categorieName {
+  color: $grey7;
 }
 
 .categorieInner {
@@ -43,5 +39,16 @@
 
   & svg {
     padding-bottom: $spacingSmall;
+    color: $grey7;
+  }
+}
+
+.selected {
+  color: $black;
+  background-color: $primary;
+
+  .categorieName,
+  svg {
+    color: $black;
   }
 }

@@ -5,8 +5,8 @@
   padding: $spacingSmall $spacingBase;
   border: none;
   margin: $spacingSmall;
-  background: $primary;
-  color: $white;
+  background: $primaryLighten1;
+  color: $black;
   font-size: $fontSizeMedium;
   text-align: center;
   cursor: pointer;
@@ -19,6 +19,6 @@
   flex-wrap: wrap;
 
   &:hover {
-    background-color: $primaryDarken1;
+    background-color: $primary;
   }
 }

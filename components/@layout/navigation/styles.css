@@ -7,10 +7,10 @@
   padding-right: $spacingMedium;
 
   a {
-    padding: $spacingBase;
+    margin: $spacingBase;
     text-decoration: none;
     outline: none;
-    color: $white;
+    color: $black;
     font-size: $fontSizeMedium;
     font-weight: 600;
   }

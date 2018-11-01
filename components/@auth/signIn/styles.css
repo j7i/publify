@@ -24,12 +24,12 @@
 }
 
 .toggleSignUp {
-  color: $primary;
+  color: $grey7;
   cursor: pointer;
   margin-top: $spacingBase;
 
   &:hover {
-    color: $primaryDarken2;
+    color: $black;
   }
 }
 
@@ -51,7 +51,7 @@
   border: none;
   margin: $spacingSmall;
   background: $primary;
-  color: $white;
+  color: $black;
   font-size: $fontSizeMedium;
   text-align: center;
   cursor: pointer;
