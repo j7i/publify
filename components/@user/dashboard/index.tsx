@@ -32,7 +32,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
                         <span key={i}>{categorie}</span>
                       ))}
                     </div>
-                    <p>{demand.description}</p>
+                    <h3>{demand.description}</h3>
                     <p>{demand.published && `I'm public`}</p>
                   </div>
                 ))}

@@ -1,9 +1,12 @@
 import { IFormChildProps, IFormHandlerProps, IFormHandlerState } from '@core/form/formHandler/types'
+import { AdvertType } from '@user/dashboard/testDataForm/advertTypeSwitch/types'
 import { PureComponent } from 'react'
 
 export default class FormHandler extends PureComponent<IFormHandlerProps, IFormHandlerState> {
   public state: IFormHandlerState = {
-    values: {},
+    values: {
+      published: false
+    },
     touched: {},
     focused: {}
   }
@@ -66,6 +69,15 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     }))
   }
 
+  public handleAdvertType = (advertType: AdvertType): void => {
+    this.setState((prevState: IFormHandlerState) => ({
+      values: {
+        ...prevState.values,
+        type: advertType
+      }
+    }))
+  }
+
   public handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     // validate
@@ -82,6 +94,7 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
       handleBlur: this.handleBlur,
       handleFocus: this.handleFocus,
       handleCategories: this.handleCategories,
+      handleAdvertType: this.handleAdvertType,
       handleSubmit: this.handleSubmit
     }
 
