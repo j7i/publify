@@ -36,7 +36,10 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
     // tslint:disable:no-any no-console
     firestore
       .collection('demands')
-      .add({ ...values })
+      .add({
+        ...values,
+        userId: user.uid
+      })
       .then((docRef: any) => {
         console.log('Document written with ID: ', docRef.id)
       })
