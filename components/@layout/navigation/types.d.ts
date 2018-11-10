@@ -1,7 +1,9 @@
-import { MenuProps } from "material-ui";
+import { StyleRules } from '@material-ui/core/styles'
+import { WithStyles } from '@material-ui/core/styles/withStyles'
+import { MenuProps } from 'material-ui'
 
 export interface INavigationProps {
-  classes: 
+  classes: WithStyles['classes']
 }
 
 export interface INavigationState {

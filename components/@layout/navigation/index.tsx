@@ -51,6 +51,10 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
     mobileMoreAnchorEl: null
   }
 
+  public handleClose = (): void => {
+    this.setState({ anchorEl: null })
+  }
+
   public handleProfileMenuOpen = (event: React.SyntheticEvent): void => {
     this.setState({ anchorEl: event.currentTarget })
   }
@@ -122,7 +126,7 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
               <Button color="inherit">Dashboard</Button>
             </Link>
             <div className={classes.sectionDesktop}>
-              <IconButton aria-owns={isMenuOpen ? 'material-appbar' : null} aria-haspopup="true" onClick={this.handleProfileMenuOpen} color="inherit">
+              <IconButton aria-owns={isMenuOpen ? 'material-appbar' : undefined} aria-haspopup="true" onClick={this.handleProfileMenuOpen} color="inherit">
                 <AccountCircle />
               </IconButton>
             </div>

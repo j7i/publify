@@ -43,27 +43,3 @@
     margin-bottom: $spacingBase;
   }
 }
-
-.button {
-  display: flex;
-  width: 120px;
-  padding: $spacingSmall $spacingBase;
-  border: none;
-  margin: $spacingSmall;
-  background: $primary;
-  color: $black;
-  font-size: $fontSizeMedium;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-
-  &:hover {
-    background-color: $primaryDarken1;
-  }
-}

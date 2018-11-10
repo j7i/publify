@@ -44,11 +44,11 @@
 }
 
 .selected {
-  color: $black;
+  color: $white;
   background-color: $primary;
 
   .categorieName,
   svg {
-    color: $black;
+    color: $white;
   }
 }

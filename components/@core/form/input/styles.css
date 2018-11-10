@@ -66,7 +66,7 @@
 
   .label {
     bottom: $spacingGrande;
-    color: $primaryDarken2;
+    color: $primary;
     font-size: $fontSizeBase;
   }
 }

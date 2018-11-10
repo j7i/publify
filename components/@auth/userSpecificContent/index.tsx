@@ -1,3 +1,4 @@
+import LinearProgress from '@material-ui/core/LinearProgress'
 import firebase from 'firebase'
 import { PureComponent } from 'react'
 import { IUserSpecificContentProps, IUserSpecificContentState } from './types'
@@ -24,7 +25,7 @@ export default class UserSpecificContent extends PureComponent<IUserSpecificCont
     const { user, isAuthorizing } = this.state
 
     if (isAuthorizing) {
-      return <p>Authorizing...</p>
+      return <LinearProgress />
     }
 
     return children(user)
