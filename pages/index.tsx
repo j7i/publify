@@ -2,12 +2,11 @@ import AdvertListElement from '@advert/advertListElement'
 import { IDemand } from '@advert/advertListElement/types'
 import ErrorBoundary from '@helpers/errorBoundary'
 import PageHeader from '@layout/pageHeader'
-import Button from '@material-ui/core/Button'
 import { IDashboardState } from '@user/dashboard/types'
 import firebase from 'firebase'
 import { PureComponent } from 'react'
 
-class Index extends PureComponent {
+export default class Index extends PureComponent {
   public state: IDashboardState = {
     demands: []
   }
@@ -21,9 +20,6 @@ class Index extends PureComponent {
       <ErrorBoundary>
         <PageHeader />
         {this.state.demands !== [] && this.state.demands.map((demand: IDemand, index: number) => <AdvertListElement key={index} demand={demand} />)}
-        <Button variant="contained" color="secondary">
-          Material-UI Button
-        </Button>
       </ErrorBoundary>
     )
   }
@@ -47,5 +43,3 @@ class Index extends PureComponent {
       })
   }
 }
-
-export default Index
