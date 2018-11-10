@@ -6,6 +6,7 @@ import Input from '@core/form/input'
 import firebase from 'firebase'
 import { PureComponent } from 'react'
 import { IDashboardProps } from '../types'
+import AdvertTypeSwitch from './advertTypeSwitch'
 import Categories from './categories'
 import styles from './styles.css'
 
@@ -15,6 +16,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
       <Form onSubmit={this.handleSubmit} className={styles.testForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
+            <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} />
             <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
             <Categories formChildProps={formChildProps} />
             <Checkbox type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
@@ -31,15 +33,11 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
     // Initialize Cloud Firestore through Firebase
     const firestore = firebase.firestore()
 
-    const { description, published, categories } = values
-
     // tslint:disable:no-any no-console
     firestore
       .collection('demands')
       .add({
-        categories,
-        description,
-        published,
+        ...values,
         userId: user.uid
       })
       .then((docRef: any) => {

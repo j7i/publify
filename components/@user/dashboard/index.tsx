@@ -1,9 +1,11 @@
+import AdvertListElement from '@advert/advertListElement'
+import { IDemand } from '@advert/advertListElement/types'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 import styles from './styles.css'
 import TestDataForm from './testDataForm'
-import { IDashboardProps, IDashboardState, IDemand } from './types'
+import { IDashboardProps, IDashboardState } from './types'
 
 export default class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   public state: IDashboardState = {
@@ -22,20 +24,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
         {user && (
           <div className={styles.testWrapper}>
             <div className={styles.testUserData}>
-              {demands !== [] &&
-                demands.map((demand: IDemand, index: number) => (
-                  <div key={index}>
-                    <h6>{demand.id}</h6>
-                    <h6>{demand.userId}</h6>
-                    <div>
-                      {demand.categories.map((categorie: string, i: number) => (
-                        <span key={i}>{categorie}</span>
-                      ))}
-                    </div>
-                    <p>{demand.description}</p>
-                    <p>{demand.published && `I'm public`}</p>
-                  </div>
-                ))}
+              {demands !== [] && demands.map((demand: IDemand, index: number) => <AdvertListElement key={index} demand={demand} />)}
             </div>
             <div className={styles.testForm}>
               <TestDataForm user={user} />

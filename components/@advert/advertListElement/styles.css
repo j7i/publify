@@ -1,0 +1,46 @@
+.listItem {
+  position: relative;
+  display: flex;
+  padding: $spacingBase;
+  background-color: $white;
+  border-radius: 3px;
+  margin-bottom: $spacingBase;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.categories {
+  margin-left: $spacingMedium;
+}
+
+.categorie {
+  background-color: $primary;
+  padding: $spacingHalf $spacingSemi;
+  margin-right: $spacingSmall;
+  border-radius: $spacingBase;
+}
+
+.status {
+  padding: 2px 8px;
+  background-color: $success;
+  border-radius: 3px;
+  color: $white;
+}
+
+.public {
+  background-color: $success;
+  color: $white;
+}
+
+.private {
+  background-color: $grey6;
+  color: $white;
+}
