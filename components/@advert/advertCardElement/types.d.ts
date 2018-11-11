@@ -1,7 +1,7 @@
-import { IDemand } from '@advert/advertListElement/types'
+import { ISeeking } from '@advert/advertListElement/types'
 
 export interface IAdvertCardElementProps {
-  demand: IDemand
+  seeking: ISeeking
   withActions?: boolean
 }
 

@@ -1,5 +1,5 @@
-import AdvertListElement from '@advert/advertListElement'
-import { IDemand } from '@advert/advertListElement/types'
+import AdvertCardElement from '@advert/advertCardElement'
+import { ISeeking } from '@advert/advertListElement/types'
 import { FirebaseCollection } from '@config/firebase/types.d'
 import ErrorBoundary from '@helpers/errorBoundary'
 import PageHeader from '@layout/pageHeader'
@@ -9,7 +9,7 @@ import { PureComponent } from 'react'
 
 export default class Index extends PureComponent {
   public state: IDashboardState = {
-    demands: []
+    seekings: []
   }
 
   public componentDidMount(): void {
@@ -20,7 +20,7 @@ export default class Index extends PureComponent {
     return (
       <ErrorBoundary>
         <PageHeader />
-        {this.state.demands !== [] && this.state.demands.map((demand: IDemand, index: number) => <AdvertListElement key={index} demand={demand} />)}
+        {this.state.seekings !== [] && this.state.seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} seeking={seeking} />)}
       </ErrorBoundary>
     )
   }
@@ -29,18 +29,18 @@ export default class Index extends PureComponent {
     const firestore = firebase.firestore()
 
     // tslint:disable-next-line:no-any
-    let demands: any[] = []
+    let seekings: any[] = []
     firestore
-      .collection(FirebaseCollection.DEMANDS)
+      .collection(FirebaseCollection.SEEKINGS)
       .where('published', '==', true)
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
         querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
-          demands.push({ id: doc.id, ...doc.data() })
+          seekings.push({ id: doc.id, ...doc.data() })
         })
       })
       .then(() => {
-        this.setState({ demands })
+        this.setState({ seekings })
       })
   }
 }

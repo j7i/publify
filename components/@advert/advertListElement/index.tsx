@@ -5,18 +5,18 @@ import { IAdvertListElementProps } from './types'
 
 export default class AdvertListElement extends PureComponent<IAdvertListElementProps> {
   public render(): JSX.Element {
-    const { demand } = this.props
+    const { seeking } = this.props
     return (
       <article className={styles.listItem}>
-        {demand.type && <h2 className={styles.title}>{demand.type}</h2>}
+        {seeking.type && <h2 className={styles.title}>{seeking.type}</h2>}
         <div>
-          {demand.categories.map((categorie: string, index: number) => (
+          {seeking.categories.map((categorie: string, index: number) => (
             <span className={styles.categorie} key={index}>
               {categorie}
             </span>
           ))}
 
-          {demand.published ? (
+          {seeking.published ? (
             <span className={classNames(styles.status, styles.published)}>Published</span>
           ) : (
             <span className={classNames(styles.status, styles.private)}>Inaktiv</span>

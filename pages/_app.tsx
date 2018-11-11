@@ -1,11 +1,9 @@
 // tslint:disable
 
-import clientCredentials from '@config/firebase/client.js'
 import getPageContext from '@config/materialUi/getPageContext'
 import Layout from '@layout/Layout'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { MuiThemeProvider } from '@material-ui/core/styles'
-import firebase from 'firebase'
 import App, { Container } from 'next/app'
 import JssProvider from 'react-jss/lib/JssProvider'
 
@@ -25,13 +23,6 @@ export default class MyApp extends App {
   }
 
   public pageContext = getPageContext()
-
-  public componentWillMount(): void {
-    if (!firebase.apps.length) {
-      // Initialize Firebase
-      firebase.initializeApp(clientCredentials)
-    }
-  }
 
   public componentDidMount(): void {
     // Remove the server-side injected CSS.

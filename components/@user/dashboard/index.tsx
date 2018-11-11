@@ -1,5 +1,5 @@
 import AdvertCardElement from '@advert/advertCardElement'
-import { IDemand } from '@advert/advertListElement/types'
+import { ISeeking } from '@advert/advertListElement/types'
 import { FirebaseCollection } from '@config/firebase/types.d'
 import Paper from '@material-ui/core/Paper'
 import firebase from 'firebase'
@@ -11,7 +11,7 @@ import { IDashboardProps, IDashboardState } from './types'
 
 export default class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   public state: IDashboardState = {
-    demands: []
+    seekings: []
   }
 
   public componentDidMount(): void {
@@ -20,13 +20,13 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
 
   public render(): JSX.Element {
     const { user } = this.props
-    const { demands } = this.state
+    const { seekings } = this.state
     return (
       <div className={styles.devTestAre}>
         {user && (
           <div className={styles.testWrapper}>
             <div className={styles.testUserData}>
-              {demands !== [] && demands.map((demand: IDemand, index: number) => <AdvertCardElement key={index} withActions demand={demand} />)}
+              {seekings !== [] && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
             </div>
             <Paper className={styles.testForm}>
               <TestDataForm user={user} />
@@ -42,18 +42,18 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
     const { user } = this.props
 
     // tslint:disable-next-line:no-any
-    let demands: any[] = []
+    let seekings: any[] = []
     firestore
-      .collection(FirebaseCollection.DEMANDS)
+      .collection(FirebaseCollection.SEEKINGS)
       .where('userId', '==', user!.uid)
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
         querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
-          demands.push({ id: doc.id, ...doc.data() })
+          seekings.push({ id: doc.id, ...doc.data() })
         })
       })
       .then(() => {
-        this.setState({ demands })
+        this.setState({ seekings })
       })
       // tslint:disable-next-line:no-any
       .catch((error: any) => {

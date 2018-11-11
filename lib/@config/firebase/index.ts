@@ -8,7 +8,4 @@ if (!firebase.apps.length) {
 
 // Initialize Cloud Firestore through Firebase
 export const firestore: firebase.firestore.Firestore = firebase.firestore()
-
-if (!firestore.settings.length) {
-  firestore.settings({ timestampsInSnapshots: true })
-}
+firestore.settings({ timestampsInSnapshots: true })

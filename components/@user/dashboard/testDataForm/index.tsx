@@ -36,7 +36,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
 
     // tslint:disable:no-any no-console
     firestore
-      .collection(FirebaseCollection.DEMANDS)
+      .collection(FirebaseCollection.SEEKINGS)
       .add({
         ...values,
         userId: user.uid

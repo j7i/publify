@@ -1,4 +1,4 @@
 export enum FirebaseCollection {
-  DEMANDS = 'demands',
+  SEEKINGS = 'seekings',
   USERS = 'users'
 }
