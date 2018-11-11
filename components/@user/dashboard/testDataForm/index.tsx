@@ -17,10 +17,10 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} />
-            <Input required type={'text'} name="description" label={'Description'} formChildProps={formChildProps} />
+            <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
             <Categories formChildProps={formChildProps} />
             <Checkbox type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
-            <Button variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary">
               Add to Firestore
             </Button>
             {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}

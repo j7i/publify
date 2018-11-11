@@ -1,5 +1,6 @@
 import AdvertListElement from '@advert/advertListElement'
 import { IDemand } from '@advert/advertListElement/types'
+import Paper from '@material-ui/core/Paper'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
@@ -26,9 +27,9 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
             <div className={styles.testUserData}>
               {demands !== [] && demands.map((demand: IDemand, index: number) => <AdvertListElement key={index} demand={demand} />)}
             </div>
-            <div className={styles.testForm}>
+            <Paper className={styles.testForm}>
               <TestDataForm user={user} />
-            </div>
+            </Paper>
           </div>
         )}
       </div>

@@ -7,8 +7,7 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     values: {
       published: false
     },
-    touched: {},
-    focused: {}
+    touched: {}
   }
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -39,22 +38,6 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     this.setState((prevState: IFormHandlerState) => ({
       touched: {
         ...prevState.touched,
-        [name]: true
-      },
-      focused: {
-        ...prevState.focused,
-        [name]: false
-      }
-    }))
-  }
-
-  public handleFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
-    const { name } = event.target
-
-    event.persist()
-    this.setState((prevState: IFormHandlerState) => ({
-      focused: {
-        ...prevState.focused,
         [name]: true
       }
     }))
@@ -92,7 +75,6 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
       ...this.state,
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
-      handleFocus: this.handleFocus,
       handleCategories: this.handleCategories,
       handleAdvertType: this.handleAdvertType,
       handleSubmit: this.handleSubmit

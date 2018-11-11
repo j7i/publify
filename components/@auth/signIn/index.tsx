@@ -37,15 +37,14 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                   <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
                     {(formChildProps: IFormChildProps): JSX.Element => (
                       <>
-                        <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
-                        <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
                         {isSignUp && (
                           <>
                             <Input type={'text'} name="firstName" label={'Firstname'} formChildProps={formChildProps} />
                             <Input type={'text'} name="lastName" label={'Lastname'} formChildProps={formChildProps} />
                           </>
                         )}
-
+                        <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
+                        <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
                         <Button variant="contained" color="primary" type="submit">
                           {isSignUp ? `Sign up` : `Login`}
                         </Button>

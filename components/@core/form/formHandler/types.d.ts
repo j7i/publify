@@ -8,7 +8,6 @@ export interface IFormHandlerProps {
 export interface IFormHandlerState {
   values: IFormValues
   touched: IFormTouched
-  focused: IFormFocused
 }
 
 interface IFormValues {
@@ -25,7 +24,6 @@ interface IFormFocused extends IFormTouched {}
 export interface IFormChildProps extends IFormHandlerState {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void
-  handleFocus: (event: React.FocusEvent<HTMLInputElement>) => void
   handleCategories: (selection: string[]) => void
   handleAdvertType: (advertType: AdvertType) => void
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
