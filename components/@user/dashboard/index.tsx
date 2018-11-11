@@ -1,5 +1,6 @@
 import AdvertCardElement from '@advert/advertCardElement'
 import { IDemand } from '@advert/advertListElement/types'
+import { FirebaseCollection } from '@config/firebase/types.d'
 import Paper from '@material-ui/core/Paper'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
@@ -43,7 +44,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
     // tslint:disable-next-line:no-any
     let demands: any[] = []
     firestore
-      .collection('demands')
+      .collection(FirebaseCollection.DEMANDS)
       .where('userId', '==', user!.uid)
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
@@ -53,6 +54,11 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
       })
       .then(() => {
         this.setState({ demands })
+      })
+      // tslint:disable-next-line:no-any
+      .catch((error: any) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error adding document: ', error)
       })
   }
 }

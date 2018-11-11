@@ -30,10 +30,6 @@ export default class MyApp extends App {
     if (!firebase.apps.length) {
       // Initialize Firebase
       firebase.initializeApp(clientCredentials)
-
-      // Initialize Firestore
-      const firestore = firebase.firestore()
-      firestore.settings({ timestampsInSnapshots: true })
     }
   }
 

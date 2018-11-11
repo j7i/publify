@@ -1,3 +1,5 @@
+import { firestore } from '@config/firebase'
+import { FirebaseCollection } from '@config/firebase/types.d'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
@@ -30,7 +32,7 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
             image="/static/images/cards/contemplative-reptile.jpg"
             title="Contemplative Reptile"
           /> */}
-          <CardMedia component="img" height="140" className={styles.media} />
+          {/* <CardMedia component="img" height="140" className={styles.media} /> */}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {demand.type}
@@ -61,6 +63,24 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
   }
 
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ published: event.target.checked })
+    event.preventDefault()
+
+    const { id } = this.props.demand
+    const { published } = this.state
+
+    firestore
+      .collection(FirebaseCollection.DEMANDS)
+      .doc(id)
+      .update({
+        published: !published
+      })
+      .then(() => {
+        this.setState({ published: !published })
+      })
+      // tslint:disable-next-line:no-any
+      .catch((error: any) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error adding document: ', error)
+      })
   }
 }

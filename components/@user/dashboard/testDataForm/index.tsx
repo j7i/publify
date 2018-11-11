@@ -1,9 +1,10 @@
+import { firestore } from '@config/firebase'
+import { FirebaseCollection } from '@config/firebase/types.d'
 import Form from '@core/form'
 import Checkbox from '@core/form/checkbox'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
 import Button from '@material-ui/core/Button'
-import firebase from 'firebase'
 import { PureComponent } from 'react'
 import { IDashboardProps } from '../types'
 import AdvertTypeSwitch from './advertTypeSwitch'
@@ -32,12 +33,10 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
 
   private handleSubmit = async (values: IFormValues): Promise<void> => {
     const { user } = this.props
-    // Initialize Cloud Firestore through Firebase
-    const firestore = firebase.firestore()
 
     // tslint:disable:no-any no-console
     firestore
-      .collection('demands')
+      .collection(FirebaseCollection.DEMANDS)
       .add({
         ...values,
         userId: user.uid

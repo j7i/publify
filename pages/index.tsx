@@ -1,5 +1,6 @@
 import AdvertListElement from '@advert/advertListElement'
 import { IDemand } from '@advert/advertListElement/types'
+import { FirebaseCollection } from '@config/firebase/types.d'
 import ErrorBoundary from '@helpers/errorBoundary'
 import PageHeader from '@layout/pageHeader'
 import { IDashboardState } from '@user/dashboard/types'
@@ -30,7 +31,7 @@ export default class Index extends PureComponent {
     // tslint:disable-next-line:no-any
     let demands: any[] = []
     firestore
-      .collection('demands')
+      .collection(FirebaseCollection.DEMANDS)
       .where('published', '==', true)
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
