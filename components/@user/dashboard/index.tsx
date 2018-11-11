@@ -1,4 +1,4 @@
-import AdvertListElement from '@advert/advertListElement'
+import AdvertCardElement from '@advert/advertCardElement'
 import { IDemand } from '@advert/advertListElement/types'
 import Paper from '@material-ui/core/Paper'
 import firebase from 'firebase'
@@ -25,7 +25,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
         {user && (
           <div className={styles.testWrapper}>
             <div className={styles.testUserData}>
-              {demands !== [] && demands.map((demand: IDemand, index: number) => <AdvertListElement key={index} demand={demand} />)}
+              {demands !== [] && demands.map((demand: IDemand, index: number) => <AdvertCardElement key={index} withActions demand={demand} />)}
             </div>
             <Paper className={styles.testForm}>
               <TestDataForm user={user} />

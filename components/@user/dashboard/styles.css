@@ -5,7 +5,7 @@
 .testUserData {
   lost-column: 1/2;
   overflow: scroll;
-  padding: $spacingMedium;
+  padding: 0 $spacingMedium;
   border-radius: 3px;
 }
 
