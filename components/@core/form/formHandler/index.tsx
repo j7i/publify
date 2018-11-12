@@ -1,5 +1,5 @@
 import { IFormChildProps, IFormHandlerProps, IFormHandlerState } from '@core/form/formHandler/types'
-import { AdvertType } from '@user/dashboard/testDataForm/advertTypeSwitch/types'
+import { AdvertType } from '@helpers/types/types'
 import { PureComponent } from 'react'
 
 export default class FormHandler extends PureComponent<IFormHandlerProps, IFormHandlerState> {

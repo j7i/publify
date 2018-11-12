@@ -122,6 +122,9 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
               </Typography>
             </Link>
             <div className={classes.grow} />
+            <Link href="/create">
+              <Button color="inherit">Create New</Button>
+            </Link>
             <Link href="/dashboard">
               <Button color="inherit">Dashboard</Button>
             </Link>

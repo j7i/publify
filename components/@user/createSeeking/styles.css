@@ -1,0 +1,15 @@
+.createSeeking {
+  display: flex;
+  height: 90vh;
+  padding: $spacingMedium;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.form {
+  padding: $spacingMedium;
+  margin: 0 auto;
+  background-color: $white;
+  border-radius: 3px;
+}

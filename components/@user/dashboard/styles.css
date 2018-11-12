@@ -1,18 +1,5 @@
 .testWrapper {
   padding: $spacingMedium;
-}
-
-.testUserData {
-  lost-column: 1/2;
-  overflow: scroll;
-  padding: 0 $spacingMedium;
-  border-radius: 3px;
-}
-
-.testForm {
-  lost-column: 1/2;
-  background-color: $white;
-  padding: $spacingMedium;
   border-radius: 3px;
 }
 

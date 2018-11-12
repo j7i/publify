@@ -1,4 +1,4 @@
-import { AdvertType } from '@user/dashboard/testDataForm/advertTypeSwitch/types'
+import { AdvertType } from '@helpers/types/types'
 
 export interface IFormHandlerProps {
   onSubmit: (values: IFormValues) => Promise<void>

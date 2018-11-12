@@ -5,13 +5,14 @@ import Checkbox from '@core/form/checkbox'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
 import Button from '@material-ui/core/Button'
+import Router from 'next/router'
 import { PureComponent } from 'react'
-import { IDashboardProps } from '../types'
 import AdvertTypeSwitch from './advertTypeSwitch'
 import Categories from './categories'
 import styles from './styles.css'
+import { ISeekingFormProps } from './types'
 
-export default class TestDataForm extends PureComponent<IDashboardProps> {
+export default class SeekingForm extends PureComponent<ISeekingFormProps> {
   public render(): JSX.Element {
     return (
       <Form onSubmit={this.handleSubmit} className={styles.testForm}>
@@ -43,6 +44,7 @@ export default class TestDataForm extends PureComponent<IDashboardProps> {
       })
       .then((docRef: any) => {
         console.log('Document written with ID: ', docRef.id)
+        Router.push('/dashboard')
       })
       .catch((error: any) => {
         console.error('Error adding document: ', error)

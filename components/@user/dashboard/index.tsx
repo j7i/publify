@@ -1,12 +1,10 @@
 import AdvertCardElement from '@advert/advertCardElement'
 import { ISeeking } from '@advert/advertListElement/types'
 import { FirebaseCollection } from '@config/firebase/types.d'
-import Paper from '@material-ui/core/Paper'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 import styles from './styles.css'
-import TestDataForm from './testDataForm'
 import { IDashboardProps, IDashboardState } from './types'
 
 export default class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
@@ -28,9 +26,6 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
             <div className={styles.testUserData}>
               {seekings !== [] && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
             </div>
-            <Paper className={styles.testForm}>
-              <TestDataForm user={user} />
-            </Paper>
           </div>
         )}
       </div>
