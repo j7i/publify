@@ -1,7 +1,8 @@
+import { AdvertType } from '@helpers/types/types.d'
 import classNames from 'classnames'
 import { PureComponent } from 'react'
 import styles from './styles.css'
-import { AdvertType, IAdvertTypeSwitchProps, IAdvertTypeSwitchState } from './types.d'
+import { IAdvertTypeSwitchProps, IAdvertTypeSwitchState } from './types.d'
 
 export default class AdvertTypeSwitch extends PureComponent<IAdvertTypeSwitchProps, IAdvertTypeSwitchState> {
   public state: IAdvertTypeSwitchState = {
