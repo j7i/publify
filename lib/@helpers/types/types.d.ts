@@ -1,8 +1,7 @@
 import { ISeeking } from '@advert/advertListElement/types'
+import { IFirebaseDocumnet } from '@helpers/firestoreFetch/types'
 import * as http from 'http'
 
 export interface IDatailPageProps {
-  data: ISeeking
+  data: IFirebaseDocumnet
 }
-
-export interface IExtendedServerResponse extends http.ServerResponse, IDatailPageProps {}

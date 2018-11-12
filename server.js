@@ -44,40 +44,8 @@ app
       next()
     })
 
-    server.get('/api/detail/:id', async (req, res) => {
-      const id = req.params.id
-      const details = await firestore
-        .collection('seekings')
-        .doc(id)
-        .get()
-        .then(doc => {
-          if (!doc.exists) {
-            console.log('No such document!')
-          } else {
-            res.send(doc.data())
-          }
-        })
-        .catch(error => {
-          console.log('Error getting document')
-        })
-    })
-
     server.get('/detail/:id', async (req, res) => {
       const id = req.params.id
-      await firestore
-        .collection('seekings')
-        .doc(id)
-        .get()
-        .then(doc => {
-          if (!doc.exists) {
-            console.log('No such document!')
-          } else {
-            res.data = doc.data()
-          }
-        })
-        .catch(error => {
-          console.log('Error getting document')
-        })
       const actualPage = '/detail'
       const queryParams = { id }
       app.render(req, res, actualPage, queryParams)

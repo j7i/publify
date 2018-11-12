@@ -3,7 +3,7 @@ export interface IAdvertListElementProps {
 }
 
 export interface ISeeking {
-  id: string
+  id?: string
   type: string
   categories: string[]
   description: string

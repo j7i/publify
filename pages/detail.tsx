@@ -1,23 +1,28 @@
 import AdvertDetail from '@advert/advertDetail'
-import { IDatailPageProps, IExtendedServerResponse } from '@helpers/types/types'
-import 'isomorphic-unfetch'
+import { firestoreFetch } from '@helpers/firestoreFetch'
+import { IFirestoreFetch } from '@helpers/firestoreFetch/types'
+import { IDatailPageProps } from '@helpers/types/types'
 import { NextContext } from 'next'
 import { PureComponent } from 'react'
 import ErrorBoundary from '../lib/@helpers/errorBoundary'
 
 export default class Detail extends PureComponent<IDatailPageProps> {
-  public static async getInitialProps(context: NextContext): Promise<IDatailPageProps> {
-    const { data } = context.res as IExtendedServerResponse
-    // const { id } = context.query
+  public static async getInitialProps(context: NextContext): Promise<IFirestoreFetch | boolean> {
+    const id = context.query.id as string
 
-    return { data }
+    if (id) {
+      id.toString()
+      return firestoreFetch('seekings', id)
+    }
+
+    return false
   }
 
   public render(): JSX.Element {
     return (
       <ErrorBoundary>
-        <AdvertDetail seeking={this.props.data} />
-        {/* <pre>{JSON.stringify(this.props.data, null, 2)}</pre> */}
+        {this.props.data && <AdvertDetail seeking={this.props.data.fields} />}
+        <pre>{JSON.stringify(this.props.data, null, 2)}</pre>
       </ErrorBoundary>
     )
   }
