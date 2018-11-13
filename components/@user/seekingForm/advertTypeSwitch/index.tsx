@@ -1,7 +1,8 @@
+import { AdvertType } from '@helpers/types/types.d'
 import classNames from 'classnames'
 import { PureComponent } from 'react'
 import styles from './styles.css'
-import { AdvertType, IAdvertTypeSwitchProps, IAdvertTypeSwitchState } from './types.d'
+import { IAdvertTypeSwitchProps, IAdvertTypeSwitchState } from './types.d'
 
 export default class AdvertTypeSwitch extends PureComponent<IAdvertTypeSwitchProps, IAdvertTypeSwitchState> {
   public state: IAdvertTypeSwitchState = {
@@ -9,8 +10,16 @@ export default class AdvertTypeSwitch extends PureComponent<IAdvertTypeSwitchPro
   }
 
   public componentDidMount(): void {
-    const { handleAdvertType } = this.props
-    handleAdvertType(this.state.advertType)
+    const { initialValues } = this.props
+    const initialAdvertType = initialValues.type as AdvertType
+    const advertType = initialAdvertType ? initialAdvertType : AdvertType.DEMAND
+
+    this.setState(
+      {
+        advertType
+      },
+      this.passSelectionToFormHandler
+    )
   }
 
   public handleType = (advertType: AdvertType, event: React.MouseEvent<HTMLElement>): void => {

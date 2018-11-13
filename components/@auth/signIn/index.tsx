@@ -2,8 +2,7 @@ import UserSpecificContent from '@auth/userSpecificContent'
 import Form from '@core/form'
 import { IFormChildProps } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Button from '@material-ui/core/Button'
 import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import Router from 'next/router'
@@ -28,9 +27,9 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                 <>
                   <h2>Congrats 🎉 </h2>
                   <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
-                  <button className={styles.button} onClick={this.handleLogout}>
-                    <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-                  </button>
+                  <Button variant="contained" color="primary" type="submit" onClick={this.handleLogout}>
+                    Logout
+                  </Button>
                 </>
               ) : (
                 <>
@@ -38,18 +37,17 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                   <Form onSubmit={this.handleSubmit} className={styles.registerForm}>
                     {(formChildProps: IFormChildProps): JSX.Element => (
                       <>
-                        <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
-                        <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
                         {isSignUp && (
                           <>
                             <Input type={'text'} name="firstName" label={'Firstname'} formChildProps={formChildProps} />
                             <Input type={'text'} name="lastName" label={'Lastname'} formChildProps={formChildProps} />
                           </>
                         )}
-
-                        <button className={styles.button} type="submit">
+                        <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
+                        <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
+                        <Button variant="contained" color="primary" type="submit">
                           {isSignUp ? `Sign up` : `Login`}
-                        </button>
+                        </Button>
                       </>
                     )}
                   </Form>

@@ -4,4 +4,5 @@ export interface IFormProps {
   children: (formChildProps: IFormChildProps) => JSX.Element
   onSubmit: (values: IFormValues) => Promise<void>
   className: string
+  initialValues?: IFormValues
 }

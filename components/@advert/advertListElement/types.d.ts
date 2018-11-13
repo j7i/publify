@@ -1,9 +1,9 @@
 export interface IAdvertListElementProps {
-  demand: IDemand
+  seeking: ISeeking
 }
 
-export interface IDemand {
-  id: string
+export interface ISeeking {
+  id?: string
   type: string
   categories: string[]
   description: string

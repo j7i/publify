@@ -1,7 +1,8 @@
 import UserSpecificContent from '@auth/userSpecificContent'
-import Button from '@core/button'
 import ErrorBoundary from '@helpers/errorBoundary'
+import Button from '@material-ui/core/Button'
 import UserDashboard from '@user/dashboard'
+import Link from 'next/link'
 import { PureComponent } from 'react'
 
 export default class Dashboard extends PureComponent {
@@ -15,9 +16,11 @@ export default class Dashboard extends PureComponent {
             ) : (
               <>
                 <h1>You need to login first</h1>
-                <Button type="link" target="/login">
-                  Login
-                </Button>
+                <Link href="/login">
+                  <Button variant="contained" color="primary">
+                    Login
+                  </Button>
+                </Link>
               </>
             )
           }}

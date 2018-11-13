@@ -1,5 +1,5 @@
 import { IFormChildProps, IFormHandlerProps, IFormHandlerState } from '@core/form/formHandler/types'
-import { AdvertType } from '@user/dashboard/testDataForm/advertTypeSwitch/types'
+import { AdvertType } from '@helpers/types/types'
 import { PureComponent } from 'react'
 
 export default class FormHandler extends PureComponent<IFormHandlerProps, IFormHandlerState> {
@@ -7,8 +7,15 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     values: {
       published: false
     },
-    touched: {},
-    focused: {}
+    touched: {}
+  }
+  public componentWillMount(): void {
+    const { initialValues } = this.props
+    if (initialValues) {
+      this.setState({
+        values: initialValues
+      })
+    }
   }
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -39,22 +46,6 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     this.setState((prevState: IFormHandlerState) => ({
       touched: {
         ...prevState.touched,
-        [name]: true
-      },
-      focused: {
-        ...prevState.focused,
-        [name]: false
-      }
-    }))
-  }
-
-  public handleFocus = (event: React.FocusEvent<HTMLInputElement>): void => {
-    const { name } = event.target
-
-    event.persist()
-    this.setState((prevState: IFormHandlerState) => ({
-      focused: {
-        ...prevState.focused,
         [name]: true
       }
     }))
@@ -92,7 +83,6 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
       ...this.state,
       handleChange: this.handleChange,
       handleBlur: this.handleBlur,
-      handleFocus: this.handleFocus,
       handleCategories: this.handleCategories,
       handleAdvertType: this.handleAdvertType,
       handleSubmit: this.handleSubmit

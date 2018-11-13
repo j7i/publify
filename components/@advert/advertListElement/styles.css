@@ -26,6 +26,7 @@
   padding: $spacingHalf $spacingSemi;
   margin-right: $spacingSmall;
   border-radius: $spacingBase;
+  color: $white;
 }
 
 .status {

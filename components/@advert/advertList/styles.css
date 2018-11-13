@@ -1,0 +1,10 @@
+@lost flexbox flex;
+@lost gutter 0;
+
+.advertList {
+  padding: $spacingMedium;
+}
+
+.advertWrapper {
+  lost-column: 1/1;
+}

@@ -10,6 +10,19 @@ export default class Categories extends PureComponent<ICategorieProps, ICategori
     selected: {}
   }
 
+  public componentDidMount(): void {
+    let { categories } = this.props.formChildProps.values
+
+    if (categories) {
+      const selected = {}
+      Object.values(categories).map((categorie: string) => {
+        selected[categorie] = true
+      })
+
+      this.setState({ selected: { ...selected } })
+    }
+  }
+
   public handleSelection = (event: React.MouseEvent<HTMLElement>): void => {
     const selection = event.currentTarget.dataset.selection as string
 
