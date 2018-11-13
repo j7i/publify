@@ -51,6 +51,13 @@ app
       app.render(req, res, actualPage, queryParams)
     })
 
+    server.get('/seekings/edit/:id', async (req, res) => {
+      const id = req.params.id
+      const actualPage = '/edit'
+      const queryParams = { id }
+      app.render(req, res, actualPage, queryParams)
+    })
+
     server.post('/api/login', (req, res) => {
       if (!req.body) return res.sendStatus(400)
 

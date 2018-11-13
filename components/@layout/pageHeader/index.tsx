@@ -8,7 +8,7 @@ export default class PageHeader extends PureComponent {
       <header className={styles.header__outer}>
         <div className={styles.header__slogan}>
           <h1>Project II</h1>
-          <h4>✔ Basic setup &amp; auth</h4>
+          <h4>✔ Create, publish, update, delete</h4>
         </div>
       </header>
     )

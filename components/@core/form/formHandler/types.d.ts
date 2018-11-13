@@ -3,6 +3,7 @@ import { AdvertType } from '@helpers/types/types'
 export interface IFormHandlerProps {
   onSubmit: (values: IFormValues) => Promise<void>
   children: (formChildProps: IFormChildProps) => JSX.Element
+  initialValues?: IFormValues
 }
 
 export interface IFormHandlerState {

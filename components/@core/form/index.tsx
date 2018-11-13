@@ -5,10 +5,10 @@ import { PureComponent } from 'react'
 
 export default class Form extends PureComponent<IFormProps> {
   public render(): JSX.Element {
-    const { children, onSubmit, className } = this.props
+    const { children, onSubmit, className, initialValues } = this.props
 
     return (
-      <FormHandler onSubmit={onSubmit}>
+      <FormHandler onSubmit={onSubmit} initialValues={initialValues}>
         {(formChildProps: IFormChildProps): JSX.Element => {
           return (
             <form onSubmit={formChildProps.handleSubmit} className={className}>

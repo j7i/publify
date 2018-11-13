@@ -51,7 +51,9 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
         {withActions && (
           <CardActions>
             <Button size="small" color="primary">
-              Edit
+              <Link as={`/seekings/edit/${seeking.id}`} href={`/edit?id=${seeking.id}`}>
+                <span className={styles.preventMaterialAddingClassnameToNextLinkError}>Edit</span>
+              </Link>
             </Button>
             <div className={styles.grow} />
             <FormControlLabel

@@ -9,6 +9,14 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     },
     touched: {}
   }
+  public componentWillMount(): void {
+    const { initialValues } = this.props
+    if (initialValues) {
+      this.setState({
+        values: initialValues
+      })
+    }
+  }
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value, type, checked } = event.target

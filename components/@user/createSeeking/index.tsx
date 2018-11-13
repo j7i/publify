@@ -1,10 +1,10 @@
 import UserSpecificContent from '@auth/userSpecificContent'
 import { Button } from '@material-ui/core'
 import Paper from '@material-ui/core/Paper'
+import SeekingForm from '@user/seekingForm'
 import 'isomorphic-unfetch'
 import Link from 'next/link'
 import { PureComponent } from 'react'
-import SeekingForm from './seekingForm'
 import styles from './styles.css'
 
 export default class CreateSeeking extends PureComponent<{}> {

@@ -17,18 +17,11 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
   }
 
   public render(): JSX.Element {
-    const { user } = this.props
     const { seekings } = this.state
     return (
-      <div className={styles.devTestAre}>
-        {user && (
-          <div className={styles.testWrapper}>
-            <div className={styles.testUserData}>
-              {seekings !== [] && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
-            </div>
-          </div>
-        )}
-      </div>
+      <section className={styles.dashboard}>
+        {seekings !== [] && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
+      </section>
     )
   }
 

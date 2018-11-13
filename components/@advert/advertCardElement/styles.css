@@ -32,3 +32,8 @@
 .grow {
   flex-grow: 1;
 }
+
+.preventMaterialAddingClassnameToNextLinkError {
+  position: absolute;
+  padding: 7px 20px;
+}

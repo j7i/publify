@@ -10,8 +10,16 @@ export default class AdvertTypeSwitch extends PureComponent<IAdvertTypeSwitchPro
   }
 
   public componentDidMount(): void {
-    const { handleAdvertType } = this.props
-    handleAdvertType(this.state.advertType)
+    const { initialValues } = this.props
+    const initialAdvertType = initialValues.type as AdvertType
+    const advertType = initialAdvertType ? initialAdvertType : AdvertType.DEMAND
+
+    this.setState(
+      {
+        advertType
+      },
+      this.passSelectionToFormHandler
+    )
   }
 
   public handleType = (advertType: AdvertType, event: React.MouseEvent<HTMLElement>): void => {
