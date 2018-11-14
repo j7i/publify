@@ -1,6 +1,5 @@
 .createSeeking {
   display: flex;
-  height: 90vh;
   padding: $spacingMedium;
   justify-content: center;
   align-items: center;

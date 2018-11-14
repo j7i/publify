@@ -22,7 +22,7 @@ export default class SeekingForm extends PureComponent<ISeekingFormProps> {
             <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} />
             <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
             <Categories formChildProps={formChildProps} />
-            <Checkbox type={'checkbox'} name="published" label="Publish" formChildProps={formChildProps} />
+            <Checkbox name="published" label="Published" formChildProps={formChildProps} />
             <div className={styles.actions}>
               {documentToUpdate && (
                 <Button className={styles.delete} onClick={this.handleDelete}>
