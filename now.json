@@ -1,5 +1,6 @@
 {
   "name": "publify",
+  "version": 1,
   "type": "npm",
   "alias": "publify-hsrproject2.now.sh",
   "engines": {

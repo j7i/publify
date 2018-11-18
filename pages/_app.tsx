@@ -6,13 +6,14 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import App, { Container } from 'next/app'
 import JssProvider from 'react-jss/lib/JssProvider'
+import { ICreatePageContext } from '@config/materialUi/types'
 
 export default class MyApp extends App {
   public static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
+    const pageProps = (Component.getInitialProps ? await Component.getInitialProps(ctx) : null) || {}
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+    if (ctx.res) {
+      pageProps.statusCode = ctx.res.statusCode
     }
 
     return { pageProps }
@@ -22,7 +23,7 @@ export default class MyApp extends App {
     super(props)
   }
 
-  public pageContext = getPageContext()
+  public pageContext: ICreatePageContext = getPageContext()
 
   public componentDidMount(): void {
     // Remove the server-side injected CSS.
@@ -35,6 +36,7 @@ export default class MyApp extends App {
   public render(): JSX.Element {
     const { Component, pageProps } = this.props
     const { sheetsRegistry, generateClassName, theme, sheetsManager } = this.pageContext
+
     return (
       <Container>
         <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>

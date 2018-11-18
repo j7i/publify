@@ -1,7 +1,9 @@
+import { ISeeking } from '@advert/advertListElement/types'
 import { IFirebaseDocumnet } from '@helpers/firestoreFetch/types'
 
 export interface IDatailPageProps {
-  data: IFirebaseDocumnet
+  data: ISeeking
+  statusCode?: number | undefined
 }
 
 export interface IEditPageProps {

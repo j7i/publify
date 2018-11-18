@@ -5,7 +5,7 @@ const { withPlugins } = require('next-compose-plugins')
 const withCSS = require('@zeit/next-css')
 const withTypescript = require('@zeit/next-typescript')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const babel = JSON.parse(require('fs').readFileSync('.babelrc', 'utf8'))
+const babel = require('./.babelrc')
 const { PHASE_PRODUCTION_BUILD } = require('next/constants')
 
 const nextConfig = {

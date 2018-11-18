@@ -44,6 +44,25 @@ app
       next()
     })
 
+    server.get('/api/detail/:id', async (req, res) => {
+      const id = req.params.id
+      const details = await firestore
+        .collection('seekings')
+        .doc(id)
+        .get()
+        .then(doc => {
+          if (!doc.exists) {
+            res.status(404).send({ error: 'No such document!' })
+          } else {
+            res.send(doc.data())
+          }
+        })
+        .catch(error => {
+          console.error(error)
+          res.send({ error })
+        })
+    })
+
     server.get('/detail/:id', async (req, res) => {
       const id = req.params.id
       const actualPage = '/detail'
