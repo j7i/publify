@@ -46,7 +46,7 @@ app
 
     server.get('/api/detail/:id', async (req, res) => {
       const id = req.params.id
-      const details = await firestore
+      await firestore
         .collection('seekings')
         .doc(id)
         .get()

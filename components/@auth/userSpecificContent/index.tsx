@@ -1,5 +1,5 @@
+import firebase from '@config/firebase/index'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import firebase from 'firebase'
 import { PureComponent } from 'react'
 import { IUserSpecificContentProps, IUserSpecificContentState } from './types'
 

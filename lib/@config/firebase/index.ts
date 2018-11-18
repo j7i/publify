@@ -1,10 +1,9 @@
 import clientCredentials from '@config/firebase/client.js'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
-if (!firebase.apps.length) {
-  // Initialize Firebase
-  firebase.initializeApp(clientCredentials)
-}
+export default (!firebase.apps.length ? firebase.initializeApp(clientCredentials) : firebase.app())
 
 // Initialize Cloud Firestore through Firebase
 export const firestore: firebase.firestore.Firestore = firebase.firestore()

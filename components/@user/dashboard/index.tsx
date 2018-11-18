@@ -1,7 +1,7 @@
 import AdvertCardElement from '@advert/advertCardElement'
 import { ISeeking } from '@advert/advertListElement/types'
+import firebase from '@config/firebase/index'
 import { FirebaseCollection } from '@config/firebase/types.d'
-import firebase from 'firebase'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 import styles from './styles.css'
