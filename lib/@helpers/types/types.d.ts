@@ -14,3 +14,13 @@ export enum AdvertType {
   OFFER = 'Offer',
   DEMAND = 'Demand'
 }
+
+export enum Categorie {
+  HOUSEHOLD = 'Haushalt',
+  GARDEN = 'Garten',
+  SHOPPING = 'Einkaufen',
+  FINANCE = 'Finanzen',
+  AUTHORITIES = 'Behörden',
+  MULTIMEDIA = 'PC/Handy',
+  TRANSPORTATION = 'Transport'
+}

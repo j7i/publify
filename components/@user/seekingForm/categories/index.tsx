@@ -1,7 +1,7 @@
-import { faBalanceScale, faBroom, faCarSide, faDesktop, faLeaf, faShoppingBasket, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import { PureComponent } from 'react'
+import categorieList from './categorieList'
 import styles from './styles.css'
 import { ICategorie, ICategorieProps, ICategorieState } from './types'
 
@@ -53,40 +53,11 @@ export default class Categories extends PureComponent<ICategorieProps, ICategori
 
   public render(): JSX.Element {
     // const { selectedCategories } = this.props.formchildProps
-    const categories: ICategorie[] = [
-      {
-        name: 'Haushalt',
-        icon: faBroom
-      },
-      {
-        name: 'Garten',
-        icon: faLeaf
-      },
-      {
-        name: 'Einkaufen',
-        icon: faShoppingBasket
-      },
-      {
-        name: 'Finanzen',
-        icon: faBalanceScale
-      },
-      {
-        name: 'Behörden',
-        icon: faUserTie
-      },
-      {
-        name: 'PC/Handy',
-        icon: faDesktop
-      },
-      {
-        name: 'Transport',
-        icon: faCarSide
-      }
-    ]
+
     return (
       <>
         <div className={styles.categories}>
-          {categories.map((categorie: ICategorie, index: number) => (
+          {categorieList.map((categorie: ICategorie, index: number) => (
             <div
               key={index}
               onClick={this.handleSelection}
