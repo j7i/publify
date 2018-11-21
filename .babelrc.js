@@ -11,13 +11,13 @@ module.exports = {
         alias: {
           '@advert': './components/@advert',
           '@auth': './components/@auth',
-          '@user': './components/@user',
-          '@core': './components/@core',
-          '@layout': './components/@layout',
-          '@locations': './components/@locations',
-          '@helpers': './lib/@helpers',
+          '@communication': './components/@communication',
           '@config': './lib/@config',
-          '@postcss': './lib/@postcss'
+          '@core': './components/@core',
+          '@helpers': './lib/@helpers',
+          '@layout': './components/@layout',
+          '@postcss': './lib/@postcss',
+          '@user': './components/@user'
         }
       }
     ],

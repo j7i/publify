@@ -18,12 +18,13 @@
     "paths": {
       "@advert/*": ["./components/@advert/*"],
       "@auth/*": ["./components/@auth/*"],
-      "@user/*": ["./components/@user/*"],
-      "@core/*": ["./components/@core/*"],
-      "@layout/*": ["./components/@layout/*"],
+      "@communication/*": ["./components/@communication/*"],
       "@config/*": ["./lib/@config/*"],
+      "@core/*": ["./components/@core/*"],
       "@helpers/*": ["./lib/@helpers/*"],
-      "@postcss/*": ["./lib/@postcss/*"]
+      "@layout/*": ["./components/@layout/*"],
+      "@postcss/*": ["./lib/@postcss/*"],
+      "@user/*": ["./components/@user/*"]
     },
     "typeRoots": ["./node_modules/@types"],
     "lib": ["dom", "es2015", "es2016", "es2017", "esnext.asynciterable"],

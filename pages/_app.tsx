@@ -12,9 +12,9 @@ export default class MyApp extends App {
   public static async getInitialProps({ Component, ctx }) {
     const pageProps = (Component.getInitialProps ? await Component.getInitialProps(ctx) : null) || {}
 
-    if (ctx.res) {
-      pageProps.statusCode = ctx.res.statusCode
-    }
+    // if (ctx.res) {
+    //   pageProps.statusCode = ctx.res.statusCode
+    // }
 
     return { pageProps }
   }

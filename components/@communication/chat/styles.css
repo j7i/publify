@@ -1,0 +1,137 @@
+.chat {
+  display: flex;
+  width: 100%;
+  height: 900px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.chatInner {
+  position: relative;
+  display: flex;
+  width: 300px;
+  height: 400px;
+  flex-direction: column;
+  border-radius: 3px;
+  justify-content: space-between;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, .2), 0px 16px 24px 2px rgba(0, 0, 0, .14), 0px 6px 30px 5px rgba(0, 0, 0, .12);
+}
+
+.header {
+  display: flex;
+  padding: $spacingHalf;
+  color: $white;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $primary;
+  margin-bottom: $spacingBase;
+  background-color: $primary;
+  border-radius: 3px 3px 0 0;
+
+  .orientation {
+    display: flex;
+    color: $white;
+    flex-direction: row;
+    align-items: center;
+
+    h2 {
+      margin-left: $spacingHalf;
+    }
+  }
+}
+
+.conversation {
+  position: absolute;
+  top: 53px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: $spacingBase;
+
+  .messages {
+    display: flex;
+    align-items: initial;
+    flex-direction: column;
+
+    .text {
+      position: relative;
+      padding: $spacingSemi;
+      margin: $spacingHalf 0;
+      max-width: 90%;
+      padding-right: $spacingMassive;
+      border-radius: 8px;
+
+      &:after {
+        position: absolute;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border: 16px solid transparent;
+        content: '';
+        margin-top: -20px;
+      }
+    }
+
+    .time {
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      font-size: $fontSizeSmall;
+    }
+
+    &.others {
+      .text {
+        background-color: $grey3;
+
+        &:after {
+          left: 0;
+          border-top: 12px solid $grey3;
+          border-bottom: 0;
+          border-right: 0;
+          margin-left: -10px;
+        }
+      }
+
+      .time {
+        color: $grey7;
+      }
+    }
+
+    &.self {
+      .text {
+        background-color: $primary;
+        color: $white;
+        align-self: flex-end;
+
+        &:after {
+          right: 0;
+          border-top: 12px solid $primary;
+          border-bottom: 0;
+          border-left: 0;
+          margin-right: -10px;
+        }
+      }
+
+      .time {
+        color: $white;
+      }
+    }
+  }
+}
+
+.trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $white;
+  padding: $spacingHalf;
+  padding-left: 0;
+
+  input {
+    width: 80%;
+    padding-left: $spacingBase;
+    border: none;
+  }
+}
