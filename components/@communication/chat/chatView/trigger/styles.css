@@ -1,0 +1,14 @@
+.trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $white;
+  padding: $spacingHalf;
+  padding-left: 0;
+
+  input {
+    width: 80%;
+    padding-left: $spacingBase;
+    border: none;
+  }
+}
