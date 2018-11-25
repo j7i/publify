@@ -1,3 +1,4 @@
+import UserSpecificContent from '@auth/userSpecificContent'
 import ChatController from '@communication/chat/chatController'
 import { IChatRenderProps, IMessage } from '@communication/chat/chatController/types'
 import { PureComponent, ReactNode } from 'react'
@@ -6,20 +7,24 @@ import { IChatProps, IChatState } from './types'
 
 export default class Chat extends PureComponent<IChatProps, IChatState> {
   public render(): JSX.Element {
-    const messages: IMessage[] = [
-      {
-        uid: 'dksufh8e9hdsas92',
-        date: 1542922601330,
-        message: 'Hey Joe, nice to have you around.'
-      }
-    ]
+    const messages: IMessage[] = []
+
+    const { seeking } = this.props
 
     return (
-      <ChatController messages={messages}>
-        {(chatRenderProps: IChatRenderProps): ReactNode => {
-          return <ChatView chatRenderProps={chatRenderProps} />
+      <UserSpecificContent>
+        {(user: firebase.User): JSX.Element => {
+          return user ? (
+            <ChatController messages={messages} seeking={seeking} loggedInUser={user.uid}>
+              {(chatRenderProps: IChatRenderProps): ReactNode => {
+                return <ChatView chatRenderProps={chatRenderProps} />
+              }}
+            </ChatController>
+          ) : (
+            <></>
+          )
         }}
-      </ChatController>
+      </UserSpecificContent>
     )
   }
 }

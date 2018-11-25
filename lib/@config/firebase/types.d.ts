@@ -1,4 +1,10 @@
 export enum FirebaseCollection {
   SEEKINGS = 'seekings',
-  USERS = 'users'
+  USERS = 'users',
+  CHATS = 'chats'
+}
+
+export interface IFirestoreTimeStamp {
+  seconds: number
+  nanoseconds: number
 }

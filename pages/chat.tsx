@@ -6,7 +6,7 @@ export default class ChatPage extends PureComponent {
   public render(): JSX.Element {
     return (
       <ErrorBoundary>
-        <Chat />
+        <Chat seeking="EPeGdT4BM3b2EaUK16rL" />
       </ErrorBoundary>
     )
   }

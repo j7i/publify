@@ -1,10 +1,24 @@
 .conversation {
   position: absolute;
-  top: 53px;
+  z-index: 0;
+  top: 57px;
   display: flex;
-  flex-direction: column;
   width: 100%;
-  padding: $spacingBase;
+  padding: 0 $spacingHalf;
+  flex-direction: column;
+  max-height: 100%;
+
+  .scrollable {
+    height: 290px;
+    padding: $spacingBase;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .loading {
+    margin: 0 auto;
+    margin-top: 45%;
+  }
 
   .messages {
     display: flex;
@@ -57,8 +71,8 @@
 
     &.self {
       .text {
-        background-color: $primary;
         color: $white;
+        background-color: $primary;
         align-self: flex-end;
 
         &:after {

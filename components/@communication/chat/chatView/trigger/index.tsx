@@ -6,10 +6,10 @@ import { IChatTriggerProps } from './types'
 
 export default class ChatTrigger extends PureComponent<IChatTriggerProps> {
   public render(): ReactNode {
-    const { handleChange, sendMessage } = this.props
+    const { handleChange, sendMessage, message } = this.props
     return (
       <form className={styles.trigger} onSubmit={sendMessage}>
-        <input type="text" placeholder="Write a message" onChange={handleChange} />
+        <input type="text" placeholder="Write a message" value={message} onChange={handleChange} />
         <IconButton color="primary" type="submit">
           <Send />
         </IconButton>
