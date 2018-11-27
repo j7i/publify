@@ -1,7 +1,7 @@
 import { firestore } from '@config/firebase'
 import { FirebaseCollection } from '@config/firebase/types.d'
 import { PureComponent, ReactNode } from 'react'
-import { IChatControllerProps, IChatControllerState, IChatRenderProps } from './types'
+import { IChatControllerProps, IChatControllerState, IChatRenderProps, IMessage } from './types'
 
 export default class ChatController extends PureComponent<IChatControllerProps, IChatControllerState> {
   public state: IChatControllerState = {
@@ -10,30 +10,45 @@ export default class ChatController extends PureComponent<IChatControllerProps, 
     loading: true
   }
 
-  public componentWillMount(): void {
-    const { messages } = this.props
+  public componentDidMount(): void {
+    const { seekingId, seekingOwnerId, loggedInUser } = this.props
+    const firestoreChat = firestore.collection('chats').doc(seekingId + loggedInUser)
 
-    if (messages) {
-      this.setState({
-        messages
+    // seekingOwnerId is possibly undefined
+    firestoreChat
+      .get()
+      .then((docSnapshot: firebase.firestore.DocumentSnapshot) => {
+        if (docSnapshot.exists) {
+          this.startChatConversation(seekingId, loggedInUser)
+        } else {
+          firestoreChat
+            .set({
+              members: [seekingOwnerId, loggedInUser]
+            })
+            .then(() => {
+              this.startChatConversation(seekingId, loggedInUser)
+            })
+        }
       })
-    }
+      .catch((error: Error) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error initializing chat: ', error)
+      })
   }
 
-  public componentDidMount(): void {
-    // const { seeking, uid } = this.props
-
-    // let chatContent = []
-
+  public startChatConversation(seekingId: string, loggedInUser: string): void {
     firestore
       .collection('chats')
-      .doc('EPeGdT4BM3b2EaUK16rL')
+      .doc(seekingId + loggedInUser)
       .collection('messages')
       .onSnapshot(
         (querySnapshot: firebase.firestore.QuerySnapshot) => {
           let messages: firebase.firestore.DocumentData = []
           querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
             messages.push(doc.data())
+          })
+          messages.sort((a: IMessage, b: IMessage) => {
+            return a.date.seconds - b.date.seconds
           })
           this.setState({
             messages,
@@ -48,11 +63,11 @@ export default class ChatController extends PureComponent<IChatControllerProps, 
   }
 
   public componentWillUnmount(): void {
-    const { seeking } = this.props
+    const { seekingId } = this.props
 
     firestore
       .collection('chats')
-      .doc(seeking)
+      .doc(seekingId)
       .collection('messages')
       // tslint:disable-next-line:no-empty
       .onSnapshot(() => {})
@@ -61,22 +76,25 @@ export default class ChatController extends PureComponent<IChatControllerProps, 
   public sendMessage = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
-    const { seeking, loggedInUser } = this.props
+    const { seekingId, loggedInUser } = this.props
     const message = {
       content: this.state.message,
       date: new Date(),
       uid: loggedInUser
     }
 
+    this.setState({
+      message: ''
+    })
+
     firestore
       .collection(FirebaseCollection.CHATS)
-      .doc(seeking)
+      .doc(seekingId + loggedInUser)
       .collection('messages')
       .add({ ...message })
       .then(() => {
-        this.setState({
-          message: ''
-        })
+        // tslint:disable-next-line:no-console
+        console.log('Message sent')
       })
       .catch((error: Error) => {
         // tslint:disable-next-line:no-console

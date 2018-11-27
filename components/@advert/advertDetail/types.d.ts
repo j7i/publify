@@ -1,9 +1,10 @@
 import { ISeeking } from '@advert/advertListElement/types'
 
 export interface IAdvertDetailProps {
-  seeking: ISeeking
+  seekingId: string
 }
 
 export interface IAdvertDetailState {
-  isRequesting: boolean
+  isChatting: boolean
+  seeking?: ISeeking
 }

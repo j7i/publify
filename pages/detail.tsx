@@ -1,28 +1,19 @@
 import AdvertDetail from '@advert/advertDetail'
 import ErrorBoundary from '@helpers/errorBoundary'
-import { IFirestoreFetch } from '@helpers/firestoreFetch/types'
 import { IDatailPageProps } from '@helpers/types/types'
-import fetch from 'isomorphic-unfetch'
 import { NextContext } from 'next'
-import Error from 'next/error'
 import { PureComponent } from 'react'
 
 export default class Detail extends PureComponent<IDatailPageProps> {
-  public static async getInitialProps(context: NextContext): Promise<IFirestoreFetch> {
-    const { res } = context
+  public static async getInitialProps(context: NextContext): Promise<IDatailPageProps> {
     const id = context.query.id as string
-    const data = await fetch(`${process.env.BASE_URL}/api/detail/${id}`).then((response: Response) => {
-      if (res) {
-        res.statusCode = response.status
-      }
-      return response.json()
-    })
 
-    return data ? { data } : {}
+    return { id }
   }
 
   public render(): JSX.Element {
-    const { data, statusCode } = this.props
-    return <ErrorBoundary>{data.error && statusCode ? <Error statusCode={statusCode} /> : <AdvertDetail seeking={data} />}</ErrorBoundary>
+    const { id } = this.props
+
+    return <ErrorBoundary>{id ? <AdvertDetail seekingId={id} /> : <h1>Seeking not found.</h1>}</ErrorBoundary>
   }
 }

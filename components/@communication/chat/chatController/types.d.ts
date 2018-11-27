@@ -2,9 +2,9 @@ import { IFirestoreTimeStamp } from '@config/firebase/types'
 import { ReactNode } from 'react'
 
 export interface IChatControllerProps {
-  seeking: string
+  seekingId: string
+  seekingOwnerId: string
   loggedInUser: string
-  messages: IMessage[]
   children: (chatRenderProps: IChatRenderProps) => ReactNode
 }
 

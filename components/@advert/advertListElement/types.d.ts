@@ -5,7 +5,7 @@ export interface IAdvertListElementProps {
 }
 
 export interface ISeeking extends IFirestoreFetchError {
-  id?: string
+  id: string
   type: string
   categories: string[]
   description: string

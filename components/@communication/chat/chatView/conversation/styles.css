@@ -10,12 +10,17 @@
 
   .scrollable {
     height: 290px;
-    padding: $spacingBase;
+    padding: $spacingSmall $spacingBase 0;
     overflow-x: hidden;
     overflow-y: scroll;
+
+    & div:last-child {
+      padding-bottom: $spacingSmall;
+    }
   }
 
   .loading {
+    display: block;
     margin: 0 auto;
     margin-top: 45%;
   }

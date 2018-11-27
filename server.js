@@ -54,7 +54,10 @@ app
           if (!doc.exists) {
             res.status(404).send({ error: 'No such document!' })
           } else {
-            res.send(doc.data())
+            let data
+            data = doc.data()
+            data.id = doc.id
+            res.send(data)
           }
         })
         .catch(error => {
