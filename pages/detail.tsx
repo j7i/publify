@@ -14,6 +14,6 @@ export default class Detail extends PureComponent<IDatailPageProps> {
   public render(): JSX.Element {
     const { id } = this.props
 
-    return <ErrorBoundary>{id ? <AdvertDetail seekingId={id} /> : <h1>Seeking not found.</h1>}</ErrorBoundary>
+    return <ErrorBoundary>{id ? <AdvertDetail advertId={id} /> : <h1>Seeking not found.</h1>}</ErrorBoundary>
   }
 }

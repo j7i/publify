@@ -3,23 +3,23 @@ import ChatController from '@communication/chat/chatController'
 import { IChatRenderProps } from '@communication/chat/chatController/types'
 import { PureComponent, ReactNode } from 'react'
 import ChatView from './chatView'
-import { IChatProps, IChatState } from './types'
+import { IChatProps } from './types'
 
-export default class Chat extends PureComponent<IChatProps, IChatState> {
+export default class Chat extends PureComponent<IChatProps> {
   public render(): JSX.Element {
-    const { seekingId, seekingOwnerId } = this.props
+    const { advertId, advertOwnerId, chatId } = this.props
 
     return (
       <UserSpecificContent>
         {(user: firebase.User): JSX.Element => {
-          return user && seekingId && seekingOwnerId ? (
-            <ChatController seekingId={seekingId} seekingOwnerId={seekingOwnerId} loggedInUser={user.uid}>
+          return user ? (
+            <ChatController advertId={advertId} advertOwnerId={advertOwnerId} loggedInUserId={user.uid} chatId={chatId}>
               {(chatRenderProps: IChatRenderProps): ReactNode => {
                 return <ChatView chatRenderProps={chatRenderProps} />
               }}
             </ChatController>
           ) : (
-            <></>
+            <>TODO</>
           )
         }}
       </UserSpecificContent>

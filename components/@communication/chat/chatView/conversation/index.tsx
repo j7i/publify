@@ -15,7 +15,7 @@ export default class ChatConversation extends PureComponent<IChatConversationPro
   }
 
   public render(): ReactNode {
-    const { loading, fetchedMessages, loggedInUser } = this.props
+    const { loading, fetchedMessages, loggedInUserId } = this.props
 
     return (
       <div className={styles.conversation}>
@@ -28,8 +28,8 @@ export default class ChatConversation extends PureComponent<IChatConversationPro
               <div
                 key={index}
                 className={classNames(styles.messages, {
-                  [styles.others]: message.uid !== loggedInUser,
-                  [styles.self]: message.uid === loggedInUser
+                  [styles.others]: message.uid !== loggedInUserId,
+                  [styles.self]: message.uid === loggedInUserId
                 })}
               >
                 <div className={styles.text}>

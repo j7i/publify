@@ -10,7 +10,7 @@ export default class ChatTrigger extends PureComponent<IChatTriggerProps> {
     return (
       <form className={styles.trigger} onSubmit={sendMessage}>
         <input type="text" placeholder="Write a message" value={message} onChange={handleChange} />
-        <IconButton color="primary" type="submit">
+        <IconButton color="primary" type="submit" disabled={message.length === 0}>
           <Send />
         </IconButton>
       </form>

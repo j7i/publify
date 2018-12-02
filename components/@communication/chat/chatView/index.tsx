@@ -7,7 +7,7 @@ import { IChatViewProps } from './types'
 
 export default class ChatView extends PureComponent<IChatViewProps> {
   public render(): ReactNode {
-    const { message, messages, loading, handleChange, sendMessage, loggedInUser } = this.props.chatRenderProps
+    const { message, messages, loading, handleChange, sendMessage, loggedInUserId } = this.props.chatRenderProps
 
     let fetchedMessages
     if (messages) {
@@ -18,7 +18,7 @@ export default class ChatView extends PureComponent<IChatViewProps> {
       <section className={styles.chat}>
         <div className={styles.chatInner}>
           <ChatHeader />
-          <ChatConversation loading={loading} fetchedMessages={fetchedMessages} loggedInUser={loggedInUser} />
+          <ChatConversation loading={loading} fetchedMessages={fetchedMessages} loggedInUserId={loggedInUserId} />
           <ChatTrigger message={message} handleChange={handleChange} sendMessage={sendMessage} />
         </div>
       </section>

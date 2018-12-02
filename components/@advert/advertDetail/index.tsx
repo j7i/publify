@@ -19,11 +19,11 @@ export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdv
   }
 
   public componentDidMount(): void {
-    const { seekingId } = this.props
+    const { advertId } = this.props
 
     firestore
       .collection('seekings')
-      .doc(seekingId)
+      .doc(advertId)
       .get()
       .then((doc: firebase.firestore.DocumentSnapshot) => {
         if (!doc.exists) {
@@ -50,7 +50,7 @@ export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdv
     return (
       <div className={styles.detailView}>
         {seeking && isChatting ? (
-          <Chat seekingId={seeking.id} seekingOwnerId={seeking.userId} />
+          <Chat advertId={seeking.id} advertOwnerId={seeking.userId} />
         ) : seeking ? (
           <>
             <AdvertCardElement seeking={seeking} />

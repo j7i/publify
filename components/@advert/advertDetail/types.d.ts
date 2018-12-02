@@ -1,7 +1,7 @@
 import { ISeeking } from '@advert/advertListElement/types'
 
 export interface IAdvertDetailProps {
-  seekingId: string
+  advertId: string
 }
 
 export interface IAdvertDetailState {

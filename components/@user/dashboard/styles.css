@@ -1,7 +1,16 @@
 .dashboard {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 90%;
   background-color: $grey1;
   padding: $spacingMedium;
+}
+
+.seekings {
+  height: 100%;
+}
+
+.chatList {
+  margin-top: $spacingBase;
 }
