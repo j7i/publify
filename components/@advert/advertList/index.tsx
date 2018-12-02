@@ -1,63 +1,42 @@
 import AdvertCardElement from '@advert/advertCardElement'
-import { ISeeking } from '@advert/advertListElement/types'
-import firebase from '@config/firebase/index'
-import { FirebaseCollection } from '@config/firebase/types.d'
+import { IAdvert } from '@advert/advertListElement/types'
 import { PureComponent } from 'react'
 import AdvertListNavigation from './advertListNavigation'
 import styles from './styles.css'
-import { IAdvertListState } from './types'
+import { IAdvertListProps, IAdvertListState } from './types'
 
-export default class AdvertList extends PureComponent<{}, IAdvertListState> {
+export default class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState> {
   public state: IAdvertListState = {
-    seekings: [],
     filtered: []
   }
 
-  public componentDidMount(): void {
-    this.getUserSpecificSeekings()
-  }
-
   public handleFilter = (categorie: string): void => {
-    const seekings = this.state.seekings.filter((seeking: ISeeking) => seeking.categories.includes(categorie) === true)
-    this.setState({ filtered: seekings })
+    const { adverts } = this.props
+    let filteredAdverts
+
+    filteredAdverts = adverts.filter((seeking: IAdvert) => seeking.categories.includes(categorie) === true)
+    this.setState({ filtered: filteredAdverts })
   }
 
   public render(): JSX.Element {
-    let { seekings } = this.state
+    let { adverts } = this.props
 
     if (this.state.filtered.length) {
-      seekings = this.state.filtered
+      adverts = this.state.filtered
     }
 
-    return (
+    return adverts ? (
       <>
         <AdvertListNavigation handleFilter={this.handleFilter} />
         <section className={styles.advertList}>
-          <h1>Public Seekings</h1>
+          <h1>Public Adverts</h1>
           <section className={styles.advertWrapper}>
-            {seekings !== [] && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} seeking={seeking} />)}
+            {adverts !== [] && adverts.map((seeking: IAdvert, index: number) => <AdvertCardElement key={index} seeking={seeking} />)}
           </section>
         </section>
       </>
+    ) : (
+      <>No adverts available</> // TODO
     )
-  }
-
-  private getUserSpecificSeekings = async (): Promise<void> => {
-    const firestore = firebase.firestore()
-
-    // tslint:disable-next-line:no-any
-    let seekings: any[] = []
-    firestore
-      .collection(FirebaseCollection.SEEKINGS)
-      .where('published', '==', true)
-      .get()
-      .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
-        querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
-          seekings.push({ id: doc.id, ...doc.data() })
-        })
-      })
-      .then(() => {
-        this.setState({ seekings })
-      })
   }
 }

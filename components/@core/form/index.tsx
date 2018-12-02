@@ -1,11 +1,12 @@
 import FormHandler from '@core/form/formHandler'
-import { IFormChildProps } from '@core/form/formHandler/types'
+import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import { IFormProps } from '@core/form/types'
 import { PureComponent } from 'react'
 
 export default class Form extends PureComponent<IFormProps> {
   public render(): JSX.Element {
-    const { children, onSubmit, className, initialValues } = this.props
+    const { children, onSubmit, className } = this.props
+    const initialValues = this.props.initialValues as IFormValues
 
     return (
       <FormHandler onSubmit={onSubmit} initialValues={initialValues}>

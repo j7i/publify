@@ -10,9 +10,9 @@ import { PureComponent } from 'react'
 import AdvertTypeSwitch from './advertTypeSwitch'
 import Categories from './categories'
 import styles from './styles.css'
-import { ISeekingFormProps } from './types'
+import { IAdvertFormProps } from './types'
 
-export default class SeekingForm extends PureComponent<ISeekingFormProps> {
+export default class SeekingForm extends PureComponent<IAdvertFormProps> {
   public render(): JSX.Element {
     const { initialValues, documentToUpdate } = this.props
     return (

@@ -1,10 +1,11 @@
+import { IAdvert } from '@advert/advertListElement/types'
 import { IFormValues } from '@core/form/formHandler/types'
 
 export interface IEditSeekingProps {
-  id: string
+  advert: IAdvert
 }
 
 export interface IEditSeekingState {
-  initialValues: IFormValues
+  initialValues?: IAdvert
   loading: boolean
 }

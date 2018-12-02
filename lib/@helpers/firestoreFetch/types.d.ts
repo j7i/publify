@@ -1,12 +1,12 @@
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 
 export interface IFirestoreFetch {
-  data?: ISeeking
+  data?: IAdvert
 }
 
 export interface IFirebaseDocumnet {
   name: string
-  fields: ISeeking
+  fields: IAdvert
   createTime: string
   updateTime: string
 }

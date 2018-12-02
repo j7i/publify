@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "tslint --project tsconfig.json components/**/*.ts components/**/*.tsx pages/**/*.ts pages/**/*.tsx",
     "lint:css": "stylelint components/**/*.css pages/**/*.css",

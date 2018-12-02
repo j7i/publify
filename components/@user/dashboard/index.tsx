@@ -1,5 +1,5 @@
 import AdvertCardElement from '@advert/advertCardElement'
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 import Chat from '@communication/chat'
 import firebase from '@config/firebase/index'
 import { FirebaseCollection } from '@config/firebase/types.d'
@@ -33,7 +33,7 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
     return (
       <div className={styles.dashboard}>
         <section className={styles.seekings}>
-          {seekings.length !== 0 && seekings.map((seeking: ISeeking, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
+          {seekings.length !== 0 && seekings.map((seeking: IAdvert, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
         </section>
         {chats.length !== 0 && (
           <Paper className={styles.chatList}>

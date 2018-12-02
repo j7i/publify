@@ -1,4 +1,4 @@
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 import { IMessage } from '@communication/chat/chatController/types'
 
 export interface IDashboardProps {
@@ -6,7 +6,7 @@ export interface IDashboardProps {
 }
 
 export interface IDashboardState {
-  seekings: ISeeking[]
+  seekings: IAdvert[]
   chats: IChat[]
   currentChat?: string
 }

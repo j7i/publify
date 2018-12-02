@@ -1,10 +1,10 @@
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 
 export interface IAdvertDetailProps {
-  advertId: string
+  advert: IAdvert
 }
 
 export interface IAdvertDetailState {
   isChatting: boolean
-  seeking?: ISeeking
+  seeking?: IAdvert
 }

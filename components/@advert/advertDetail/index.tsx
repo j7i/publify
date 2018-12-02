@@ -1,6 +1,5 @@
 import AdvertCardElement from '@advert/advertCardElement'
 import Chat from '@communication/chat'
-import { firestore } from '@config/firebase'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { PureComponent } from 'react'
@@ -19,29 +18,10 @@ export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdv
   }
 
   public componentDidMount(): void {
-    const { advertId } = this.props
-
-    firestore
-      .collection('seekings')
-      .doc(advertId)
-      .get()
-      .then((doc: firebase.firestore.DocumentSnapshot) => {
-        if (!doc.exists) {
-          // tslint:disable-next-line:no-console
-          console.error('No such document!')
-        } else {
-          let data
-          data = doc.data()
-          data.id = doc.id
-          this.setState({
-            seeking: { ...data }
-          })
-        }
-      })
-      .catch((error: Error) => {
-        // tslint:disable-next-line:no-console
-        console.error(error)
-      })
+    const { advert } = this.props
+    this.setState({
+      seeking: { ...advert }
+    })
   }
 
   public render(): JSX.Element {

@@ -1,12 +1,16 @@
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 import { IFirebaseDocumnet } from '@helpers/firestoreFetch/types'
 
+export interface IWelcomePageProps {
+  adverts: IAdvert[]
+}
+
 export interface IDatailPageProps {
-  id: string
+  advert: IAdvert
 }
 
 export interface IEditPageProps {
-  id: string
+  advert: IAdvert
 }
 
 export enum AdvertType {

@@ -44,6 +44,25 @@ app
       next()
     })
 
+    server.get('/api/adverts', async (req, res) => {
+      let adverts = []
+
+      await firestore
+        .collection('seekings')
+        .where('published', '==', true)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            adverts.push({ id: doc.id, ...doc.data() })
+          })
+          res.send(adverts)
+        })
+        .catch(error => {
+          console.error(error)
+          res.send({ error })
+        })
+    })
+
     server.get('/api/detail/:id', async (req, res) => {
       const id = req.params.id
       await firestore
@@ -66,18 +85,18 @@ app
         })
     })
 
-    server.get('/detail/:id', async (req, res) => {
+    server.get('/detail/:id', (req, res) => {
       const id = req.params.id
       const actualPage = '/detail'
       const queryParams = { id }
-      app.render(req, res, actualPage, queryParams)
+      return app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/seekings/edit/:id', async (req, res) => {
+    server.get('/seekings/edit/:id', (req, res) => {
       const id = req.params.id
       const actualPage = '/edit'
       const queryParams = { id }
-      app.render(req, res, actualPage, queryParams)
+      return app.render(req, res, actualPage, queryParams)
     })
 
     server.post('/api/login', (req, res) => {

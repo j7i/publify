@@ -1,7 +1,8 @@
+import { IAdvert } from '@advert/advertListElement/types'
 import { IFormValues } from '@core/form/formHandler/types'
 
-export interface ISeekingFormProps {
+export interface IAdvertFormProps {
   user: firebase.User
   documentToUpdate?: string
-  initialValues?: IFormValues
+  initialValues?: IAdvert
 }

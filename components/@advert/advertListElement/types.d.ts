@@ -1,10 +1,10 @@
 import { IFirestoreFetchError } from '@helpers/firestoreFetch/types'
 
 export interface IAdvertListElementProps {
-  seeking: ISeeking
+  seeking: IAdvert
 }
 
-export interface ISeeking extends IFirestoreFetchError {
+export interface IAdvert extends IFirestoreFetchError {
   id: string
   type: string
   categories: string[]

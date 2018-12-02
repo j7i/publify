@@ -1,5 +1,4 @@
 import UserSpecificContent from '@auth/userSpecificContent'
-import { firestore } from '@config/firebase'
 import { Button } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import Paper from '@material-ui/core/Paper'
@@ -11,47 +10,31 @@ import { IEditSeekingProps, IEditSeekingState } from './types'
 
 export default class EditSeeking extends PureComponent<IEditSeekingProps, IEditSeekingState> {
   public state: IEditSeekingState = {
-    initialValues: {},
     loading: true
   }
 
   public componentDidMount(): void {
-    const { id } = this.props
+    const { advert } = this.props
 
-    if (id) {
-      // tslint:disable:no-console
-      firestore
-        .collection('seekings')
-        .doc(id)
-        .get()
-        // tslint:disable-next-line:no-any
-        .then((doc: any) => {
-          if (!doc.exists) {
-            console.log('No such document!')
-          } else {
-            this.setState({
-              initialValues: doc.data(),
-              loading: false
-            })
-          }
-        })
-        // tslint:disable-next-line:no-any
-        .catch((error: any) => {
-          console.log(`Error getting document: ${error}`)
-        })
-    }
+    this.setState({
+      initialValues: advert,
+      loading: false
+    })
   }
   public render(): JSX.Element {
+    const { advert } = this.props
+    const { initialValues, loading } = this.state
+
     return (
       <section className={styles.createSeeking}>
-        {this.state.loading ? (
+        {loading ? (
           <CircularProgress className={styles.loading} />
-        ) : (
+        ) : initialValues ? (
           <Paper className={styles.form}>
             <UserSpecificContent>
               {(user: firebase.User): JSX.Element => {
                 return user ? (
-                  <SeekingForm user={user} initialValues={this.state.initialValues} documentToUpdate={this.props.id} />
+                  <SeekingForm user={user} initialValues={initialValues} documentToUpdate={advert.id} />
                 ) : (
                   <>
                     <h1>You need to login first</h1>
@@ -65,6 +48,8 @@ export default class EditSeeking extends PureComponent<IEditSeekingProps, IEditS
               }}
             </UserSpecificContent>
           </Paper>
+        ) : (
+          <h1>No such document</h1> // TODO
         )}
       </section>
     )

@@ -1,6 +1,8 @@
-import { ISeeking } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert/advertListElement/types'
 
+export interface IAdvertListProps {
+  adverts: IAdvert[]
+}
 export interface IAdvertListState {
-  seekings: ISeeking[]
-  filtered: ISeeking[]
+  filtered: IAdvert[]
 }
