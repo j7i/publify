@@ -1,6 +1,6 @@
 import ErrorBoundary from '@helpers/errorBoundary'
 import { IEditPageProps } from '@helpers/types/types'
-import EditSeeking from '@user/editSeeking'
+import EditAdvert from '@user/editAdvert'
 import { NextContext } from 'next'
 import { PureComponent } from 'react'
 
@@ -15,6 +15,6 @@ export default class Detail extends PureComponent<IEditPageProps> {
 
   public render(): JSX.Element {
     const { advert } = this.props
-    return <ErrorBoundary>{advert && <EditSeeking advert={advert} />}</ErrorBoundary>
+    return <ErrorBoundary>{advert && <EditAdvert advert={advert} />}</ErrorBoundary>
   }
 }

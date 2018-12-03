@@ -1,12 +1,5 @@
-.loading {
-  margin: $spacingGrande;
-}
-
-/* TODO: Compose from createSeeking/styles */
-
-.createSeeking {
+.createAdvert {
   display: flex;
-  height: 90vh;
   padding: $spacingMedium;
   justify-content: center;
   align-items: center;

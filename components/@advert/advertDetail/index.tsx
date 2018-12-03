@@ -20,20 +20,20 @@ export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdv
   public componentDidMount(): void {
     const { advert } = this.props
     this.setState({
-      seeking: { ...advert }
+      advert: { ...advert }
     })
   }
 
   public render(): JSX.Element {
-    const { seeking, isChatting } = this.state
+    const { advert, isChatting } = this.state
 
     return (
       <div className={styles.detailView}>
-        {seeking && isChatting ? (
-          <Chat advertId={seeking.id} advertOwnerId={seeking.userId} />
-        ) : seeking ? (
+        {advert && isChatting ? (
+          <Chat advertId={advert.id} advertOwnerId={advert.userId} />
+        ) : advert ? (
           <>
-            <AdvertCardElement seeking={seeking} />
+            <AdvertCardElement advert={advert} />
             <Button variant="contained" color="primary" onClick={this.startConversation}>
               Start conversation
             </Button>

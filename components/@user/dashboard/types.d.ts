@@ -6,7 +6,7 @@ export interface IDashboardProps {
 }
 
 export interface IDashboardState {
-  seekings: IAdvert[]
+  adverts: IAdvert[]
   chats: IChat[]
   currentChat?: string
 }

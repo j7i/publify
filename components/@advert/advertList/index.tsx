@@ -14,7 +14,7 @@ export default class AdvertList extends PureComponent<IAdvertListProps, IAdvertL
     const { adverts } = this.props
     let filteredAdverts
 
-    filteredAdverts = adverts.filter((seeking: IAdvert) => seeking.categories.includes(categorie) === true)
+    filteredAdverts = adverts.filter((advert: IAdvert) => advert.categories.includes(categorie) === true)
     this.setState({ filtered: filteredAdverts })
   }
 
@@ -31,7 +31,7 @@ export default class AdvertList extends PureComponent<IAdvertListProps, IAdvertL
         <section className={styles.advertList}>
           <h1>Public Adverts</h1>
           <section className={styles.advertWrapper}>
-            {adverts !== [] && adverts.map((seeking: IAdvert, index: number) => <AdvertCardElement key={index} seeking={seeking} />)}
+            {adverts !== [] && adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} advert={advert} />)}
           </section>
         </section>
       </>

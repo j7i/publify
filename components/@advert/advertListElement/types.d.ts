@@ -1,7 +1,7 @@
 import { IFirestoreFetchError } from '@helpers/firestoreFetch/types'
 
 export interface IAdvertListElementProps {
-  seeking: IAdvert
+  advert: IAdvert
 }
 
 export interface IAdvert extends IFirestoreFetchError {

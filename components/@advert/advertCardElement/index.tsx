@@ -17,14 +17,14 @@ import { IAdvertCardElementProps, IAdvertCardElementState } from './types'
 
 export default class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IAdvertCardElementState> {
   public state: IAdvertCardElementState = {
-    published: this.props.seeking.published
+    published: this.props.advert.published
   }
 
   public render(): JSX.Element {
-    const { seeking, withActions } = this.props
+    const { advert, withActions } = this.props
     return (
       <Card className={styles.card}>
-        <Link as={`/detail/${seeking.id}`} href={`/detail?id=${seeking.id}`}>
+        <Link as={`/detail/${advert.id}`} href={`/detail?id=${advert.id}`}>
           <CardActionArea>
             {/* <CardMedia
             component="img"
@@ -37,11 +37,11 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
             {/* <CardMedia component="img" height="140" className={styles.media} /> */}
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {seeking.type}
+                {advert.type}
               </Typography>
-              <Typography component="p">{seeking.description}</Typography>
+              <Typography component="p">{advert.description}</Typography>
               <div className={styles.categories}>
-                {seeking.categories.map((categorie: string, index: number) => (
+                {advert.categories.map((categorie: string, index: number) => (
                   <Chip className={styles.chip} key={index} label={categorie} variant="outlined" color="primary" />
                 ))}
               </div>
@@ -51,7 +51,7 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
         {withActions && (
           <CardActions>
             <Button size="small" color="primary">
-              <Link as={`/seekings/edit/${seeking.id}`} href={`/edit?id=${seeking.id}`}>
+              <Link as={`/adverts/edit/${advert.id}`} href={`/edit?id=${advert.id}`}>
                 <span className={styles.preventMaterialAddingClassnameToNextLinkError}>Edit</span>
               </Link>
             </Button>
@@ -70,11 +70,11 @@ export default class AdvertCardElement extends PureComponent<IAdvertCardElementP
   private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     event.preventDefault()
 
-    const { id } = this.props.seeking
+    const { id } = this.props.advert
     const { published } = this.state
 
     firestore
-      .collection(FirebaseCollection.SEEKINGS)
+      .collection(FirebaseCollection.ADVERTS)
       .doc(id)
       .update({
         published: !published

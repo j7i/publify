@@ -12,11 +12,11 @@ import Categories from './categories'
 import styles from './styles.css'
 import { IAdvertFormProps } from './types'
 
-export default class SeekingForm extends PureComponent<IAdvertFormProps> {
+export default class AdvertForm extends PureComponent<IAdvertFormProps> {
   public render(): JSX.Element {
     const { initialValues, documentToUpdate } = this.props
     return (
-      <Form onSubmit={this.handleSubmit} initialValues={initialValues} className={styles.seekingForm}>
+      <Form onSubmit={this.handleSubmit} initialValues={initialValues} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} />
@@ -46,7 +46,7 @@ export default class SeekingForm extends PureComponent<IAdvertFormProps> {
     const { documentToUpdate } = this.props
 
     firestore
-      .collection(FirebaseCollection.SEEKINGS)
+      .collection(FirebaseCollection.ADVERTS)
       .doc(documentToUpdate)
       .delete()
       .then(() => {
@@ -63,7 +63,7 @@ export default class SeekingForm extends PureComponent<IAdvertFormProps> {
 
     if (documentToUpdate) {
       firestore
-        .collection(FirebaseCollection.SEEKINGS)
+        .collection(FirebaseCollection.ADVERTS)
         .doc(documentToUpdate)
         .update({
           ...values,
@@ -78,7 +78,7 @@ export default class SeekingForm extends PureComponent<IAdvertFormProps> {
         })
     } else {
       firestore
-        .collection(FirebaseCollection.SEEKINGS)
+        .collection(FirebaseCollection.ADVERTS)
         .add({
           ...values,
           userId: user.uid

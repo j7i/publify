@@ -6,5 +6,5 @@ export interface IAdvertDetailProps {
 
 export interface IAdvertDetailState {
   isChatting: boolean
-  seeking?: IAdvert
+  advert?: IAdvert
 }

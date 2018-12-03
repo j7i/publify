@@ -1,5 +1,5 @@
 export enum FirebaseCollection {
-  SEEKINGS = 'seekings',
+  ADVERTS = 'adverts',
   USERS = 'users',
   CHATS = 'chats',
   CHAT_MESSAGES = 'messages'

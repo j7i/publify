@@ -48,7 +48,7 @@ app
       let adverts = []
 
       await firestore
-        .collection('seekings')
+        .collection('adverts')
         .where('published', '==', true)
         .get()
         .then(querySnapshot => {
@@ -66,7 +66,7 @@ app
     server.get('/api/detail/:id', async (req, res) => {
       const id = req.params.id
       await firestore
-        .collection('seekings')
+        .collection('adverts')
         .doc(id)
         .get()
         .then(doc => {
@@ -92,7 +92,7 @@ app
       return app.render(req, res, actualPage, queryParams)
     })
 
-    server.get('/seekings/edit/:id', (req, res) => {
+    server.get('/adverts/edit/:id', (req, res) => {
       const id = req.params.id
       const actualPage = '/edit'
       const queryParams = { id }

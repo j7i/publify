@@ -1,7 +1,7 @@
 import { IAdvert } from '@advert/advertListElement/types'
 
 export interface IAdvertCardElementProps {
-  seeking: IAdvert
+  advert: IAdvert
   withActions?: boolean
 }
 

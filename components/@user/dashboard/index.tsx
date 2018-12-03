@@ -12,13 +12,13 @@ import { IChat, IDashboardProps, IDashboardState } from './types'
 
 export default class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   public state: IDashboardState = {
-    seekings: [],
+    adverts: [],
     chats: [],
     currentChat: ''
   }
 
   public componentDidMount(): void {
-    this.getUserSpecificSeekings()
+    this.getUserSpecificAdverts()
     this.getUserSpecificChats()
   }
 
@@ -29,11 +29,11 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
   }
 
   public render(): JSX.Element {
-    const { seekings, chats, currentChat } = this.state
+    const { adverts, chats, currentChat } = this.state
     return (
       <div className={styles.dashboard}>
-        <section className={styles.seekings}>
-          {seekings.length !== 0 && seekings.map((seeking: IAdvert, index: number) => <AdvertCardElement key={index} withActions seeking={seeking} />)}
+        <section className={styles.adverts}>
+          {adverts.length !== 0 && adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} withActions advert={advert} />)}
         </section>
         {chats.length !== 0 && (
           <Paper className={styles.chatList}>
@@ -51,28 +51,28 @@ export default class Dashboard extends PureComponent<IDashboardProps, IDashboard
             </List>
           </Paper>
         )}
-        {currentChat && <Chat chatId={currentChat} />}
+        {currentChat && <Chat chatId={currentChat} key={currentChat} />}
       </div>
     )
   }
 
-  private getUserSpecificSeekings = async (): Promise<void> => {
+  private getUserSpecificAdverts = async (): Promise<void> => {
     const firestore = firebase.firestore()
     const { user } = this.props
 
     // tslint:disable-next-line:no-any
-    let seekings: any[] = []
+    let adverts: any[] = []
     firestore
-      .collection(FirebaseCollection.SEEKINGS)
+      .collection(FirebaseCollection.ADVERTS)
       .where('userId', '==', user!.uid)
       .get()
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
         querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
-          seekings.push({ id: doc.id, ...doc.data() })
+          adverts.push({ id: doc.id, ...doc.data() })
         })
       })
       .then(() => {
-        this.setState({ seekings })
+        this.setState({ adverts })
       })
       // tslint:disable-next-line:no-any
       .catch((error: any) => {
