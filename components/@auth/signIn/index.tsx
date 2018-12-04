@@ -10,6 +10,20 @@ import React, { PureComponent } from 'react'
 import styles from './styles.css'
 import { ILoginFormValues, ISignInState } from './types'
 
+export const handleLogout = async (event: React.SyntheticEvent): Promise<void> => {
+  event.preventDefault()
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error: firebase.auth.Error) => {
+      // tslint:disable-next-line:no-console
+      console.log(error)
+    })
+}
+
 export default class SignIn extends PureComponent<{}, ISignInState> {
   public state: ISignInState = {
     isSignUp: false
@@ -27,7 +41,7 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
                 <>
                   <h2>Congrats 🎉 </h2>
                   <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
-                  <Button variant="contained" color="primary" type="submit" onClick={this.handleLogout}>
+                  <Button variant="contained" color="primary" type="submit" onClick={handleLogout}>
                     Logout
                   </Button>
                 </>
@@ -117,19 +131,5 @@ export default class SignIn extends PureComponent<{}, ISignInState> {
             // tslint:disable-next-line:no-console
             console.log(error)
           })
-  }
-
-  private handleLogout = async (event: React.SyntheticEvent): Promise<void> => {
-    event.preventDefault()
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error: firebase.auth.Error) => {
-        // tslint:disable-next-line:no-console
-        console.log(error)
-      })
   }
 }

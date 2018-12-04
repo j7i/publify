@@ -1,5 +1,6 @@
 import firebase from '@config/firebase/index'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import Router from 'next/router'
 import { PureComponent } from 'react'
 import { IUserSpecificContentProps, IUserSpecificContentState } from './types'
 
@@ -18,6 +19,12 @@ export default class UserSpecificContent extends PureComponent<IUserSpecificCont
       }
       this.setState({ isAuthorizing: false })
     })
+  }
+
+  public componentDidUpdate = (): void => {
+    if (!this.state.user) {
+      Router.push('/login')
+    }
   }
 
   public render(): JSX.Element {
