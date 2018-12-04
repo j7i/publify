@@ -30,7 +30,7 @@ export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdv
     return (
       <div className={styles.detailView}>
         {advert && isChatting ? (
-          <Chat advertId={advert.id} advertOwnerId={advert.userId} />
+          <Chat advertId={advert.id} advertOwnerId={advert.userId} displayMode="lonely" />
         ) : advert ? (
           <>
             <AdvertCardElement advert={advert} />

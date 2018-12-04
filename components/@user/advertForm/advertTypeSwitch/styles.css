@@ -6,6 +6,7 @@
   background-color: $grey3;
   border-radius: 3px;
   lost-center: 100%;
+  margin-top: $spacingBig;
   margin-bottom: $spacingBig;
 }
 

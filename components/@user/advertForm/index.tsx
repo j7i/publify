@@ -19,10 +19,12 @@ export default class AdvertForm extends PureComponent<IAdvertFormProps> {
       <Form onSubmit={this.handleSubmit} initialValues={initialValues} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
-            <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} />
-            <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
-            <Categories formChildProps={formChildProps} />
-            <Checkbox name="published" label="Published" formChildProps={formChildProps} />
+            <div className={styles.fields}>
+              <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} />
+              <Categories formChildProps={formChildProps} />
+              <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
+              <Checkbox name="published" label="Published" formChildProps={formChildProps} />
+            </div>
             <div className={styles.actions}>
               {documentToUpdate && (
                 <Button className={styles.delete} onClick={this.handleDelete}>

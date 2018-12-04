@@ -7,7 +7,7 @@ import { IChatProps } from './types'
 
 export default class Chat extends PureComponent<IChatProps> {
   public render(): JSX.Element {
-    const { advertId, advertOwnerId, chatId } = this.props
+    const { advertId, advertOwnerId, chatId, displayMode } = this.props
 
     return (
       <UserSpecificContent>
@@ -15,7 +15,7 @@ export default class Chat extends PureComponent<IChatProps> {
           return user ? (
             <ChatController advertId={advertId} advertOwnerId={advertOwnerId} loggedInUserId={user.uid} chatId={chatId}>
               {(chatRenderProps: IChatRenderProps): ReactNode => {
-                return <ChatView chatRenderProps={chatRenderProps} />
+                return <ChatView chatRenderProps={chatRenderProps} displayMode={displayMode} />
               }}
             </ChatController>
           ) : (

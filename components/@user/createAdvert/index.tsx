@@ -1,6 +1,5 @@
 import UserSpecificContent from '@auth/userSpecificContent'
 import { Button } from '@material-ui/core'
-import Paper from '@material-ui/core/Paper'
 import AdvertForm from '@user/advertForm'
 import 'isomorphic-unfetch'
 import Link from 'next/link'
@@ -11,24 +10,22 @@ export default class CreateAdvert extends PureComponent<{}> {
   public render(): JSX.Element {
     return (
       <section className={styles.createAdvert}>
-        <Paper className={styles.form}>
-          <UserSpecificContent>
-            {(user: firebase.User): JSX.Element => {
-              return user ? (
-                <AdvertForm user={user} />
-              ) : (
-                <>
-                  <h1>You need to login first</h1>
-                  <Link href="/login">
-                    <Button variant="contained" color="primary">
-                      Login
-                    </Button>
-                  </Link>
-                </>
-              )
-            }}
-          </UserSpecificContent>
-        </Paper>
+        <UserSpecificContent>
+          {(user: firebase.User): JSX.Element => {
+            return user ? (
+              <AdvertForm user={user} />
+            ) : (
+              <>
+                <h1>You need to login first</h1>
+                <Link href="/login">
+                  <Button variant="contained" color="primary">
+                    Login
+                  </Button>
+                </Link>
+              </>
+            )
+          }}
+        </UserSpecificContent>
       </section>
     )
   }

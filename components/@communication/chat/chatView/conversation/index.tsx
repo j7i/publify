@@ -15,32 +15,40 @@ export default class ChatConversation extends PureComponent<IChatConversationPro
   }
 
   public render(): ReactNode {
-    const { loading, fetchedMessages, loggedInUserId } = this.props
+    const { loading, fetchedMessages, loggedInUserId, displayMode } = this.props
+
+    const isEmbedded = displayMode === 'embedded'
+    // const isLonely = displayMode === 'lonely'
 
     return (
-      <div className={styles.conversation}>
-        <div className={styles.scrollable}>
-          {loading ? (
-            <CircularProgress className={styles.loading} />
-          ) : (
-            fetchedMessages &&
-            fetchedMessages.map((message: IMessage, index: number) => (
-              <div
-                key={index}
-                className={classNames(styles.messages, {
-                  [styles.others]: message.uid !== loggedInUserId,
-                  [styles.self]: message.uid === loggedInUserId
-                })}
-              >
-                <div className={styles.text}>
-                  {message.content}
-                  <span className={styles.time}>{message.date && <Moment format="HH:mm" unix date={new Date(message.date.seconds)} />}</span>
+      <div
+        className={classNames(styles.conversation, {
+          [styles.embedded]: isEmbedded,
+          [styles.isLoading]: loading
+        })}
+      >
+        {loading ? (
+          <CircularProgress className={styles.loadingSpinner} />
+        ) : (
+          <div className={styles.scrollable}>
+            {fetchedMessages &&
+              fetchedMessages.map((message: IMessage, index: number) => (
+                <div
+                  key={index}
+                  className={classNames(styles.messages, {
+                    [styles.others]: message.uid !== loggedInUserId,
+                    [styles.self]: message.uid === loggedInUserId
+                  })}
+                >
+                  <div className={styles.text}>
+                    {message.content}
+                    <span className={styles.time}>{message.date && <Moment format="HH:mm" unix date={new Date(message.date.seconds)} />}</span>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
-          <div ref={this.conversationEnd} />
-        </div>
+              ))}
+            <div ref={this.conversationEnd} />
+          </div>
+        )}
       </div>
     )
   }

@@ -1,11 +1,10 @@
 import UserSpecificContent from '@auth/userSpecificContent'
 import { Button } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Paper from '@material-ui/core/Paper'
 import AdvertForm from '@user/advertForm'
+import styles from '@user/createAdvert/styles.css'
 import Link from 'next/link'
 import { PureComponent } from 'react'
-import styles from './styles.css'
 import { IEditAdvertProps, IEditAdvertState } from './types'
 
 export default class EditAdvert extends PureComponent<IEditAdvertProps, IEditAdvertState> {
@@ -30,24 +29,22 @@ export default class EditAdvert extends PureComponent<IEditAdvertProps, IEditAdv
         {loading ? (
           <CircularProgress className={styles.loading} />
         ) : initialValues ? (
-          <Paper className={styles.form}>
-            <UserSpecificContent>
-              {(user: firebase.User): JSX.Element => {
-                return user ? (
-                  <AdvertForm user={user} initialValues={initialValues} documentToUpdate={advert.id} />
-                ) : (
-                  <>
-                    <h1>You need to login first</h1>
-                    <Link href="/login">
-                      <Button variant="contained" color="primary">
-                        Login
-                      </Button>
-                    </Link>
-                  </>
-                )
-              }}
-            </UserSpecificContent>
-          </Paper>
+          <UserSpecificContent>
+            {(user: firebase.User): JSX.Element => {
+              return user ? (
+                <AdvertForm user={user} initialValues={initialValues} documentToUpdate={advert.id} />
+              ) : (
+                <>
+                  <h1>You need to login first</h1>
+                  <Link href="/login">
+                    <Button variant="contained" color="primary">
+                      Login
+                    </Button>
+                  </Link>
+                </>
+              )
+            }}
+          </UserSpecificContent>
         ) : (
           <h1>No such document</h1> // TODO
         )}

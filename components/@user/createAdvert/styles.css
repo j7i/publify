@@ -1,9 +1,14 @@
+.loading {
+  margin: $spacingGrande;
+}
+
 .createAdvert {
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: 100%;
   padding: $spacingMedium;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
 }
 
 .form {

@@ -8,7 +8,9 @@ export interface IDashboardProps {
 export interface IDashboardState {
   adverts: IAdvert[]
   chats: IChat[]
+  currentAdvert?: number
   currentChat?: string
+  currentTabIndex: number
 }
 
 export interface IChat {

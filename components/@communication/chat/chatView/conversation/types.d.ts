@@ -4,4 +4,5 @@ export interface IChatConversationProps {
   loading: boolean
   loggedInUserId: string
   fetchedMessages: IMessage[]
+  displayMode?: string
 }

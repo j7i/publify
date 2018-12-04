@@ -22,15 +22,6 @@ class AdvertListNavigation extends PureComponent<IAdvertListNavigationProps, IAd
     value: Categorie.HOUSEHOLD
   }
 
-  // tslint:disable-next-line:no-any
-  public handleChange = (event: React.ChangeEvent, value: any): void => {
-    event.preventDefault()
-    const categorie = value as Categorie
-
-    this.props.handleFilter(categorie)
-    this.setState({ value })
-  }
-
   public render(): JSX.Element {
     const { value } = this.state
     const { classes } = this.props
@@ -46,6 +37,15 @@ class AdvertListNavigation extends PureComponent<IAdvertListNavigationProps, IAd
         </AppBar>
       </div>
     )
+  }
+
+  // tslint:disable-next-line:no-any
+  private handleChange = (event: React.ChangeEvent, value: any): void => {
+    event.preventDefault()
+    const categorie = value as Categorie
+
+    this.props.handleFilter(categorie)
+    this.setState({ value })
   }
 }
 
