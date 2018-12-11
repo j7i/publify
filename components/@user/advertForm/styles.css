@@ -5,10 +5,6 @@
   justify-content: space-between;
   width: 100%;
   height: inherit;
-
-  & button {
-    align-self: flex-end;
-  }
 }
 
 .fields {
@@ -17,7 +13,8 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-top: $spacingMedium;
 }

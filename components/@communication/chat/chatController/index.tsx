@@ -111,7 +111,9 @@ export default class ChatController extends PureComponent<IChatControllerProps, 
           })
 
           messages.sort((a: IMessage, b: IMessage) => {
-            return a.date.seconds - b.date.seconds
+            let timeA = `${a.date.seconds}${a.date.nanoseconds}`
+            let timeB = `${b.date.seconds}${b.date.nanoseconds}`
+            return parseInt(timeA, 10) - parseInt(timeB, 10)
           })
 
           this.setState({

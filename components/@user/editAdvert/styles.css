@@ -1,0 +1,6 @@
+.form {
+  width: 100%;
+  padding: $spacingMedium $spacingHuge;
+  background-color: $white;
+  border-radius: 8px;
+}

@@ -10,7 +10,14 @@ export default class FormHandler extends PureComponent<IFormHandlerProps, IFormH
     touched: {}
   }
   public componentWillMount(): void {
-    const { initialValues } = this.props
+    const { initialValues, advertType } = this.props
+
+    if (advertType) {
+      this.setState({
+        values: { type: advertType }
+      })
+    }
+
     if (initialValues) {
       this.setState({
         values: initialValues

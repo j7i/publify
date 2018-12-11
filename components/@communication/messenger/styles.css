@@ -1,0 +1,22 @@
+.messenger {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background-color: $grey1;
+  /* padding: $spacingMedium; */
+}
+
+.chatList {
+  margin-top: $spacingBase;
+  display: flex;
+  flex-basis: 1;
+  flex-direction: column;
+  border-right: 1px solid $grey3;
+
+  .chatListItem {
+    &[class*='selected'] {
+      background-color: $grey3;
+    }
+  }
+}

@@ -44,16 +44,25 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
               </Typography>
             </Link>
             <div className={classes.grow} />
-            <Link href="/dashboard">
-              <Button color="inherit">Dashboard</Button>
-            </Link>
             <UserSpecificContent>
               {(user: firebase.User): JSX.Element => (
-                <Link href="/login">
-                  <Button onClick={user && handleLogout} color="inherit">
-                    {user ? 'Logout' : 'Login'}
-                  </Button>
-                </Link>
+                <>
+                  {user && (
+                    <>
+                      <Link href="/dashboard">
+                        <Button color="inherit">Dashboard</Button>
+                      </Link>
+                      <Link href="/messages">
+                        <Button color="inherit">Messages</Button>
+                      </Link>
+                    </>
+                  )}
+                  <Link href="/login">
+                    <Button onClick={user && handleLogout} color="inherit">
+                      {user ? 'Logout' : 'Login'}
+                    </Button>
+                  </Link>
+                </>
               )}
             </UserSpecificContent>
           </Toolbar>

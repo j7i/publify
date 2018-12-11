@@ -4,36 +4,41 @@ import Form from '@core/form'
 import Checkbox from '@core/form/checkbox'
 import { IFormChildProps, IFormValues } from '@core/form/formHandler/types'
 import Input from '@core/form/input'
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import Router from 'next/router'
 import { PureComponent } from 'react'
-import AdvertTypeSwitch from './advertTypeSwitch'
+// import AdvertTypeSwitch from './advertTypeSwitch'
 import Categories from './categories'
 import styles from './styles.css'
 import { IAdvertFormProps } from './types'
 
 export default class AdvertForm extends PureComponent<IAdvertFormProps> {
   public render(): JSX.Element {
-    const { initialValues, documentToUpdate } = this.props
+    const { initialValues, documentToUpdate, advertType } = this.props
     return (
-      <Form onSubmit={this.handleSubmit} initialValues={initialValues} className={styles.advertForm}>
+      <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <div className={styles.fields}>
-              <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} />
+              {/* <AdvertTypeSwitch handleAdvertType={formChildProps.handleAdvertType} initialValues={formChildProps.values} /> */}
+              <h2>Categories</h2>
               <Categories formChildProps={formChildProps} />
+              <h2>Description</h2>
               <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
-              <Checkbox name="published" label="Published" formChildProps={formChildProps} />
             </div>
+
             <div className={styles.actions}>
-              {documentToUpdate && (
-                <Button className={styles.delete} onClick={this.handleDelete}>
-                  Delete
+              <Checkbox name="published" label="Published" formChildProps={formChildProps} />
+              <div>
+                {documentToUpdate && (
+                  <Button className={styles.delete} onClick={this.handleDelete}>
+                    Delete
+                  </Button>
+                )}
+                <Button type="submit" variant="contained" color="primary">
+                  {documentToUpdate ? `Update` : `Create new`}
                 </Button>
-              )}
-              <Button type="submit" variant="contained" color="primary">
-                {documentToUpdate ? `Update` : `Add to Firestore`}
-              </Button>
+              </div>
             </div>
             {/* <pre>{JSON.stringify(formChildProps.values, null, 2)}</pre> */}
           </>

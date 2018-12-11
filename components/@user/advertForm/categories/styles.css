@@ -10,7 +10,7 @@
 
 .categorie {
   cursor: pointer;
-  lost-column: 1/4;
+  lost-column: 1/7;
   lost-align: center;
   background-color: $grey2;
   margin-bottom: $spacingSemi;
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: $spacingMedium;
+  padding: $spacingBase;
 
   & svg {
     padding-bottom: $spacingSmall;

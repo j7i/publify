@@ -65,7 +65,7 @@ export default class Categories extends PureComponent<ICategorieProps, ICategori
               className={classNames(styles.categorie, { [styles.selected]: this.state.selected[categorie.name] })}
             >
               <div className={styles.categorieInner}>
-                <FontAwesomeIcon icon={categorie.icon} size="3x" />
+                <FontAwesomeIcon icon={categorie.icon} size="2x" />
                 <span className={styles.categorieName}>{categorie.name}</span>
               </div>
             </div>

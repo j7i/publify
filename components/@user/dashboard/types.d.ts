@@ -6,16 +6,8 @@ export interface IDashboardProps {
 }
 
 export interface IDashboardState {
-  adverts: IAdvert[]
-  chats: IChat[]
+  myDemand?: IAdvert
+  myOffer?: IAdvert
   currentAdvert?: number
-  currentChat?: string
   currentTabIndex: number
-}
-
-export interface IChat {
-  id: string
-  messages: IMessage[]
-  members: string[]
-  advertId: string
 }

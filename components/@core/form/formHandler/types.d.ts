@@ -4,6 +4,7 @@ export interface IFormHandlerProps {
   onSubmit: (values: IFormValues) => Promise<void>
   children: (formChildProps: IFormChildProps) => JSX.Element
   initialValues?: IFormValues
+  advertType?: AdvertType
 }
 
 export interface IFormHandlerState {

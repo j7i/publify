@@ -4,16 +4,22 @@
 
 .createAdvert {
   display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
   width: 100%;
-  padding: $spacingMedium;
+  flex-basis: auto;
+  margin: 0 auto;
+  max-width: 1024px;
 }
 
 .form {
-  padding: $spacingMedium;
-  margin: 0 auto;
+  width: 100%;
+  padding: $spacingMedium $spacingHuge;
   background-color: $white;
-  border-radius: 3px;
+  border-radius: 8px;
+}
+
+.callToAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: $spacingMassive;
 }

@@ -13,7 +13,7 @@
 .advertType {
   lost-column: 1/2;
   lost-align: center;
-  padding: $spacingBase;
+  padding: $spacingSemi;
 
   &:hover {
     cursor: pointer;

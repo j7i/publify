@@ -3,6 +3,7 @@ import { IFormValues } from '@core/form/formHandler/types'
 
 export interface IEditAdvertProps {
   advert: IAdvert
+  user: firebase.User
 }
 
 export interface IEditAdvertState {
