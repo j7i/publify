@@ -1,5 +1,5 @@
 import AdvertCardElement from '@advert/advertCardElement'
-import Chat from '@communication/chat'
+import { Chat } from '@communication'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { PureComponent } from 'react'

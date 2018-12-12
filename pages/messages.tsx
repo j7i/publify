@@ -1,5 +1,5 @@
 import UserSpecificContent from '@auth/userSpecificContent'
-import Messenger from '@communication/messenger'
+import { Messenger } from '@communication'
 import ErrorBoundary from '@helpers/errorBoundary'
 import { PureComponent } from 'react'
 
