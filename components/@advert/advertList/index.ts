@@ -1,0 +1,1 @@
+export { AdvertList } from './advertList'

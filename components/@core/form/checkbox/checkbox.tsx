@@ -1,8 +1,8 @@
-import { IInputProps } from '@core/form/input/types'
+import { IInputProps } from '@core/form/types'
 import { PureComponent } from 'react'
-import styles from './styles.css'
+import styles from './checkboxStyles.css'
 
-export default class Checkbox extends PureComponent<IInputProps> {
+export class Checkbox extends PureComponent<IInputProps> {
   public render(): JSX.Element {
     const { name, label, id, formChildProps, required, checked } = this.props
     const { values, handleChange, handleBlur } = formChildProps

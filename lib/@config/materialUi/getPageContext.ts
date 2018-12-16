@@ -49,7 +49,7 @@ declare global {
 }
 /* tslint:enable */
 
-export default function getPageContex(): ICreatePageContext {
+export function getPageContext(): ICreatePageContext {
   // Make sure to create a new context for every server-side request so that data
   // isn't shared between connections (which would be bad).
   if (!process.browser) {

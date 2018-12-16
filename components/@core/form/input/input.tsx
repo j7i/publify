@@ -1,9 +1,8 @@
-import { IInputProps } from '@core/form/input/types'
+import { IInputProps } from '@core/form/types'
 import TextField from '@material-ui/core/TextField'
 import { PureComponent } from 'react'
-// import styles from './styles.css'
 
-export default class Input extends PureComponent<IInputProps> {
+export class Input extends PureComponent<IInputProps> {
   public render(): JSX.Element {
     const { type, name, label, id, formChildProps, required, multiline } = this.props
     const { values, handleChange } = formChildProps

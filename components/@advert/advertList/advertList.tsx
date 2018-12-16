@@ -1,11 +1,10 @@
-import AdvertCardElement from '@advert/advertCardElement'
-import { IAdvert } from '@advert/advertListElement/types'
+import { AdvertCardElement, IAdvert } from '@advert'
 import { PureComponent } from 'react'
-import AdvertListNavigation from './advertListNavigation'
+import AdvertListNavigation from './advertListNavigation/advertListNavigation'
 import styles from './styles.css'
 import { IAdvertListProps, IAdvertListState } from './types'
 
-export default class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState> {
+export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState> {
   public state: IAdvertListState = {
     filtered: []
   }

@@ -15,7 +15,7 @@
     "function-name-case": [
       "lower",
       {
-        "ignoreFunctions": ["pxToRem", "makeCol"]
+        "ignoreFunctions": ["pxToRem"]
       }
     ],
     "at-rule-no-unknown": [

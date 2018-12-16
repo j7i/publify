@@ -1,5 +1,4 @@
-import { firestore } from '@config/firebase'
-import { FirebaseCollection } from '@config/firebase/types.d'
+import { FirebaseCollection, firestore } from '@config'
 import { PureComponent, ReactNode } from 'react'
 import { IChatControllerProps, IChatControllerState, IChatRenderProps, IMessage } from '../types'
 

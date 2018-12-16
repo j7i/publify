@@ -1,4 +1,4 @@
-import { IAdvert } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert'
 
 export interface IAdvertCardElementProps {
   advert: IAdvert

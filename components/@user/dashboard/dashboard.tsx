@@ -1,6 +1,5 @@
-import firebase from '@config/firebase/index'
-import { FirebaseCollection } from '@config/firebase/types.d'
-import { AdvertType } from '@helpers/types/types.d'
+import { firebaseApp, FirebaseCollection } from '@config'
+import { AdvertType } from '@helpers'
 import { Tab, Tabs } from '@material-ui/core'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
@@ -66,7 +65,7 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   }
 
   private getUserSpecificAdverts = async (): Promise<void> => {
-    const firestore = firebase.firestore()
+    const firestore = firebaseApp.firestore()
     const { user } = this.props
 
     // tslint:disable:no-any

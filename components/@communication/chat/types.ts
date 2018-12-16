@@ -1,4 +1,4 @@
-import { IFirestoreTimeStamp } from '@config/firebase/types'
+import { IFirestoreTimeStamp } from '@config'
 import { ReactNode } from 'react'
 
 export interface IChatProps {

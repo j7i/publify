@@ -1,4 +1,4 @@
-import firebase from '@config/firebase/index'
+import { firebaseApp } from '@config'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Router from 'next/router'
 import { PureComponent } from 'react'
@@ -11,7 +11,7 @@ export class UserSpecificContent extends PureComponent<IUserSpecificContentProps
   }
 
   public componentWillMount = (): void => {
-    firebase.auth().onAuthStateChanged((user: firebase.User) => {
+    firebaseApp.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
         this.setState({ user })
       } else {

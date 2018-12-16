@@ -1,5 +1,5 @@
 import { Chat } from '@communication/chat'
-import { FirebaseCollection } from '@config/firebase/types.d'
+import { FirebaseCollection } from '@config'
 import { List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper } from '@material-ui/core'
 import ChatIcon from '@material-ui/icons/Chat'
 import firebase from 'firebase'

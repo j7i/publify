@@ -3,7 +3,7 @@ import { PureComponent } from 'react'
 import styles from './styles.css'
 import { IAdvertListElementProps } from './types'
 
-export default class AdvertListElement extends PureComponent<IAdvertListElementProps> {
+export class AdvertListElement extends PureComponent<IAdvertListElementProps> {
   public render(): JSX.Element {
     const { advert } = this.props
     return (

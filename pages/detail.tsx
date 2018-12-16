@@ -1,6 +1,5 @@
-import AdvertDetail from '@advert/advertDetail'
-import ErrorBoundary from '@helpers/errorBoundary'
-import { IDatailPageProps } from '@helpers/types/types'
+import { AdvertDetail } from '@advert'
+import { ErrorBoundary, IDatailPageProps } from '@helpers'
 import fetch from 'isomorphic-unfetch'
 import { NextContext } from 'next'
 import { PureComponent } from 'react'

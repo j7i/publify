@@ -1,5 +1,5 @@
 import { faBalanceScale, faBroom, faCarSide, faDesktop, faLeaf, faShoppingBasket, faUserTie } from '@fortawesome/free-solid-svg-icons'
-import { Categorie } from '@helpers/types/types.d'
+import { Categorie } from '@helpers'
 import { ICategorie } from '@user/dashboard/types'
 
 export const categorieList: ICategorie[] = [

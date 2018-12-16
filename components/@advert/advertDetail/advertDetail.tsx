@@ -1,4 +1,4 @@
-import AdvertCardElement from '@advert/advertCardElement'
+import { AdvertCardElement } from '@advert'
 import { Chat } from '@communication'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -6,7 +6,7 @@ import { PureComponent } from 'react'
 import styles from './styles.css'
 import { IAdvertDetailProps, IAdvertDetailState } from './types'
 
-export default class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetailState> {
+export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetailState> {
   public state: IAdvertDetailState = {
     isChatting: false
   }

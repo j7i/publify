@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Categorie } from '@helpers/types/types.d'
+import { Categorie } from '@helpers'
 import AppBar from '@material-ui/core/AppBar'
 import { StyleRules, Theme, withStyles } from '@material-ui/core/styles'
 import Tab from '@material-ui/core/Tab'
@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs'
 import { categorieList } from '@user/dashboard/advertHandling/advertForm/categories/categorieList'
 import { ICategorie } from '@user/dashboard/types'
 import React, { PureComponent } from 'react'
-import { IAdvertListNavigationProps, IAdvertListNavigationState } from './types'
+import { IAdvertListNavigationProps, IAdvertListNavigationState } from '../types'
 
 const styles = (theme: Theme): StyleRules => ({
   advertListNavigation: {
@@ -49,4 +49,5 @@ class AdvertListNavigation extends PureComponent<IAdvertListNavigationProps, IAd
   }
 }
 
+// TODO: No default
 export default withStyles(styles)(AdvertListNavigation)

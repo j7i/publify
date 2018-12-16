@@ -1,4 +1,11 @@
-import { IAdvert } from '@advert/advertListElement/types'
+export interface IAdvert {
+  id: string
+  type: string
+  categories: string[]
+  description: string
+  published: boolean
+  userId: string
+}
 
 export interface IAdvertDetailProps {
   advert: IAdvert

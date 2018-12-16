@@ -1,4 +1,4 @@
-import { IAdvert } from '@advert/advertListElement/types'
+import { IAdvert } from '@advert'
 
 export interface IFirestoreFetch {
   data?: IAdvert
@@ -11,6 +11,6 @@ export interface IFirebaseDocumnet {
   updateTime: string
 }
 
-interface IFirestoreFetchError {
+export interface IFirestoreFetchError {
   error?: string
 }

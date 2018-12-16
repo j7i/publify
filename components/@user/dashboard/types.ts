@@ -1,7 +1,7 @@
-import { IAdvert } from '@advert/advertListElement/types'
-import { IFormChildProps } from '@core/form/formHandler/types'
+import { IAdvert } from '@advert'
+import { IFormChildProps } from '@core'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { AdvertType } from '@helpers/types/types'
+import { AdvertType } from '@helpers'
 
 export interface IDashboardProps {
   user: firebase.User

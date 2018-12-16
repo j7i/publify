@@ -1,4 +1,13 @@
-import { AdvertType } from '@helpers/types/types'
+import { IAdvert } from '@advert'
+import { AdvertType } from '@helpers'
+
+export interface IFormProps {
+  children: (formChildProps: IFormChildProps) => JSX.Element
+  onSubmit: (values: IFormValues) => Promise<void>
+  className: string
+  initialValues?: IFormValues | IAdvert
+  advertType?: AdvertType
+}
 
 export interface IFormHandlerProps {
   onSubmit: (values: IFormValues) => Promise<void>
@@ -12,7 +21,7 @@ export interface IFormHandlerState {
   touched: IFormTouched
 }
 
-interface IFormValues {
+export interface IFormValues {
   [key: string]: string | boolean | string[]
 }
 
@@ -20,13 +29,15 @@ interface IFormTouched {
   [key: string]: boolean
 }
 
-// tslint:disable-next-line:no-empty-interface
-interface IFormFocused extends IFormTouched {}
-
 export interface IFormChildProps extends IFormHandlerState {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void
   handleCategories: (selection: string[]) => void
   handleAdvertType: (advertType: AdvertType) => void
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+}
+
+export interface IInputProps extends React.HTMLProps<HTMLInputElement> {
+  formChildProps: IFormChildProps
+  multiline?: boolean
 }

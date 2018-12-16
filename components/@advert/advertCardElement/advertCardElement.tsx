@@ -1,21 +1,11 @@
-import { firestore } from '@config/firebase'
-import { FirebaseCollection } from '@config/firebase/types.d'
-import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-// import CardMedia from '@material-ui/core/CardMedia'
-import Chip from '@material-ui/core/Chip'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
-import Typography from '@material-ui/core/Typography'
+import { FirebaseCollection, firestore } from '@config'
+import { Button, Card, CardActionArea, CardActions, CardContent, Chip, FormControlLabel, Switch, Typography } from '@material-ui/core'
 import Link from 'next/link'
 import { PureComponent } from 'react'
 import styles from './styles.css'
 import { IAdvertCardElementProps, IAdvertCardElementState } from './types'
 
-export default class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IAdvertCardElementState> {
+export class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IAdvertCardElementState> {
   public state: IAdvertCardElementState = {
     published: this.props.advert.published
   }

@@ -1,6 +1,5 @@
-import AdvertList from '@advert/advertList'
-import ErrorBoundary from '@helpers/errorBoundary'
-import { IWelcomePageProps } from '@helpers/types/types'
+import { AdvertList } from '@advert'
+import { ErrorBoundary, IWelcomePageProps } from '@helpers'
 import { PageHeader } from '@layout'
 import fetch from 'isomorphic-unfetch'
 import { PureComponent } from 'react'

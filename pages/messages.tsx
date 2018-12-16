@@ -1,6 +1,6 @@
 import { UserSpecificContent } from '@auth'
 import { Messenger } from '@communication'
-import ErrorBoundary from '@helpers/errorBoundary'
+import { ErrorBoundary } from '@helpers'
 import { PureComponent } from 'react'
 
 export default class Messages extends PureComponent {

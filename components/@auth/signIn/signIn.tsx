@@ -1,8 +1,6 @@
 import { UserSpecificContent } from '@auth'
-import firebase from '@config/firebase/index'
-import Form from '@core/form'
-import { IFormChildProps } from '@core/form/formHandler/types'
-import Input from '@core/form/input'
+import { firebaseApp } from '@config'
+import { Form, IFormChildProps, Input } from '@core'
 import Button from '@material-ui/core/Button'
 import 'isomorphic-unfetch'
 import Router from 'next/router'
@@ -12,7 +10,7 @@ import { ILoginFormValues, ISignInState } from './types'
 
 export const handleLogout = async (event: React.SyntheticEvent): Promise<void> => {
   event.preventDefault()
-  firebase
+  firebaseApp
     .auth()
     .signOut()
     .then(() => {
@@ -95,10 +93,10 @@ export class SignIn extends PureComponent<{}, ISignInState> {
 
   private handleSubmit = async (values: ILoginFormValues): Promise<void> => {
     const { firstName, lastName, email, password } = values
-    const firestore = firebase.firestore()
+    const firestore = firebaseApp.firestore()
 
     this.state.isSignUp
-      ? firebase
+      ? firebaseApp
           .auth()
           .createUserWithEmailAndPassword(email, password)
           .then((resp: firebase.auth.UserCredential) => {
@@ -120,7 +118,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
             // tslint:disable-next-line:no-console
             console.log(error)
           })
-      : firebase
+      : firebaseApp
           .auth()
           .signInWithEmailAndPassword(email, password)
           .then(() => {

@@ -1,5 +1,5 @@
 import { UserSpecificContent } from '@auth'
-import ErrorBoundary from '@helpers/errorBoundary'
+import { ErrorBoundary } from '@helpers'
 import { Dashboard } from '@user'
 import { PureComponent } from 'react'
 

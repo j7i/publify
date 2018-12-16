@@ -1,12 +1,11 @@
 // tslint:disable
-
-import getPageContext from '@config/materialUi/getPageContext'
+import { getPageContext, ICreatePageContext } from '@config'
 import { Layout } from '@layout'
 import { CssBaseline } from '@material-ui/core'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import App, { Container } from 'next/app'
 import JssProvider from 'react-jss/lib/JssProvider'
-import { ICreatePageContext } from '@config/materialUi/types'
+import '@postcss/globalCss/index.css'
 
 export default class MyApp extends App {
   public static async getInitialProps({ Component, ctx }) {
