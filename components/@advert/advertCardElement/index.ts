@@ -1,0 +1,1 @@
+export { AdvertCardElement } from './advertCardElement'

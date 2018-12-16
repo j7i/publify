@@ -1,0 +1,120 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100vh - 112px);
+  background-color: $grey1;
+  /* padding: $spacingMedium; */
+}
+
+.adverts {
+  height: 100%;
+}
+
+.dashboardSection {
+  /* margin-top: $spacingBase; */
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  background-color: $grey2;
+}
+
+.myAdvert {
+  border-radius: 8px;
+  display: flex;
+  width: 100%;
+  padding: $spacingMedium;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1024px;
+
+  .header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    height: 300px;
+    padding: $spacingHuge;
+    border-radius: 8px 8px 0 0;
+    background-color: $primary;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .person {
+    position: relative;
+    top: -52px;
+    display: flex;
+    padding: 0 $spacingHuge $spacingMedium;
+    color: $white;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: -32px;
+    background-color: $white;
+    border-radius: 0 0 8px 8px;
+
+    .personDetails {
+      display: flex;
+      margin-left: $spacingMedium;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 104px;
+      padding: $spacingSemi;
+
+      .name {
+        z-index: 3;
+        margin-bottom: 0;
+      }
+
+      .adress {
+        color: $black;
+        margin-bottom: $spacingSemi;
+      }
+    }
+
+    .profileImage {
+      z-index: 3;
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background-color: $grey2;
+    }
+  }
+
+  .navigation {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 80px);
+    margin: 0 auto;
+    color: $black;
+  }
+}
+
+.loading {
+  margin: $spacingGrande;
+}
+
+.myAdvert {
+  display: flex;
+  width: 100%;
+  flex-basis: auto;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.advertFormWrapper {
+  width: 100%;
+  padding: $spacingMedium $spacingHuge;
+  background-color: $white;
+  border-radius: 8px;
+}
+
+.callToAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: $spacingMassive;
+}

@@ -17,14 +17,22 @@
     "baseUrl": ".",
     "paths": {
       "@advert/*": ["./components/@advert/*"],
+      "@advert": ["./components/@advert"],
       "@auth/*": ["./components/@auth/*"],
+      "@auth": ["./components/@auth"],
       "@communication/*": ["./components/@communication/*"],
+      "@communication": ["./components/@communication"],
       "@config/*": ["./lib/@config/*"],
+      "@config": ["./lib/@config"],
       "@core/*": ["./components/@core/*"],
+      "@core": ["./components/@core"],
       "@helpers/*": ["./lib/@helpers/*"],
+      "@helpers": ["./lib/@helpers"],
       "@layout/*": ["./components/@layout/*"],
+      "@layout": ["./components/@layout"],
       "@postcss/*": ["./lib/@postcss/*"],
-      "@user/*": ["./components/@user/*"]
+      "@user/*": ["./components/@user/*"],
+      "@user": ["./components/@user"]
     },
     "typeRoots": ["./node_modules/@types"],
     "lib": ["dom", "es2015", "es2016", "es2017", "esnext.asynciterable"],
