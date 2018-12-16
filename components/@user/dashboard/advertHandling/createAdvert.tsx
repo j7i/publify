@@ -9,7 +9,7 @@ export class CreateAdvert extends PureComponent<ICreateAdvertProps, ICreateAdver
     isCreating: true
   }
   public render(): JSX.Element {
-    const { user, advertType } = this.props
+    const { userInfo, advertType } = this.props
     const { isCreating } = this.state
 
     if (isCreating) {
@@ -24,7 +24,7 @@ export class CreateAdvert extends PureComponent<ICreateAdvertProps, ICreateAdver
       return (
         <section>
           <div className={styles.advertFormWrapper}>
-            <AdvertForm user={user} advertType={advertType} />
+            <AdvertForm userInfo={userInfo} advertType={advertType} />
           </div>
         </section>
       )

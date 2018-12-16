@@ -18,7 +18,7 @@ export class UpdateAdvert extends PureComponent<IUpdateAdvertProps, IUpdateAdver
     })
   }
   public render(): JSX.Element {
-    const { advert, user } = this.props
+    const { advert, userInfo } = this.props
     const { initialValues, loading } = this.state
 
     return (
@@ -27,7 +27,7 @@ export class UpdateAdvert extends PureComponent<IUpdateAdvertProps, IUpdateAdver
           <CircularProgress className={styles.loading} />
         ) : initialValues ? (
           <div className={styles.advertFormWrapper}>
-            <AdvertForm user={user} initialValues={initialValues} documentToUpdate={advert.id} />
+            <AdvertForm userInfo={userInfo} initialValues={initialValues} documentToUpdate={advert.id} />
           </div>
         ) : (
           <h1>No such document</h1> // TODO

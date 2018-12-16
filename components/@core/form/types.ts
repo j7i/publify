@@ -1,5 +1,6 @@
 import { IAdvert } from '@advert'
 import { AdvertType } from '@helpers'
+import { IUserInfo } from '@user'
 
 export interface IFormProps {
   children: (formChildProps: IFormChildProps) => JSX.Element
@@ -7,13 +8,15 @@ export interface IFormProps {
   className: string
   initialValues?: IFormValues | IAdvert
   advertType?: AdvertType
+  userInfo?: IUserInfo
 }
 
 export interface IFormHandlerProps {
-  onSubmit: (values: IFormValues) => Promise<void>
   children: (formChildProps: IFormChildProps) => JSX.Element
+  onSubmit: (values: IFormValues) => Promise<void>
   initialValues?: IFormValues
   advertType?: AdvertType
+  userInfo?: IUserInfo
 }
 
 export interface IFormHandlerState {

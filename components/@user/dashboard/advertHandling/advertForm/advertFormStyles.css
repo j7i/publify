@@ -18,3 +18,7 @@
   width: 100%;
   margin-top: $spacingMedium;
 }
+
+.descriptionTitle {
+  margin-bottom: $spacingSemi;
+}
