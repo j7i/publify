@@ -18,12 +18,14 @@
     "paths": {
       "@advert/*": ["./components/@advert/*"],
       "@auth/*": ["./components/@auth/*"],
+      "@auth": ["./components/@auth"],
       "@communication/*": ["./components/@communication/*"],
       "@communication": ["./components/@communication"],
       "@config/*": ["./lib/@config/*"],
       "@core/*": ["./components/@core/*"],
       "@helpers/*": ["./lib/@helpers/*"],
       "@layout/*": ["./components/@layout/*"],
+      "@layout": ["./components/@layout"],
       "@postcss/*": ["./lib/@postcss/*"],
       "@user/*": ["./components/@user/*"],
       "@user": ["./components/@user"]

@@ -1,4 +1,4 @@
-import UserSpecificContent from '@auth/userSpecificContent'
+import { UserSpecificContent } from '@auth'
 import firebase from '@config/firebase/index'
 import Form from '@core/form'
 import { IFormChildProps } from '@core/form/formHandler/types'
@@ -24,7 +24,7 @@ export const handleLogout = async (event: React.SyntheticEvent): Promise<void> =
     })
 }
 
-export default class SignIn extends PureComponent<{}, ISignInState> {
+export class SignIn extends PureComponent<{}, ISignInState> {
   public state: ISignInState = {
     isSignUp: false
   }

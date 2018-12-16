@@ -1,8 +1,8 @@
 // tslint:disable
 
 import getPageContext from '@config/materialUi/getPageContext'
-import Layout from '@layout/Layout'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { Layout } from '@layout'
+import { CssBaseline } from '@material-ui/core'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import App, { Container } from 'next/app'
 import JssProvider from 'react-jss/lib/JssProvider'

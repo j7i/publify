@@ -1,5 +1,4 @@
-import { handleLogout } from '@auth/signIn'
-import UserSpecificContent from '@auth/userSpecificContent'
+import { handleLogout, UserSpecificContent } from '@auth'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import { StyleRules, Theme, withStyles } from '@material-ui/core/styles'
@@ -72,4 +71,5 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
   }
 }
 
+// TODO: No default
 export default withStyles(styles)(Navigation)

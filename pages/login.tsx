@@ -1,4 +1,4 @@
-import SignIn from '@auth/signIn'
+import { SignIn } from '@auth'
 import ErrorBoundary from '@helpers/errorBoundary'
 import { PureComponent } from 'react'
 

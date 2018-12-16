@@ -4,7 +4,7 @@ import Router from 'next/router'
 import { PureComponent } from 'react'
 import { IUserSpecificContentProps, IUserSpecificContentState } from './types'
 
-export default class UserSpecificContent extends PureComponent<IUserSpecificContentProps, IUserSpecificContentState> {
+export class UserSpecificContent extends PureComponent<IUserSpecificContentProps, IUserSpecificContentState> {
   public state: IUserSpecificContentState = {
     user: null,
     isAuthorizing: true

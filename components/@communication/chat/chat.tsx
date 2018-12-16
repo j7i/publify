@@ -1,4 +1,4 @@
-import UserSpecificContent from '@auth/userSpecificContent'
+import { UserSpecificContent } from '@auth'
 import { IChatRenderProps } from '@communication/chat/types'
 import { PureComponent, ReactNode } from 'react'
 import { ChatController } from './chatController/chatController'

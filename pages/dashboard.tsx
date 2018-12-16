@@ -1,4 +1,4 @@
-import UserSpecificContent from '@auth/userSpecificContent'
+import { UserSpecificContent } from '@auth'
 import ErrorBoundary from '@helpers/errorBoundary'
 import { Dashboard } from '@user'
 import { PureComponent } from 'react'
