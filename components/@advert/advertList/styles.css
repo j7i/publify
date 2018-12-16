@@ -2,7 +2,9 @@
 @lost gutter 0;
 
 .advertList {
-  padding: $spacingMedium;
+  padding: $spacingMedium 0;
+  max-width: $contentMaxWidth;
+  margin: 0 auto;
 }
 
 .advertWrapper {

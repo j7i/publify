@@ -1,6 +1,6 @@
 import { AdvertCardElement, IAdvert } from '@advert'
 import { PureComponent } from 'react'
-import AdvertListNavigation from './advertListNavigation/advertListNavigation'
+import { AdvertFilter } from './advertFilter/advertFilter'
 import styles from './styles.css'
 import { IAdvertListProps, IAdvertListState } from './types'
 
@@ -26,7 +26,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
 
     return adverts ? (
       <>
-        <AdvertListNavigation handleFilter={this.handleFilter} />
+        <AdvertFilter handleFilter={this.handleFilter} />
         <section className={styles.advertList}>
           <h1>Public Adverts</h1>
           <section className={styles.advertWrapper}>

@@ -1,34 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Categorie } from '@helpers'
 import AppBar from '@material-ui/core/AppBar'
-import { StyleRules, Theme, withStyles } from '@material-ui/core/styles'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import { categorieList } from '@user/dashboard/advertHandling/advertForm/categories/categorieList'
 import { ICategorie } from '@user/dashboard/types'
 import React, { PureComponent } from 'react'
-import { IAdvertListNavigationProps, IAdvertListNavigationState } from '../types'
+import { IAdvertFilterProps, IAdvertFilterState } from '../types'
+import styles from './advertFilterStyles.css'
 
-const styles = (theme: Theme): StyleRules => ({
-  advertListNavigation: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper
-  }
-})
-
-class AdvertListNavigation extends PureComponent<IAdvertListNavigationProps, IAdvertListNavigationState> {
-  public state: IAdvertListNavigationState = {
+export class AdvertFilter extends PureComponent<IAdvertFilterProps, IAdvertFilterState> {
+  public state: IAdvertFilterState = {
     value: Categorie.HOUSEHOLD
   }
 
   public render(): JSX.Element {
     const { value } = this.state
-    const { classes } = this.props
 
     return (
-      <div className={classes.advertListNavigation}>
-        <AppBar position="static" color="default">
+      <div className={styles.advertFilter}>
+        <AppBar position="static" color="default" className={styles.filterTabWrapper}>
           <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="on" indicatorColor="primary" textColor="primary">
             {categorieList.map((categorie: ICategorie, index: number) => (
               <Tab key={index} label={categorie.name} value={categorie.name} icon={<FontAwesomeIcon icon={categorie.icon} size="2x" />} />
@@ -48,6 +39,3 @@ class AdvertListNavigation extends PureComponent<IAdvertListNavigationProps, IAd
     this.setState({ value })
   }
 }
-
-// TODO: No default
-export default withStyles(styles)(AdvertListNavigation)
