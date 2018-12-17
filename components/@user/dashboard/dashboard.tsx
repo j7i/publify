@@ -1,7 +1,6 @@
-import { firebaseApp, FirebaseCollection } from '@config'
+import { FirebaseCollection, firestore } from '@config'
 import { AdvertType } from '@helpers'
 import { Tab, Tabs } from '@material-ui/core'
-import { firestore } from 'firebase'
 import 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 import { CreateAdvert } from './advertHandling/createAdvert'
@@ -70,12 +69,11 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   private getUserInfos = async (): Promise<void> => {
     const { user } = this.props
 
-    firebaseApp
-      .firestore()
+    firestore
       .collection(FirebaseCollection.USERS)
       .doc(user!.uid)
       .get()
-      .then((doc: firestore.DocumentData) => {
+      .then((doc: firebase.firestore.DocumentData) => {
         this.setState({
           userInfo: { id: doc.id, ...doc.data() }
         })
@@ -92,8 +90,7 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
     // tslint:disable:no-any
     let demands: any
     let offers: any
-    firebaseApp
-      .firestore()
+    firestore
       .collection(FirebaseCollection.ADVERTS)
       .where('userId', '==', user!.uid)
       .get()

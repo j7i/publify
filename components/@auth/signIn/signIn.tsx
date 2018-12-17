@@ -4,7 +4,7 @@ import { Form, IFormChildProps, Input } from '@core'
 import Button from '@material-ui/core/Button'
 import 'isomorphic-unfetch'
 import Router from 'next/router'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, ReactNode } from 'react'
 import styles from './styles.css'
 import { ILoginFormValues, ISignInState } from './types'
 
@@ -34,7 +34,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
       <main className={styles.signUp}>
         <div className={styles.signUpContainer}>
           <UserSpecificContent>
-            {(user: firebase.User): JSX.Element => {
+            {(user: firebase.User): ReactNode => {
               return user ? (
                 <>
                   <h2>Congrats 🎉 </h2>
@@ -69,7 +69,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
           </UserSpecificContent>
         </div>
         <UserSpecificContent>
-          {(user: firebase.User): JSX.Element => {
+          {(user: firebase.User): ReactNode => {
             return !user ? (
               <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
                 {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
@@ -106,6 +106,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
               .set({
                 firstName,
                 lastName,
+                fullName: `${firstName} ${lastName}`,
                 initials: firstName[0] + lastName[0],
                 email
               })

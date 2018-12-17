@@ -3,16 +3,21 @@ import { ReactNode } from 'react'
 
 export interface IChatProps {
   advertId?: string
+  advertTitle?: string
   advertOwnerId?: string
+  advertOwnerName?: string
   chatId?: string
   displayMode?: string
 }
 
 export interface IChatControllerProps {
   advertId?: string
+  advertTitle?: string
   advertOwnerId?: string
+  advertOwnerName?: string
   chatId?: string
   loggedInUserId: string
+  loggedInUserName: string
   children: (chatRenderProps: IChatRenderProps) => ReactNode
 }
 
@@ -51,4 +56,9 @@ export interface IChatTriggerProps {
   message: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
+}
+
+export enum ChatDisplayMode {
+  EMBEDDED = 'embedded',
+  LONELY = 'lonely'
 }

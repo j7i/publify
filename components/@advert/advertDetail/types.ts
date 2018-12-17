@@ -6,7 +6,7 @@ export interface IAdvert {
   description: string
   published: boolean
   userId: string
-  userName: string
+  fullName: string
 }
 
 export interface IAdvertDetailProps {

@@ -1,8 +1,121 @@
 .detailView {
   display: flex;
-  width: 100%;
-  height: 50vh;
-  flex-direction: column;
+  flex-direction: row;
+  max-width: $contentMaxWidth;
+  padding: $spacingMedium 0;
+  margin: 0 auto;
+}
+
+.centered {
   justify-content: center;
   align-items: center;
+
+  .loading {
+    margin-top: 40vh;
+  }
+}
+
+.primaryContent {
+  display: flex;
+  width: 100%;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: column;
+  border-right: 1px solid $grey3;
+}
+
+.secondaryContent {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-direction: column;
+  background-color: $grey3;
+  border-radius: 0 8px 8px 0;
+
+  .chatArea {
+    height: 100%;
+  }
+}
+
+.map {
+  display: flex;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-grow: 1;
+  max-height: 240px;
+  min-height: 240px;
+  padding: $spacingHuge;
+  border-radius: 8px 0 0 0;
+  background-color: $primary;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.person {
+  position: relative;
+  top: -52px;
+  display: flex;
+  padding: 0 $spacingHuge $spacingMedium;
+  color: $white;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: -32px;
+  background-color: $white;
+
+  .personDetails {
+    display: flex;
+    margin-left: $spacingMedium;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 104px;
+    padding: $spacingSemi $spacingSemi 0;
+
+    .name {
+      z-index: 3;
+      margin-bottom: 0;
+    }
+
+    .adress {
+      color: $black;
+      margin-bottom: $spacingSemi;
+    }
+  }
+
+  .profileImage {
+    z-index: 3;
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background-color: $grey2;
+  }
+
+  .categories {
+    .categorie {
+      margin-right: $spacingHalf;
+    }
+  }
+}
+
+.content {
+  flex-grow: 1;
+  background-color: $white;
+  padding: $spacingHuge $spacingHuge $spacingMedium;
+  border-radius: 0 0 0 8px;
+  margin-top: -20px;
+
+  .description {
+    margin-bottom: $spacingMassive;
+  }
+
+  .callToAction {
+    display: flex;
+    justify-content: center;
+    min-height: 36px;
+  }
 }

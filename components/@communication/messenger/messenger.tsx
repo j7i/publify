@@ -1,7 +1,7 @@
 import { Chat } from '@communication/chat'
 import { FirebaseCollection } from '@config'
 import { List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper } from '@material-ui/core'
-import ChatIcon from '@material-ui/icons/Chat'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 import firebase from 'firebase'
 import { PureComponent, ReactNode } from 'react'
 import styles from './messengerStyles.css'
@@ -19,12 +19,15 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
 
   public render(): ReactNode {
     const { chats, currentChat } = this.state
+    const { user } = this.props
 
     return (
       <Paper className={styles.messenger}>
         <List className={styles.chatList} component="nav" subheader={<ListSubheader>Messages</ListSubheader>}>
           {chats.length !== 0 &&
             chats.map((chat: IChat, index: number) => {
+              const chatPartnerId = chat.members.filter((member: string) => member !== user.uid)
+              const chatPartner = chat.memberInfos[chatPartnerId[0]].name
               return (
                 <ListItem
                   className={styles.chatListItem}
@@ -34,14 +37,18 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
                   onClick={(): void => this.startConversation(chat.id)}
                 >
                   <ListItemIcon>
-                    <ChatIcon />
+                    <AccountCircle />
                   </ListItemIcon>
-                  <ListItemText primary={chat.advertId} />
+                  <ListItemText primary={chatPartner} secondary={chat.advertTitle} />
                 </ListItem>
               )
             })}
         </List>
-        {currentChat && <Chat chatId={currentChat} key={currentChat} displayMode="embedded" />}
+        {currentChat && (
+          <div className={styles.chatArea}>
+            <Chat chatId={currentChat} key={currentChat} displayMode="embedded" />
+          </div>
+        )}
       </Paper>
     )
   }

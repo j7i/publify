@@ -2,7 +2,7 @@ import { AdvertDetail } from '@advert'
 import { ErrorBoundary, IDatailPageProps } from '@helpers'
 import fetch from 'isomorphic-unfetch'
 import { NextContext } from 'next'
-import { PureComponent } from 'react'
+import { PureComponent, ReactNode } from 'react'
 
 export default class Detail extends PureComponent<IDatailPageProps> {
   public static async getInitialProps({ query }: NextContext): Promise<IDatailPageProps> {
@@ -13,7 +13,7 @@ export default class Detail extends PureComponent<IDatailPageProps> {
     return { advert }
   }
 
-  public render(): JSX.Element {
+  public render(): ReactNode {
     const { advert } = this.props
 
     return <ErrorBoundary>{advert ? <AdvertDetail advert={advert} /> : <h1>Advert not found.</h1>}</ErrorBoundary>

@@ -20,6 +20,7 @@ export interface IUserInfo {
   email: string
   firstName: string
   lastName: string
+  fullName: string
   initials: string
 }
 

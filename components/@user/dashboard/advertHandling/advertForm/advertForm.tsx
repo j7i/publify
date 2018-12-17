@@ -65,7 +65,7 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
     const advert = {
       ...values,
       userId: id,
-      userName: `${firstName} ${lastName}`
+      fullName: `${firstName} ${lastName}`
     }
 
     if (documentToUpdate) {

@@ -13,5 +13,15 @@ export interface IChat {
   id: string
   messages: IMessage[]
   members: string[]
+  memberInfos: IMemberInfos
   advertId: string
+  advertTitle: string
+}
+
+interface IMemberInfos {
+  [key: string]: IMemberInfo
+}
+
+interface IMemberInfo {
+  name: string
 }
