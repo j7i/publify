@@ -10,12 +10,23 @@ export interface IDashboardProps {
 export interface IDashboardState {
   myDemand?: IAdvert
   myOffer?: IAdvert
+  userInfo?: IUserInfo
   currentAdvert?: number
   currentTabIndex: number
 }
 
-export interface IUpdateAdvertProps extends IDashboardProps {
+export interface IUserInfo {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  fullName: string
+  initials: string
+}
+
+export interface IUpdateAdvertProps {
   advert: IAdvert
+  userInfo: IUserInfo
 }
 
 export interface IUpdateAdvertState {
@@ -23,18 +34,20 @@ export interface IUpdateAdvertState {
   loading: boolean
 }
 
-export interface ICreateAdvertProps extends IDashboardProps {
+export interface ICreateAdvertProps {
   advertType: AdvertType
+  userInfo: IUserInfo
 }
 
 export interface ICreateAdvertState {
   isCreating: boolean
 }
 
-export interface IAdvertFormProps extends IDashboardProps {
+export interface IAdvertFormProps {
   documentToUpdate?: string
   initialValues?: IAdvert
   advertType?: AdvertType
+  userInfo: IUserInfo
 }
 
 export interface ICategorieState {

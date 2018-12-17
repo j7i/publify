@@ -5,7 +5,7 @@ import { StyleRules, Theme, withStyles } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { INavigationProps, INavigationState } from './types'
 
 const styles = (theme: Theme): StyleRules => ({
@@ -30,7 +30,7 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
     mobileMoreAnchorEl: null
   }
 
-  public render(): JSX.Element {
+  public render(): ReactNode {
     const { classes } = this.props
 
     return (
@@ -44,7 +44,7 @@ class Navigation extends React.PureComponent<INavigationProps, INavigationState>
             </Link>
             <div className={classes.grow} />
             <UserSpecificContent>
-              {(user: firebase.User): JSX.Element => (
+              {(user: firebase.User): ReactNode => (
                 <>
                   {user && (
                     <>

@@ -1,9 +1,11 @@
+import { IUserInfo } from '@user'
+import { ReactNode } from 'react'
+
 export interface IUserSpecificContentProps {
-  // tslint:disable-next-line:no-any
-  children: (user: any) => JSX.Element
+  children: (user: firebase.User | null, userInfo?: IUserInfo) => ReactNode | null
 }
 export interface IUserSpecificContentState {
-  // tslint:disable-next-line:no-any
-  user: any
+  user: firebase.User | null
+  userInfo?: IUserInfo
   isAuthorizing: boolean
 }

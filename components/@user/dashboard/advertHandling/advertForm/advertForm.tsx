@@ -9,15 +9,16 @@ import { Categories } from './categories/categories'
 
 export class AdvertForm extends PureComponent<IAdvertFormProps> {
   public render(): JSX.Element {
-    const { initialValues, documentToUpdate, advertType } = this.props
+    const { initialValues, documentToUpdate, advertType, userInfo } = this.props
     return (
-      <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} className={styles.advertForm}>
+      <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} userInfo={userInfo} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
             <div className={styles.fields}>
               <h2>Categories</h2>
               <Categories formChildProps={formChildProps} />
-              <h2>Description</h2>
+              <h2 className={styles.descriptionTitle}>Describe your Advert</h2>
+              <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
               <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
             </div>
 
@@ -59,15 +60,20 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
   }
 
   private handleSubmit = async (values: IFormValues): Promise<void> => {
-    const { user, documentToUpdate } = this.props
+    const { userInfo, documentToUpdate } = this.props
+    const { id, firstName, lastName } = userInfo
+    const advert = {
+      ...values,
+      userId: id,
+      fullName: `${firstName} ${lastName}`
+    }
 
     if (documentToUpdate) {
       firestore
         .collection(FirebaseCollection.ADVERTS)
         .doc(documentToUpdate)
         .update({
-          ...values,
-          userId: user.uid
+          ...advert
         })
         .then(() => {
           console.log('Document updated with ID: ', documentToUpdate)
@@ -80,8 +86,7 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
       firestore
         .collection(FirebaseCollection.ADVERTS)
         .add({
-          ...values,
-          userId: user.uid
+          ...advert
         })
         .then((docRef: any) => {
           console.log('Document written with ID: ', docRef.id)

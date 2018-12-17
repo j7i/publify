@@ -1,4 +1,4 @@
-import { firebaseApp, FirebaseCollection } from '@config'
+import { FirebaseCollection, firestore } from '@config'
 import { AdvertType } from '@helpers'
 import { Tab, Tabs } from '@material-ui/core'
 import 'isomorphic-unfetch'
@@ -15,11 +15,11 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
 
   public componentDidMount(): void {
     this.getUserSpecificAdverts()
+    this.getUserInfos()
   }
 
   public render(): JSX.Element {
-    const { myDemand, myOffer, currentTabIndex } = this.state
-    const { user } = this.props
+    const { myDemand, myOffer, currentTabIndex, userInfo } = this.state
 
     return (
       <>
@@ -30,7 +30,7 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
               <div className={styles.person}>
                 <span className={styles.profileImage} />
                 <div className={styles.personDetails}>
-                  <h2 className={styles.name}>Rachel Rose</h2>
+                  <h2 className={styles.name}>{userInfo && `${userInfo.firstName} ${userInfo.lastName}`}</h2>
                   {/* <h3 className={styles.adress}>Some fancy Adress, 8000 Zurich</h3> */}
                 </div>
                 <nav className={styles.navigation}>
@@ -41,16 +41,18 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
                 </nav>
               </div>
               {currentTabIndex === 0 &&
+                userInfo &&
                 (myDemand !== undefined ? (
-                  <UpdateAdvert key={myDemand.id} user={user} advert={myDemand} />
+                  <UpdateAdvert key={myDemand.id} userInfo={userInfo} advert={myDemand} />
                 ) : (
-                  <CreateAdvert user={user} advertType={AdvertType.DEMAND} />
+                  <CreateAdvert userInfo={userInfo} advertType={AdvertType.DEMAND} />
                 ))}
               {currentTabIndex === 1 &&
+                userInfo &&
                 (myOffer !== undefined ? (
-                  <UpdateAdvert key={myOffer.id} user={user} advert={myOffer} />
+                  <UpdateAdvert key={myOffer.id} userInfo={userInfo} advert={myOffer} />
                 ) : (
-                  <CreateAdvert user={user} advertType={AdvertType.OFFER} />
+                  <CreateAdvert userInfo={userInfo} advertType={AdvertType.OFFER} />
                 ))}
             </div>
           </section>
@@ -64,8 +66,25 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
     this.setState({ currentTabIndex: tabIndex })
   }
 
+  private getUserInfos = async (): Promise<void> => {
+    const { user } = this.props
+
+    firestore
+      .collection(FirebaseCollection.USERS)
+      .doc(user!.uid)
+      .get()
+      .then((doc: firebase.firestore.DocumentData) => {
+        this.setState({
+          userInfo: { id: doc.id, ...doc.data() }
+        })
+      })
+      .catch((error: Error) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error adding document: ', error)
+      })
+  }
+
   private getUserSpecificAdverts = async (): Promise<void> => {
-    const firestore = firebaseApp.firestore()
     const { user } = this.props
 
     // tslint:disable:no-any
@@ -90,7 +109,7 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
           myOffer: offers
         })
       })
-      .catch((error: any) => {
+      .catch((error: Error) => {
         // tslint:disable-next-line:no-console
         console.error('Error adding document: ', error)
       })

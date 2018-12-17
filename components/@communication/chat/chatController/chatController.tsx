@@ -10,18 +10,20 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
   }
 
   public componentDidMount(): void {
-    const { advertId, advertOwnerId, loggedInUserId } = this.props
+    const { advertId, advertTitle, advertOwnerId, advertOwnerName, loggedInUserId, loggedInUserName } = this.props
 
     this.firestoreChat()
       .get()
       .then((docSnapshot: firebase.firestore.DocumentSnapshot) => {
         if (docSnapshot.exists) {
           this.startChatConversation()
-        } else {
+        } else if (advertOwnerId) {
           this.firestoreChat()
             .set({
+              memberInfos: { [advertOwnerId]: { name: advertOwnerName }, [loggedInUserId]: { name: loggedInUserName } },
               members: [advertOwnerId, loggedInUserId],
-              advertId
+              advertId,
+              advertTitle
             })
             .then(() => {
               this.startChatConversation()

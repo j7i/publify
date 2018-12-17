@@ -1,4 +1,4 @@
-import { IChatViewProps } from '@communication/chat/types'
+import { ChatDisplayMode, IChatViewProps } from '@communication/chat/types'
 import classNames from 'classnames'
 import { PureComponent, ReactNode } from 'react'
 import { ChatConversation } from './chatConversation/chatConversation'
@@ -11,8 +11,8 @@ export class ChatView extends PureComponent<IChatViewProps> {
     const { message, messages, loading, handleChange, sendMessage, loggedInUserId } = this.props.chatRenderProps
     const { displayMode } = this.props
 
-    const isEmbedded = displayMode === 'embedded'
-    const isLonely = displayMode === 'lonely'
+    const isEmbedded = displayMode === ChatDisplayMode.EMBEDDED
+    const isLonely = displayMode === ChatDisplayMode.LONELY
 
     let fetchedMessages
     if (messages) {

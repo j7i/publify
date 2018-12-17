@@ -1,14 +1,14 @@
 import { UserSpecificContent } from '@auth'
 import { ErrorBoundary } from '@helpers'
 import { Dashboard } from '@user'
-import { PureComponent } from 'react'
+import { PureComponent, ReactNode } from 'react'
 
 export default class DashboardPage extends PureComponent {
-  public render(): JSX.Element {
+  public render(): ReactNode {
     return (
       <ErrorBoundary>
         <UserSpecificContent>
-          {(user: firebase.User): JSX.Element => {
+          {(user: firebase.User): ReactNode => {
             return user && <Dashboard user={user} />
           }}
         </UserSpecificContent>

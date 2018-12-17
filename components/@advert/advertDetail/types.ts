@@ -2,9 +2,11 @@ export interface IAdvert {
   id: string
   type: string
   categories: string[]
+  title: string
   description: string
   published: boolean
   userId: string
+  fullName: string
 }
 
 export interface IAdvertDetailProps {

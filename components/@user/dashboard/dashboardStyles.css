@@ -24,13 +24,13 @@
   border-radius: 8px;
   display: flex;
   width: 100%;
-  padding: $spacingMedium;
+  flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: auto;
   flex-direction: column;
+  padding: $spacingMedium;
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: $contentMaxWidth;
 
   .header {
     position: relative;
@@ -95,14 +95,6 @@
 
 .loading {
   margin: $spacingGrande;
-}
-
-.myAdvert {
-  display: flex;
-  width: 100%;
-  flex-basis: auto;
-  margin: 0 auto;
-  max-width: 1024px;
 }
 
 .advertFormWrapper {

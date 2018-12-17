@@ -27,9 +27,9 @@ export class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IA
             {/* <CardMedia component="img" height="140" className={styles.media} /> */}
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {advert.type}
+                {advert.title}
               </Typography>
-              <Typography component="p">{advert.description}</Typography>
+              <Typography component="p">{advert.type}</Typography>
               <div className={styles.categories}>
                 {advert.categories.map((categorie: string, index: number) => (
                   <Chip className={styles.chip} key={index} label={categorie} variant="outlined" color="primary" />

@@ -1,14 +1,14 @@
 import { UserSpecificContent } from '@auth'
 import { Messenger } from '@communication'
 import { ErrorBoundary } from '@helpers'
-import { PureComponent } from 'react'
+import { PureComponent, ReactNode } from 'react'
 
 export default class Messages extends PureComponent {
-  public render(): JSX.Element {
+  public render(): ReactNode {
     return (
       <ErrorBoundary>
         <UserSpecificContent>
-          {(user: firebase.User): JSX.Element => {
+          {(user: firebase.User): ReactNode => {
             return user && <Messenger user={user} />
           }}
         </UserSpecificContent>
