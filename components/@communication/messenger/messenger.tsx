@@ -75,7 +75,7 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
         })
       })
       .then(() => {
-        this.setState({ chats })
+        this.setState({ chats }, () => this.setState({ currentChat: chats[0].id }))
       })
       .catch((error: Error) => {
         // tslint:disable-next-line:no-console

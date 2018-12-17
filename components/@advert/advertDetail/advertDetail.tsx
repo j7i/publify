@@ -55,9 +55,9 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                           <Button variant="contained" color="primary" onClick={this.startConversation}>
                             Write a message
                           </Button>
-                        ) : (
+                        ) : userInfo ? (
                           <Chip label={`This is yours, ${userInfo.firstName}`} variant="default" color="secondary" />
-                        )
+                        ) : null
                       }}
                     </UserSpecificContent>
                   )}
