@@ -1,4 +1,5 @@
 import { AdvertCardElement, IAdvert } from '@advert'
+import { FirebaseCollection, firestore } from '@config'
 import { PureComponent } from 'react'
 import { AdvertFilter } from './advertFilter/advertFilter'
 import styles from './styles.css'
@@ -10,11 +11,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
   }
 
   public handleFilter = (categorie: string): void => {
-    const { adverts } = this.props
-    let filteredAdverts
-
-    filteredAdverts = adverts.filter((advert: IAdvert) => advert.categories.includes(categorie) === true)
-    this.setState({ filtered: filteredAdverts })
+    this.getAdverts(categorie)
   }
 
   public render(): JSX.Element {
@@ -37,5 +34,33 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
     ) : (
       <>No adverts available</> // TODO
     )
+  }
+
+  private getAdverts = (categorie: string): void => {
+    // tslint:disable-next-line:no-any
+    let adverts: any[] = []
+    let advertsRef = firestore.collection(FirebaseCollection.ADVERTS)
+    let advertsQuery
+
+    if (categorie === 'Alle') {
+      advertsQuery = advertsRef.where('published', '==', true)
+    } else {
+      advertsQuery = advertsRef.where('published', '==', true).where('categories', 'array-contains', categorie)
+    }
+
+    advertsQuery
+      .get()
+      .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
+        querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
+          adverts.push({ id: doc.id, ...doc.data() })
+        })
+      })
+      .then(() => {
+        this.setState({ filtered: adverts })
+      })
+      .catch((error: Error) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error adding document: ', error)
+      })
   }
 }

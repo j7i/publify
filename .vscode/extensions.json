@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "eg2.tslint",
+    "capaj.vscode-standardjs-snippets",
+    "esbenp.prettier-vscode",
+    "shinnn.stylelint",
+    "visualstudioexptteam.vscodeintellicode",
+    "editorconfig.editorconfig"
+  ]
+}

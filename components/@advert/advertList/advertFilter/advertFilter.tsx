@@ -1,41 +1,55 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Categorie } from '@helpers'
-import AppBar from '@material-ui/core/AppBar'
-import Tab from '@material-ui/core/Tab'
-import Tabs from '@material-ui/core/Tabs'
-import { categorieList } from '@user/dashboard/advertHandling/advertForm/categories/categorieList'
-import { ICategorie } from '@user/dashboard/types'
+import { Avatar, Chip } from '@material-ui/core'
+import { ICategorie } from '@user'
 import React, { PureComponent } from 'react'
 import { IAdvertFilterProps, IAdvertFilterState } from '../types'
 import styles from './advertFilterStyles.css'
+import { categorieFilterList } from './categorieFilterList'
 
 export class AdvertFilter extends PureComponent<IAdvertFilterProps, IAdvertFilterState> {
   public state: IAdvertFilterState = {
-    value: Categorie.HOUSEHOLD
+    selectedCategorie: 'Alle'
   }
 
   public render(): JSX.Element {
-    const { value } = this.state
+    const { selectedCategorie } = this.state
 
     return (
-      <div className={styles.advertFilter}>
-        <AppBar position="static" color="default" className={styles.filterTabWrapper}>
-          <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="on" indicatorColor="primary" textColor="primary">
-            {categorieList.map((categorie: ICategorie, index: number) => (
-              <Tab key={index} label={categorie.name} value={categorie.name} icon={<FontAwesomeIcon icon={categorie.icon} size="2x" />} />
+      <section className={styles.advertFilter}>
+        <div className={styles.filterWrapper}>
+          {/* <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="on" indicatorColor="primary" textColor="primary">
+          </Tabs> */}
+          <div className={styles.filterPrimary}>
+            <div className={styles.filterElement} />
+            <div className={styles.filterElement}>Radius</div>
+            <div className={styles.filterElement}>Type</div>
+          </div>
+          <div className={styles.filterSecondary}>
+            {categorieFilterList.map((categorie: ICategorie, index: number) => (
+              <Chip
+                key={index}
+                label={categorie.name}
+                avatar={
+                  <Avatar>
+                    <FontAwesomeIcon icon={categorie.icon} size="1x" />
+                  </Avatar>
+                }
+                onClick={(event: React.MouseEvent<HTMLDivElement>): void => this.handleSelection(event, categorie.name)}
+                className={styles.categorieChip}
+                color={selectedCategorie === categorie.name ? 'primary' : 'default'}
+                variant={selectedCategorie === categorie.name ? 'default' : 'outlined'}
+              />
             ))}
-          </Tabs>
-        </AppBar>
-      </div>
+          </div>
+        </div>
+      </section>
     )
   }
 
-  // tslint:disable-next-line:no-any
-  private handleChange = (event: React.ChangeEvent, value: any): void => {
-    event.preventDefault()
-    const categorie = value as Categorie
-
-    this.props.handleFilter(categorie)
-    this.setState({ value })
+  private handleSelection = (event: React.MouseEvent<HTMLElement>, categorie: string): void => {
+    event.persist()
+    const { handleFilter } = this.props
+    this.setState({ selectedCategorie: categorie })
+    handleFilter(categorie)
   }
 }

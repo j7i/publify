@@ -1,5 +1,4 @@
 import { IAdvert } from '@advert'
-import { Categorie } from '@helpers'
 
 export interface IAdvertListProps {
   adverts: IAdvert[]
@@ -9,9 +8,9 @@ export interface IAdvertListState {
 }
 
 export interface IAdvertFilterProps {
-  handleFilter: (categorie: Categorie) => void
+  handleFilter: (categorie: string) => void
 }
 
 export interface IAdvertFilterState {
-  value: Categorie
+  selectedCategorie: string
 }

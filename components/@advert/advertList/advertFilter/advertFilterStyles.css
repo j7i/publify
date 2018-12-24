@@ -4,7 +4,32 @@
   margin-top: -36px;
 }
 
-.filterTabWrapper {
+.filterWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: $spacingSemi $spacingBase $spacingHalf;
   margin: 0 auto;
   max-width: $contentMaxWidth;
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 0 3px 1px -2px $blackAlpha15, 0 2px 2px 0 $blackAlpha1, 0 1px 5px 0 $blackAlpha07;
+}
+
+.filterPrimary,
+.filterSecondary {
+  min-height: 36px;
+}
+
+.filterPrimary {
+  display: flex;
+  flex-direction: row;
+}
+
+.filterSecondary {
+  margin-top: $spacingBase;
+
+  .categorieChip {
+    margin: 0 $spacingSmall $spacingSmall 0;
+  }
 }
