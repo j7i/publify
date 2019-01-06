@@ -19,7 +19,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
           }
 
           return (
-            <>
+            <div className="mainContent">
               <AdvertFilter advertListRenderProps={advertListRenderProps} />
               <section className={styles.advertList}>
                 <h1>Public Adverts</h1>
@@ -33,7 +33,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
                   )}
                 </section>
               </section>
-            </>
+            </div>
           )
         }}
       </AdvertListController>

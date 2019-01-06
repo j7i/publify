@@ -22,11 +22,9 @@ export class CreateAdvert extends PureComponent<ICreateAdvertProps, ICreateAdver
       )
     } else {
       return (
-        <section>
-          <div className={styles.advertFormWrapper}>
-            <AdvertForm userInfo={userInfo} advertType={advertType} />
-          </div>
-        </section>
+        <div className={styles.advertFormWrapper}>
+          <AdvertForm userInfo={userInfo} advertType={advertType} />
+        </div>
       )
     }
   }

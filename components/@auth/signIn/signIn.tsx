@@ -2,10 +2,12 @@ import { UserSpecificContent } from '@auth'
 import { firebaseApp } from '@config'
 import { Form, IFormChildProps, Input } from '@core'
 import Button from '@material-ui/core/Button'
+import { IUserInfo } from '@user'
+import classNames from 'classnames'
 import 'isomorphic-unfetch'
 import Router from 'next/router'
 import React, { PureComponent, ReactNode } from 'react'
-import styles from './styles.css'
+import styles from './signInStyles.css'
 import { ILoginFormValues, ISignInState } from './types'
 
 export const handleLogout = async (event: React.SyntheticEvent): Promise<void> => {
@@ -31,17 +33,22 @@ export class SignIn extends PureComponent<{}, ISignInState> {
     const { isSignUp }: ISignInState = this.state
 
     return (
-      <main className={styles.signUp}>
-        <div className={styles.signUpContainer}>
+      <main className={styles.signInUp}>
+        <div className={classNames(styles.signInUpContainer, 'mainContent')}>
           <UserSpecificContent>
-            {(user: firebase.User): ReactNode => {
+            {(user: firebase.User, userInfo: IUserInfo): ReactNode => {
               return user ? (
                 <>
-                  <h2>Congrats 🎉 </h2>
-                  <p>{isSignUp ? `You signed up` : `You're logged in`}</p>
-                  <Button variant="contained" color="primary" type="submit" onClick={handleLogout}>
-                    Logout
-                  </Button>
+                  <h2>
+                    Hi {userInfo.firstName}, <br />
+                    {!isSignUp && `you are logged in.`}
+                  </h2>
+                  <p>{isSignUp && `You signed up`}</p>
+                  <div className={styles.signInUpLogoutButtonContainer}>
+                    <Button className={styles.signInUpLogoutButton} variant="contained" color="primary" type="submit" onClick={handleLogout}>
+                      Logout
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <>
@@ -57,7 +64,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
                         )}
                         <Input type={'email'} name="email" label={'Email'} formChildProps={formChildProps} />
                         <Input type={'password'} name="password" label={'Password'} formChildProps={formChildProps} />
-                        <Button variant="contained" color="primary" type="submit">
+                        <Button className={styles.signInUpButton} variant="contained" color="primary" type="submit">
                           {isSignUp ? `Sign up` : `Login`}
                         </Button>
                       </>
@@ -71,7 +78,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
         <UserSpecificContent>
           {(user: firebase.User): ReactNode => {
             return !user ? (
-              <p className={styles.toggleSignUp} onClick={this.toggleRegister}>
+              <p className={styles.toggleSignInUp} onClick={this.toggleRegister}>
                 {isSignUp ? `Already have an account? Click here.` : `Don't have an account? Click here.`}
               </p>
             ) : (

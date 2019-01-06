@@ -1,17 +1,43 @@
 .navigation {
-  display: flex;
-  height: 72px;
-  align-items: center;
-  justify-content: flex-end;
-  background-color: $primary;
-  padding-right: $spacingMedium;
+  width: 100%;
 
-  a {
+  /* a {
     margin: $spacingBase;
     text-decoration: none;
     outline: none;
     color: $black;
     font-size: $fontSizeMedium;
     font-weight: 600;
+  } */
+}
+
+.desktopNavigation {
+  @media (max-width: $breakpointXsMax) {
+    display: none;
   }
+}
+
+.mobileNavigation {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 8px 0 $blackAlpha1, 0 -1px 12px 0 $blackAlpha07;
+
+  @media (min-width: $breakpointSmMin) {
+    display: none;
+  }
+}
+
+.title {
+  display: none;
+  cursor: pointer;
+
+  @media (min-width: $breakpointSmMin) {
+    display: block;
+  }
+}
+
+.flexGrowPlaceholder {
+  flex-grow: 1;
 }

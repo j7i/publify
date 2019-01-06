@@ -1,9 +1,21 @@
 .detailView {
+  position: relative;
   display: flex;
   flex-direction: row;
   max-width: $contentMaxWidth;
+  overflow: hidden;
   padding: $spacingMedium 0;
   margin: 0 auto;
+
+  @media (max-width: $breakpointSmMax) {
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+    padding: 0;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    min-height: calc(100vh - 56px);
+  }
 }
 
 .centered {
@@ -33,9 +45,23 @@
   flex-direction: column;
   background-color: $grey3;
   border-radius: 0 8px 8px 0;
+  transition: top 0.2ms ease-in;
 
   .chatArea {
     height: 100%;
+  }
+
+  @media (max-width: $breakpointSmMax) {
+    position: absolute;
+    z-index: 3;
+    top: 100vh;
+    height: 100%;
+  }
+}
+
+@media (max-width: $breakpointSmMax) {
+  .secondaryContentActive {
+    top: 0;
   }
 }
 
@@ -55,6 +81,10 @@
   background-color: $primary;
   flex-direction: column;
   justify-content: flex-end;
+
+  @media (max-width: $breakpointSmMax) {
+    border-radius: 0;
+  }
 }
 
 .person {

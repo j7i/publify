@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 64px);
   background-color: $grey1;
-  /* padding: $spacingMedium; */
-}
 
-.adverts {
-  height: 100%;
+  @media (max-width: $breakpointXsMax) {
+    min-height: calc(100vh - 56px);
+  }
 }
 
 .dashboardSection {
@@ -18,6 +17,11 @@
   flex-shrink: 1;
   flex-basis: auto;
   background-color: $grey2;
+  padding: $spacingBase;
+
+  @media (max-width: $breakpointSmMax) {
+    padding: 0;
+  }
 }
 
 .myAdvert {
@@ -28,11 +32,14 @@
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: column;
-  padding: $spacingMedium;
   margin: 0 auto;
   max-width: $contentMaxWidth;
 
-  .header {
+  @media (max-width: $breakpointSmMax) {
+    border-radius: 0;
+  }
+
+  .myAdvertHeader {
     position: relative;
     z-index: 2;
     display: flex;
@@ -42,6 +49,14 @@
     background-color: $primary;
     flex-direction: column;
     justify-content: flex-end;
+
+    @media (max-width: $breakpointSmMax) {
+      border-radius: 0;
+    }
+
+    @media (max-width: $breakpointXsMax) {
+      display: none;
+    }
   }
 
   .person {
@@ -56,6 +71,13 @@
     background-color: $white;
     border-radius: 0 0 8px 8px;
 
+    @media (max-width: $breakpointXsMax) {
+      top: 0;
+      padding: 0 $spacingBase $spacingBig;
+      color: $black;
+      align-items: center;
+    }
+
     .personDetails {
       display: flex;
       margin-left: $spacingMedium;
@@ -63,6 +85,11 @@
       flex-direction: column;
       height: 104px;
       padding: $spacingSemi;
+
+      @media (max-width: $breakpointXsMax) {
+        margin-left: 0;
+        justify-content: center;
+      }
 
       .name {
         z-index: 3;
@@ -81,27 +108,40 @@
       height: 104px;
       border-radius: 50%;
       background-color: $grey2;
+
+      @media (max-width: $breakpointXsMax) {
+        width: 64px;
+        height: 64px;
+      }
     }
   }
 
-  .navigation {
+  .myAdvertNavigation {
     position: absolute;
     bottom: 0;
     width: calc(100% - 80px);
     margin: 0 auto;
     color: $black;
-  }
-}
 
-.loading {
-  margin: $spacingGrande;
+    @media (max-width: $breakpointXsMax) {
+      width: calc(100% - 32px);
+    }
+  }
 }
 
 .advertFormWrapper {
   width: 100%;
-  padding: $spacingMedium $spacingHuge;
   background-color: $white;
   border-radius: 8px;
+
+  @media (min-width: $breakpointSmMin) {
+    padding: $spacingBase;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    margin-top: 48px;
+    padding: $spacingSemi;
+  }
 }
 
 .callToAction {
@@ -109,4 +149,8 @@
   justify-content: center;
   align-items: center;
   margin-top: $spacingMassive;
+
+  @media (max-width: $breakpointXsMax) {
+    margin-top: 70%;
+  }
 }

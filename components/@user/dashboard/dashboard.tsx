@@ -22,42 +22,40 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
     const { myDemand, myOffer, currentTabIndex, userInfo } = this.state
 
     return (
-      <>
-        <div className={styles.dashboard}>
-          <section className={styles.dashboardSection}>
-            <div className={styles.myAdvert}>
-              <div className={styles.header} />
-              <div className={styles.person}>
-                <span className={styles.profileImage} />
-                <div className={styles.personDetails}>
-                  <h2 className={styles.name}>{userInfo && `${userInfo.firstName} ${userInfo.lastName}`}</h2>
-                  {/* <h3 className={styles.adress}>Some fancy Adress, 8000 Zurich</h3> */}
-                </div>
-                <nav className={styles.navigation}>
-                  <Tabs value={currentTabIndex} onChange={this.handleChange} indicatorColor="primary" textColor="inherit" centered>
-                    <Tab label="My Demand" />
-                    <Tab label="My Offer" />
-                  </Tabs>
-                </nav>
+      <div className={styles.dashboard}>
+        <section className={styles.dashboardSection}>
+          <div className={styles.myAdvert}>
+            <div className={styles.myAdvertHeader} />
+            <div className={styles.person}>
+              <span className={styles.profileImage} />
+              <div className={styles.personDetails}>
+                <h2 className={styles.name}>{userInfo && `${userInfo.firstName} ${userInfo.lastName}`}</h2>
+                {/* <h3 className={styles.adress}>Some fancy Adress, 8000 Zurich</h3> */}
               </div>
-              {currentTabIndex === 0 &&
-                userInfo &&
-                (myDemand !== undefined ? (
-                  <UpdateAdvert key={myDemand.id} userInfo={userInfo} advert={myDemand} />
-                ) : (
-                  <CreateAdvert userInfo={userInfo} advertType={AdvertType.DEMAND} />
-                ))}
-              {currentTabIndex === 1 &&
-                userInfo &&
-                (myOffer !== undefined ? (
-                  <UpdateAdvert key={myOffer.id} userInfo={userInfo} advert={myOffer} />
-                ) : (
-                  <CreateAdvert userInfo={userInfo} advertType={AdvertType.OFFER} />
-                ))}
+              <nav className={styles.myAdvertNavigation}>
+                <Tabs value={currentTabIndex} onChange={this.handleChange} indicatorColor="primary" textColor="inherit" centered>
+                  <Tab label="My Demand" />
+                  <Tab label="My Offer" />
+                </Tabs>
+              </nav>
             </div>
-          </section>
-        </div>
-      </>
+            {currentTabIndex === 0 &&
+              userInfo &&
+              (myDemand !== undefined ? (
+                <UpdateAdvert key={myDemand.id} userInfo={userInfo} advert={myDemand} />
+              ) : (
+                <CreateAdvert userInfo={userInfo} advertType={AdvertType.DEMAND} />
+              ))}
+            {currentTabIndex === 1 &&
+              userInfo &&
+              (myOffer !== undefined ? (
+                <UpdateAdvert key={myOffer.id} userInfo={userInfo} advert={myOffer} />
+              ) : (
+                <CreateAdvert userInfo={userInfo} advertType={AdvertType.OFFER} />
+              ))}
+          </div>
+        </section>
+      </div>
     )
   }
 

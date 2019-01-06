@@ -2,6 +2,14 @@
   max-width: 345;
   margin-bottom: $spacingBase;
   lost-column: 1/3;
+
+  @media (max-width: $breakpointSmMax) {
+    lost-column: 1/2;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    lost-column: 1/1;
+  }
 }
 
 .media {

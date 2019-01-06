@@ -7,18 +7,38 @@
   height: inherit;
 }
 
-.fields {
+.advertFormFields {
   width: inherit;
 }
 
-.actions {
+.advertFormActions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-top: $spacingMedium;
+
+  @media (max-width: $breakpointXsMax) {
+    margin-top: $spacingBig;
+    flex-direction: column;
+
+    .advertFormActionButtons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: $spacingBase 0;
+    }
+
+    &.singleActionButton {
+      flex-direction: row;
+
+      .advertFormActionButtons {
+        justify-content: flex-end;
+      }
+    }
+  }
 }
 
-.descriptionTitle {
+.advertFormDescriptionTitle {
   margin-bottom: $spacingSemi;
 }

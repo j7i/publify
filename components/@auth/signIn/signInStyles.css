@@ -1,0 +1,62 @@
+.signInUp {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  justify-content: center;
+  align-items: center;
+  background-color: $grey1;
+
+  @media (max-width: $breakpointXsMax) {
+    min-height: calc(100vh - 56px);
+    justify-content: space-between;
+    background-color: $white;
+  }
+}
+
+.signInUpContainer {
+  width: 400px;
+  background-color: $white;
+  border-radius: 2px;
+
+  .signInUpButton {
+    margin-top: $spacingBase;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .signInUpButton {
+      margin-top: 0;
+      margin-bottom: $spacingHalf;
+    }
+  }
+}
+
+.toggleSignInUp {
+  color: $grey7;
+  cursor: pointer;
+  margin-top: $spacingBase;
+
+  &:hover {
+    color: $black;
+  }
+}
+
+.signInUpLogoutButtonContainer {
+  position: absolute;
+  bottom: 72px;
+  width: calc(100% - 24px);
+
+  .signInUpLogoutButton {
+    width: 100%;
+  }
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

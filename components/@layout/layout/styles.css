@@ -1,4 +1,18 @@
 .contentWrap {
   margin: 0 auto;
   min-height: 70vh;
+
+  @media (max-width: $breakpointXsMax) {
+    margin-bottom: 56px;
+  }
+}
+
+:global .mainContent {
+  @media (min-width: $breakpointSmMin) {
+    padding: $spacingBase;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    padding: $spacingSemi;
+  }
 }

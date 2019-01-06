@@ -2,6 +2,7 @@ import { FirebaseCollection, firestore } from '@config'
 import { Checkbox, Form, IFormChildProps, IFormValues, Input } from '@core'
 import { Button } from '@material-ui/core'
 import { IAdvertFormProps } from '@user/dashboard/types'
+import classNames from 'classnames'
 import Router from 'next/router'
 import { PureComponent } from 'react'
 import styles from './advertFormStyles.css'
@@ -14,22 +15,18 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
       <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} userInfo={userInfo} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
-            <div className={styles.fields}>
+            <div className={styles.advertFormFields}>
               <h2>Categories</h2>
               <Categories formChildProps={formChildProps} />
-              <h2 className={styles.descriptionTitle}>Describe your Advert</h2>
+              <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
               <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
               <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
             </div>
 
-            <div className={styles.actions}>
+            <div className={classNames(styles.advertFormActions, { [styles.singleActionButton]: !documentToUpdate })}>
               <Checkbox name="published" label="Published" formChildProps={formChildProps} />
-              <div>
-                {documentToUpdate && (
-                  <Button className={styles.delete} onClick={this.handleDelete}>
-                    Delete
-                  </Button>
-                )}
+              <div className={styles.advertFormActionButtons}>
+                {documentToUpdate && <Button onClick={this.handleDelete}>Delete</Button>}
                 <Button type="submit" variant="contained" color="primary">
                   {documentToUpdate ? `Update` : `Create new`}
                 </Button>

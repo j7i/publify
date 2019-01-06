@@ -22,7 +22,7 @@ export class UpdateAdvert extends PureComponent<IUpdateAdvertProps, IUpdateAdver
     const { initialValues, loading } = this.state
 
     return (
-      <section>
+      <>
         {loading ? (
           <CircularProgress className={styles.loading} />
         ) : initialValues ? (
@@ -32,7 +32,7 @@ export class UpdateAdvert extends PureComponent<IUpdateAdvertProps, IUpdateAdver
         ) : (
           <h1>No such document</h1> // TODO
         )}
-      </section>
+      </>
     )
   }
 }

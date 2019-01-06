@@ -1,12 +1,17 @@
-import { WithStyles } from '@material-ui/core/styles/withStyles'
+import { SingletonRouter } from 'next/router'
 
 export interface INavigationProps {
-  classes: WithStyles['classes']
+  router?: SingletonRouter
 }
 
 export interface INavigationState {
-  // tslint:disable-next-line:no-any
-  anchorEl: any
-  // tslint:disable-next-line:no-any
-  mobileMoreAnchorEl: any
+  activeRoute: PathName
+}
+
+export enum PathName {
+  START = 'start',
+  DASHBOARD = 'dashboard',
+  MESSAGES = 'messages',
+  LOGIN = 'login',
+  DETAIL = 'detail'
 }

@@ -15,6 +15,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
   }
 
   public startConversation = (): void => {
+    window.location.hash = 'chat'
     this.setState({
       isChatting: true
     })
@@ -64,7 +65,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                 </div>
               </section>
             </div>
-            <div className={styles.secondaryContent}>
+            <div className={classNames(styles.secondaryContent, { [styles.secondaryContentActive]: isChatting })}>
               {isChatting && (
                 <div className={styles.chatArea}>
                   <Chat advertId={id} advertTitle={title} advertOwnerId={userId} advertOwnerName={fullName} displayMode={ChatDisplayMode.EMBEDDED} />

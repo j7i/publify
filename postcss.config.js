@@ -1,4 +1,3 @@
-const lost = require('lost')
 const path = require('path')
 const conditionals = require('postcss-conditionals')
 const cssNext = require('postcss-cssnext')
@@ -9,11 +8,11 @@ const cssNested = require('postcss-nested')
 const postCssReporter = require('postcss-reporter')
 const vars = require('postcss-simple-vars')
 const variables = require('./lib/@postcss/variables')
+const lost = require('lost')
 const cssnano = require('cssnano')
 const IS_DEV = process.env.NODE_ENV !== 'production'
 
 const plugins = [
-  lost(),
   conditionals(),
   cssNext({
     // Allow future CSS features to be used, also auto-prefixes the CSS...
@@ -31,7 +30,8 @@ const plugins = [
   }),
   vars({
     variables: () => variables
-  })
+  }),
+  lost()
 ]
 
 if (!IS_DEV) {

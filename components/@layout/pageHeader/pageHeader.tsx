@@ -8,7 +8,6 @@ export class PageHeader extends PureComponent {
       <header className={styles.header__outer}>
         <div className={styles.header__slogan}>
           <h1>Project II</h1>
-          <h4>✔ CRUD &amp; Chat</h4>
         </div>
       </header>
     )

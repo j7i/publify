@@ -14,8 +14,17 @@ export class Checkbox extends PureComponent<IInputProps> {
 
     return (
       <div className={styles.checkbox}>
-        <input required={required} id={id ? id : name} type={'checkbox'} name={name} checked={isChecked} onChange={handleChange} onBlur={handleBlur} />
-        <label className={styles.label} htmlFor={name}>
+        <input
+          className={styles.checkboxInput}
+          required={required}
+          id={id ? id : name}
+          type={'checkbox'}
+          name={name}
+          checked={isChecked}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <label className={styles.checkboxLabel} htmlFor={name}>
           {label}
         </label>
       </div>

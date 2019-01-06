@@ -4,63 +4,67 @@
   cursor: pointer;
   align-self: flex-start;
 
-  .label {
-    position: relative;
-    display: inline-block;
-    padding: $spacingBase 0 $spacingBase 44px;
-    color: $grey7;
-    font-size: $fontSizeMedium;
-    cursor: pointer;
-    min-width: 112px;
-    transition: color 200ms ease;
+  @media (max-width: $breakpointXsMax) {
+    align-self: auto;
+  }
+}
 
-    &:before,
-    &:after {
-      position: absolute;
-      top: 50%;
-      margin: 0;
-      content: '';
-      outline: 0;
-      transform: translate(0, -50%);
-      transition: all 200ms ease;
-    }
+.checkboxLabel {
+  position: relative;
+  display: inline-block;
+  padding: $spacingBase 0 $spacingBase 44px;
+  color: $grey7;
+  font-size: $fontSizeMedium;
+  cursor: pointer;
+  min-width: 112px;
+  transition: color 200ms ease;
 
-    &:before {
-      left: 1px;
-      width: 34px;
-      height: 14px;
-      background-color: $grey5;
-      border-radius: $spacingSmall;
-    }
-
-    &:after {
-      left: 0;
-      width: 20px;
-      height: 20px;
-      background-color: $white;
-      border-radius: 50%;
-      box-shadow: 0 3px 1px -2px $blackAlpha15, 0 2px 2px 0 $blackAlpha1, 0 1px 5px 0 $blackAlpha07;
-    }
+  &:before,
+  &:after {
+    position: absolute;
+    top: 50%;
+    margin: 0;
+    content: '';
+    outline: 0;
+    transform: translate(0, -50%);
+    transition: all 200ms ease;
   }
 
-  input {
-    position: absolute;
-    width: 0;
-    height: 0;
-    cursor: pointer;
-    opacity: 0;
+  &:before {
+    left: 1px;
+    width: 34px;
+    height: 14px;
+    background-color: $grey5;
+    border-radius: $spacingSmall;
+  }
 
-    &:checked + label {
-      color: $black;
-    }
+  &:after {
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: $white;
+    border-radius: 50%;
+    box-shadow: 0 3px 1px -2px $blackAlpha15, 0 2px 2px 0 $blackAlpha1, 0 1px 5px 0 $blackAlpha07;
+  }
+}
 
-    &:checked + label:before {
-      background-color: $successLighten;
-    }
+.checkboxInput {
+  position: absolute;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  opacity: 0;
 
-    &:checked + .label:after {
-      background-color: $success;
-      transform: translate(80%, -50%);
-    }
+  &:checked + label {
+    color: $black;
+  }
+
+  &:checked + .checkboxLabel:before {
+    background-color: $successLighten;
+  }
+
+  &:checked + .checkboxLabel:after {
+    background-color: $success;
+    transform: translate(80%, -50%);
   }
 }

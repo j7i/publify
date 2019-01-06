@@ -1,5 +1,5 @@
 import { PureComponent } from 'react'
-import Navigation from '../navigation/navigation'
+import { Navigation } from '../navigation/navigation'
 import styles from './styles.css'
 
 export class Layout extends PureComponent {
