@@ -1,16 +1,18 @@
 import { Chat } from '@communication/chat'
 import { FirebaseCollection } from '@config'
-import { List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper } from '@material-ui/core'
+import { AppBar, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper, Toolbar } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
+import classNames from 'classnames'
 import firebase from 'firebase'
-import { PureComponent, ReactNode } from 'react'
+import { Fragment, PureComponent, ReactNode } from 'react'
 import styles from './messengerStyles.css'
 import { IChat, IMessengerProps, IMessengerState } from './types'
 
 export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
   public state: IMessengerState = {
     chats: [],
-    currentChat: ''
+    currentChat: undefined
   }
 
   public componentDidMount(): void {
@@ -23,34 +25,69 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
 
     return (
       <Paper className={styles.messenger}>
-        <List className={styles.chatList} component="nav" subheader={<ListSubheader>Messages</ListSubheader>}>
+        <div className={classNames(styles.messengerAppBar, { [styles.active]: currentChat })}>
+          <AppBar>
+            <Toolbar>
+              {currentChat ? (
+                <>
+                  <IconButton color="inherit" aria-label="Back" onClick={this.clearCurrentConversation}>
+                    <KeyboardBackspaceIcon />
+                  </IconButton>
+                  Back
+                  <div className={styles.grow} />
+                </>
+              ) : (
+                <>Messages</>
+              )}
+            </Toolbar>
+          </AppBar>
+        </div>
+        <List
+          className={classNames(styles.chatList, { [styles.active]: !currentChat })}
+          component="nav"
+          subheader={
+            <div>
+              <ListSubheader className={styles.chatListSubheader}>Messages</ListSubheader>
+              <Divider />
+            </div>
+          }
+        >
           {chats.length !== 0 &&
             chats.map((chat: IChat, index: number) => {
               const chatPartnerId = chat.members.filter((member: string) => member !== user.uid)
               const chatPartner = chat.memberInfos[chatPartnerId[0]].name
               return (
-                <ListItem
-                  className={styles.chatListItem}
-                  key={index}
-                  selected={chat.id === currentChat}
-                  button
-                  onClick={(): void => this.startConversation(chat.id)}
-                >
-                  <ListItemIcon>
-                    <AccountCircle />
-                  </ListItemIcon>
-                  <ListItemText primary={chatPartner} secondary={chat.advertTitle} />
-                </ListItem>
+                <Fragment key={index}>
+                  <ListItem
+                    className={styles.chatListItem}
+                    key={index}
+                    selected={chat.id === currentChat}
+                    button
+                    onClick={(): void => this.startConversation(chat.id)}
+                  >
+                    <ListItemIcon>
+                      <AccountCircle />
+                    </ListItemIcon>
+                    <ListItemText primary={chatPartner} secondary={chat.advertTitle} />
+                  </ListItem>
+                  <Divider />
+                </Fragment>
               )
             })}
         </List>
         {currentChat && (
-          <div className={styles.chatArea}>
+          <div className={classNames(styles.chatArea, styles.active)}>
             <Chat chatId={currentChat} key={currentChat} displayMode="embedded" />
           </div>
         )}
       </Paper>
     )
+  }
+
+  private clearCurrentConversation = (): void => {
+    this.setState({
+      currentChat: undefined
+    })
   }
 
   private startConversation = (currentChat: string): void => {
@@ -75,11 +112,10 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
         })
       })
       .then(() => {
-        this.setState({ chats }, () => {
-          if (window.screen.width > 600) {
-            this.setState({ currentChat: chats[0].id })
-          }
-        })
+        this.setState({ chats })
+        if (window.innerWidth > 991) {
+          this.setState({ currentChat: chats[0].id })
+        }
       })
       .catch((error: Error) => {
         // tslint:disable-next-line:no-console

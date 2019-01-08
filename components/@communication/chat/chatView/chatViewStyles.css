@@ -64,7 +64,7 @@
 }
 
 .chatTrigger {
-  z-index: 2;
+  z-index: 15;
   display: flex;
   padding: $spacingHalf;
   flex-direction: row;
@@ -76,5 +76,11 @@
     width: 80%;
     border: none;
     padding-left: $spacingBase;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 }

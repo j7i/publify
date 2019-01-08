@@ -2,9 +2,19 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  max-width: $contentMaxWidth;
   height: calc(100vh - 64px);
+  margin: 0 auto;
   background-color: $grey1;
-  /* padding: $spacingMedium; */
+
+  @media (min-width: calc($contentMaxWidth)) {
+    height: calc(100vh - 96px);
+    margin: $spacingBase auto;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    height: calc(100vh - 56px);
+  }
 }
 
 .chatList {
@@ -16,10 +26,25 @@
   border-right: 1px solid $grey3;
   max-width: 400px;
   min-width: 300px;
+  background-color: $white;
 
   .chatListItem {
     &[class*='selected'] {
-      background-color: $grey3;
+      background-color: $grey2;
+    }
+  }
+
+  @media (max-width: $breakpointSmMax) {
+    min-width: 100%;
+    padding-top: 0;
+    .chatListSubheader {
+      display: none;
+    }
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    &[class*='MuiList-padding'] {
+      margin-top: 56px;
     }
   }
 }
@@ -27,4 +52,31 @@
 .chatArea {
   flex-grow: 2;
   height: inherit;
+
+  @media (max-width: $breakpointSmMax) {
+    position: absolute;
+    top: 56px;
+  }
+}
+
+.messengerAppBar {
+  @media (min-width: $breakpointMdMin) {
+    display: none;
+  }
+
+  @media (min-width: $breakpointSmMin) {
+    z-index: -1;
+
+    &.active {
+      z-index: 1;
+    }
+  }
+}
+
+.active {
+  width: 100%;
+}
+
+.grow {
+  flex-grow: 1;
 }

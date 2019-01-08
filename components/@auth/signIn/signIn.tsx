@@ -40,7 +40,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
               return user ? (
                 <>
                   <h2>
-                    Hi {userInfo.firstName}, <br />
+                    Hi {userInfo && userInfo.firstName}, <br />
                     {!isSignUp && `you are logged in.`}
                   </h2>
                   <p>{isSignUp && `You signed up`}</p>
