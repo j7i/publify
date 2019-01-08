@@ -1,8 +1,8 @@
 ## HSR Project II
 
 _Publify is a simple project offering the possibility to create adverts based on certain categories.  
-Basically users can store two types of adverts: demands and seekings which can be published.  
-Other users can respond to public advert by contacting the owner._
+Basically users can store two types of adverts: demands and seekings.  
+Other users can respond to a public advert by contacting the owner._
 
 - [react](https://reactjs.org/)
 - [postcss](https://postcss.org/)
@@ -16,11 +16,11 @@ Other users can respond to public advert by contacting the owner._
 To get started make sure that you've cloned the repository and installed [yarn](https://yarnpkg.com/lang/en/).  
 Navigate to the directory of the repository and install the dependencies using the command: `yarn` _(short for `yarn install`)_
 
-As this project is using firebase, make sure you have created a [new firebase project](https://firebase.google.com/docs/web/setup) by your own.  
-The next step is to provide your newly created projects credentials:
+As this project is using firebase, make sure you've created a [new firebase project](https://firebase.google.com/docs/web/setup).  
+The next step is to provide your newly created project credentials:
 
-1. Replace the client credentials inside `lib/@config/firebase/client.js` with your own.
-2. Additionally we need to provide the server credentials e.g. as [now-secret](https://zeit.co/docs/v1/getting-started/secrets):  
+1. Replace the client credentials inside `lib/@config/firebase/client.js`
+2. Additionally you need to provide the server credentials e.g. as [now-secret](https://zeit.co/docs/v1/getting-started/secrets):  
    _You already installed the required dev-dependency: [now-env](https://github.com/zeit/now-env)_
 
 - Create a file named `now-secrets.json` in the root directory of this repository.
