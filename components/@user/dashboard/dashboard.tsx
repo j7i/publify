@@ -7,6 +7,7 @@ import { CreateAdvert } from './advertHandling/createAdvert'
 import { UpdateAdvert } from './advertHandling/updateAdvert'
 import styles from './dashboardStyles.css'
 import { IDashboardProps, IDashboardState } from './types'
+import { UserImage } from './userImage/userImage'
 
 export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
   public state: IDashboardState = {
@@ -27,7 +28,7 @@ export class Dashboard extends PureComponent<IDashboardProps, IDashboardState> {
           <div className={styles.myAdvert}>
             <div className={styles.myAdvertHeader} />
             <div className={styles.person}>
-              <span className={styles.profileImage} />
+              {userInfo && <UserImage userId={userInfo.id} userImageURL={userInfo.imageURL} />}
               <div className={styles.personDetails}>
                 <h2 className={styles.name}>{userInfo && `${userInfo.firstName} ${userInfo.lastName}`}</h2>
                 {/* <h3 className={styles.adress}>Some fancy Adress, 8000 Zurich</h3> */}

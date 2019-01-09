@@ -1,7 +1,7 @@
 import { UserSpecificContent } from '@auth'
 import { firebaseApp } from '@config'
 import { Form, IFormChildProps, Input } from '@core'
-import Button from '@material-ui/core/Button'
+import { Button } from '@material-ui/core'
 import { IUserInfo } from '@user'
 import classNames from 'classnames'
 import 'isomorphic-unfetch'

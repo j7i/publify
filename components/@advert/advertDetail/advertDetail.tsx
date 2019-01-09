@@ -1,8 +1,8 @@
 import { UserSpecificContent } from '@auth'
 import { Chat } from '@communication'
-import { ChatDisplayMode } from '@communication/chat/types'
-import { Button, Chip } from '@material-ui/core'
+import { AppBar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import { IUserInfo } from '@user'
 import classNames from 'classnames'
 import { PureComponent, ReactNode } from 'react'
@@ -24,16 +24,29 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
   public render(): ReactNode {
     const { isChatting } = this.state
     const { advert } = this.props
-    const { id, title, categories, description, userId, fullName } = advert
+    const { id, title, categories, description, userId, fullName, userImageURL } = advert
 
     return (
       <main className={classNames(styles.detailView, { [styles.centered]: !advert })}>
         {advert ? (
           <>
+            {!isChatting && (
+              <div className={styles.advertMobileAppBar}>
+                <AppBar>
+                  <Toolbar>
+                    <p className={styles.advertMobileAppBarTitle}>{advert.title}</p>
+                  </Toolbar>
+                </AppBar>
+              </div>
+            )}
             <div className={styles.primaryContent}>
               <div className={styles.header} />
               <section className={styles.person}>
-                <span className={styles.profileImage} />
+                {userImageURL && (
+                  <div className={styles.userImageArea}>
+                    <img className={styles.userImage} src={userImageURL} />
+                  </div>
+                )}
                 <div className={styles.personDetails}>
                   <h2 className={styles.name}>{title}</h2>
                   {/* <address className={styles.adress}>Some fancy Adress, 8000 Zurich</address> */}
@@ -68,7 +81,17 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
             <div className={classNames(styles.secondaryContent, { [styles.secondaryContentActive]: isChatting })}>
               {isChatting && (
                 <div className={styles.chatArea}>
-                  <Chat advertId={id} advertTitle={title} advertOwnerId={userId} advertOwnerName={fullName} displayMode={ChatDisplayMode.EMBEDDED} />
+                  <AppBar className={styles.chatAreaAppBar}>
+                    <Toolbar>
+                      <>
+                        <IconButton color="inherit" aria-label="Back" onClick={this.clearCurrentConversation}>
+                          <KeyboardBackspaceIcon />
+                        </IconButton>
+                        Back
+                      </>
+                    </Toolbar>
+                  </AppBar>
+                  <Chat advertId={id} advertTitle={title} advertOwnerId={userId} advertOwnerName={fullName} advertOwnerImageURL={userImageURL} />
                 </div>
               )}
               <map className={styles.map} />
@@ -79,5 +102,11 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
         )}
       </main>
     )
+  }
+
+  private clearCurrentConversation = (): void => {
+    this.setState({
+      isChatting: false
+    })
   }
 }

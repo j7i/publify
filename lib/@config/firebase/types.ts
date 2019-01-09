@@ -5,6 +5,10 @@ export enum FirebaseCollection {
   CHAT_MESSAGES = 'messages'
 }
 
+export enum FirebaseStorage {
+  PROFILE_IMAGES = 'profileImages'
+}
+
 export interface IFirestoreTimeStamp {
   seconds: number
   nanoseconds: number

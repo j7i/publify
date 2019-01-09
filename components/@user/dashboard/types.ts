@@ -22,6 +22,7 @@ export interface IUserInfo {
   lastName: string
   fullName: string
   initials: string
+  imageURL?: string
 }
 
 export interface IUpdateAdvertProps {
@@ -65,4 +66,15 @@ export interface ISelection {
 export interface ICategorie {
   name: string
   icon: IconProp
+}
+
+export interface IUserImageProps {
+  userId: string
+  userImageURL?: string
+}
+
+export interface IUserImageState {
+  isUploading: boolean
+  progress: number
+  uploadedProfileImageURL?: string
 }

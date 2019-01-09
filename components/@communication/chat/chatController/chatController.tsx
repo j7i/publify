@@ -10,7 +10,7 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
   }
 
   public componentDidMount(): void {
-    const { advertId, advertTitle, advertOwnerId, advertOwnerName, loggedInUserId, loggedInUserName } = this.props
+    const { advertId, advertTitle, advertOwnerId, advertOwnerName, advertOwnerImageURL, loggedInUserId, loggedInUserName, loggedInUserImageURL } = this.props
 
     this.firestoreChat()
       .get()
@@ -20,7 +20,10 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
         } else if (advertOwnerId) {
           this.firestoreChat()
             .set({
-              memberInfos: { [advertOwnerId]: { name: advertOwnerName }, [loggedInUserId]: { name: loggedInUserName } },
+              memberInfos: {
+                [advertOwnerId]: { name: advertOwnerName, userImageURL: advertOwnerImageURL },
+                [loggedInUserId]: { name: loggedInUserName, userImageURL: loggedInUserImageURL }
+              },
               members: [advertOwnerId, loggedInUserId],
               advertId,
               advertTitle

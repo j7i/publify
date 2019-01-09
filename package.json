@@ -46,6 +46,7 @@
     "prop-types": "latest",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-firebase-file-uploader": "^2.4.2",
     "react-jss": "latest",
     "react-moment": "^0.8.4",
     "session-file-store": "^1.2.0",

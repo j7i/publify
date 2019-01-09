@@ -1,6 +1,6 @@
 import { Chat } from '@communication/chat'
 import { FirebaseCollection } from '@config'
-import { AppBar, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper, Toolbar } from '@material-ui/core'
+import { AppBar, Avatar, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Paper, Toolbar } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import classNames from 'classnames'
@@ -55,20 +55,13 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
           {chats.length !== 0 &&
             chats.map((chat: IChat, index: number) => {
               const chatPartnerId = chat.members.filter((member: string) => member !== user.uid)
-              const chatPartner = chat.memberInfos[chatPartnerId[0]].name
+              const { name: chatPartnerFullName, userImageURL: chatPartnerImageURL } = chat.memberInfos[chatPartnerId[0]]
+              const { id, advertTitle } = chat
               return (
                 <Fragment key={index}>
-                  <ListItem
-                    className={styles.chatListItem}
-                    key={index}
-                    selected={chat.id === currentChat}
-                    button
-                    onClick={(): void => this.startConversation(chat.id)}
-                  >
-                    <ListItemIcon>
-                      <AccountCircle />
-                    </ListItemIcon>
-                    <ListItemText primary={chatPartner} secondary={chat.advertTitle} />
+                  <ListItem className={styles.chatListItem} key={index} selected={id === currentChat} button onClick={(): void => this.startConversation(id)}>
+                    <ListItemIcon>{chatPartnerImageURL ? <Avatar alt={chatPartnerFullName} src={chatPartnerImageURL} /> : <AccountCircle />}</ListItemIcon>
+                    <ListItemText primary={chatPartnerFullName} secondary={advertTitle} />
                   </ListItem>
                   <Divider />
                 </Fragment>
@@ -77,7 +70,7 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
         </List>
         {currentChat && (
           <div className={classNames(styles.chatArea, styles.active)}>
-            <Chat chatId={currentChat} key={currentChat} displayMode="embedded" />
+            <Chat chatId={currentChat} key={currentChat} />
           </div>
         )}
       </Paper>

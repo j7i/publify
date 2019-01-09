@@ -14,15 +14,11 @@ export class ChatConversation extends PureComponent<IChatConversationProps> {
   }
 
   public render(): ReactNode {
-    const { loading, fetchedMessages, loggedInUserId, displayMode } = this.props
-
-    const isEmbedded = displayMode === 'embedded'
-    // const isLonely = displayMode === 'lonely'
+    const { loading, fetchedMessages, loggedInUserId } = this.props
 
     return (
       <div
-        className={classNames(styles.conversation, {
-          [styles.embedded]: isEmbedded,
+        className={classNames(styles.conversation, styles.chat, {
           [styles.isLoading]: loading
         })}
       >

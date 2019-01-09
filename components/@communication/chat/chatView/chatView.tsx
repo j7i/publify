@@ -1,18 +1,13 @@
-import { ChatDisplayMode, IChatViewProps } from '@communication/chat/types'
-import classNames from 'classnames'
+import { IChatViewProps } from '@communication/chat/types'
 import { PureComponent, ReactNode } from 'react'
 import { ChatConversation } from './chatConversation/chatConversation'
-import { ChatHeader } from './chatHeader'
+// import { ChatHeader } from './chatHeader'
 import { ChatTrigger } from './chatTrigger'
 import styles from './chatViewStyles.css'
 
 export class ChatView extends PureComponent<IChatViewProps> {
   public render(): ReactNode {
     const { message, messages, loading, handleChange, sendMessage, loggedInUserId } = this.props.chatRenderProps
-    const { displayMode } = this.props
-
-    const isEmbedded = displayMode === ChatDisplayMode.EMBEDDED
-    const isLonely = displayMode === ChatDisplayMode.LONELY
 
     let fetchedMessages
     if (messages) {
@@ -20,15 +15,10 @@ export class ChatView extends PureComponent<IChatViewProps> {
     }
 
     return (
-      <section
-        className={classNames({
-          [styles.lonelyChat]: isLonely,
-          [styles.embeddedChat]: isEmbedded
-        })}
-      >
+      <section className={styles.chat}>
         <div className={styles.chatInner}>
-          {isLonely && <ChatHeader />}
-          <ChatConversation loading={loading} fetchedMessages={fetchedMessages} loggedInUserId={loggedInUserId} displayMode={displayMode} />
+          {/* <ChatHeader /> */}
+          <ChatConversation loading={loading} fetchedMessages={fetchedMessages} loggedInUserId={loggedInUserId} />
           <ChatTrigger message={message} handleChange={handleChange} sendMessage={sendMessage} />
         </div>
       </section>

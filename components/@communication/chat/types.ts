@@ -6,18 +6,14 @@ export interface IChatProps {
   advertTitle?: string
   advertOwnerId?: string
   advertOwnerName?: string
+  advertOwnerImageURL?: string
   chatId?: string
-  displayMode?: string
 }
 
-export interface IChatControllerProps {
-  advertId?: string
-  advertTitle?: string
-  advertOwnerId?: string
-  advertOwnerName?: string
-  chatId?: string
+export interface IChatControllerProps extends IChatProps {
   loggedInUserId: string
   loggedInUserName: string
+  loggedInUserImageURL?: string
   children: (chatRenderProps: IChatRenderProps) => ReactNode
 }
 
@@ -56,9 +52,4 @@ export interface IChatTriggerProps {
   message: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
-}
-
-export enum ChatDisplayMode {
-  EMBEDDED = 'embedded',
-  LONELY = 'lonely'
 }

@@ -101,19 +101,6 @@
         margin-bottom: $spacingSemi;
       }
     }
-
-    .profileImage {
-      z-index: 3;
-      width: 104px;
-      height: 104px;
-      border-radius: 50%;
-      background-color: $grey2;
-
-      @media (max-width: $breakpointXsMax) {
-        width: 64px;
-        height: 64px;
-      }
-    }
   }
 
   .myAdvertNavigation {

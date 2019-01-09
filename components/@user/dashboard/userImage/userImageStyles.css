@@ -1,0 +1,58 @@
+.userImageArea {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background-color: $grey2;
+
+  @media (max-width: $breakpointXsMax) {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.userImage {
+  border-radius: 50%;
+}
+
+.userImageUploadButton {
+  position: absolute;
+  display: flex;
+  padding: 52px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+
+  .uploadIcon {
+    position: absolute;
+    display: none;
+
+    &.visibleUploadIcon {
+      display: block;
+      color: $black;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $blackAlpha4;
+
+    .uploadIcon {
+      display: block;
+    }
+  }
+}
+
+.uploadProgressCircle {
+  position: absolute;
+  /* stylelint-disable declaration-no-important */
+  width: 104px !important;
+  height: 104px !important;
+  padding: 12px;
+  color: $white !important;
+  background-color: $blackAlpha4;
+  border-radius: 50%;
+}
