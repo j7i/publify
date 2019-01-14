@@ -1,84 +1,32 @@
-import { FirebaseCollection, firestore } from '@config'
-import { Avatar, Button, Card, CardActionArea, CardActions, CardContent, FormControlLabel, Switch, Typography } from '@material-ui/core'
+import { Avatar, Card, CardActionArea, CardContent, Divider } from '@material-ui/core'
 import Link from 'next/link'
-import { PureComponent } from 'react'
 import styles from './styles.css'
-import { IAdvertCardElementProps, IAdvertCardElementState } from './types'
+import { IAdvertCardElementProps } from './types'
 
-export class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IAdvertCardElementState> {
-  public state: IAdvertCardElementState = {
-    published: this.props.advert.published
-  }
-
-  public render(): JSX.Element {
-    const { advert, withActions } = this.props
-    return (
-      <Card className={styles.card}>
-        <Link as={`/detail/${advert.id}`} href={`/detail?id=${advert.id}`}>
-          <CardActionArea>
-            {/* <CardMedia
-            component="img"
-            alt="Alternative"
-            className={styles.media}
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
-          /> */}
-            {/* <CardMedia component="img" height="140" className={styles.media} /> */}
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {advert.title}
-              </Typography>
-              <Avatar alt={advert.fullName} src={advert.userImageURL} />
-              <Typography component="p">{advert.type}</Typography>
+export const AdvertCardElement = ({ advert, key }: IAdvertCardElementProps): JSX.Element => (
+  <Card className={styles.card} key={key}>
+    <Link as={`/detail/${advert.id}`} href={`/detail?id=${advert.id}`}>
+      <CardActionArea>
+        <CardContent className={styles.cardContent}>
+          <div className={styles.cardContentTop}>
+            {advert.userImageURL && <Avatar className={styles.cardContentAvatar} alt={advert.fullName} src={advert.userImageURL} />}
+            <div className={styles.cardContentTeaser}>
+              <h2>{advert.title}</h2>
               <div className={styles.categories}>
                 {advert.categories.map((categorie: string, index: number) => (
-                  <span className={styles.chip} key={index}>
+                  <span className={styles.categorie} key={index}>
                     #{categorie}
                   </span>
                 ))}
               </div>
-            </CardContent>
-          </CardActionArea>
-        </Link>
-        {withActions && (
-          <CardActions>
-            <Button size="small" color="primary">
-              <Link as={`/adverts/edit/${advert.id}`} href={`/edit?id=${advert.id}`}>
-                <span className={styles.preventMaterialAddingClassnameToNextLinkError}>Edit</span>
-              </Link>
-            </Button>
-            <div className={styles.grow} />
-            <FormControlLabel
-              control={<Switch checked={this.state.published} onChange={this.handleChange} value="checkedB" color="primary" />}
-              label="Published"
-              labelPlacement="start"
-            />
-          </CardActions>
-        )}
-      </Card>
-    )
-  }
-
-  private handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    event.preventDefault()
-
-    const { id } = this.props.advert
-    const { published } = this.state
-
-    firestore
-      .collection(FirebaseCollection.ADVERTS)
-      .doc(id)
-      .update({
-        published: !published
-      })
-      .then(() => {
-        this.setState({ published: !published })
-      })
-      // tslint:disable-next-line:no-any
-      .catch((error: any) => {
-        // tslint:disable-next-line:no-console
-        console.error('Error adding document: ', error)
-      })
-  }
-}
+            </div>
+          </div>
+          <Divider />
+          <div className={styles.cardContentDescription}>
+            <p>{advert.description}</p>
+          </div>
+        </CardContent>
+      </CardActionArea>
+    </Link>
+  </Card>
+)

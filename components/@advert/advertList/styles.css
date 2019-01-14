@@ -10,22 +10,19 @@
   }
 
   @media (max-width: $breakpointXsMax) {
-    padding: $spacingSemi 0;
+    padding: $spacingSemi;
   }
 }
 
 .advertListArea {
   display: flex;
+  width: 100%;
   height: inherit;
   flex-direction: column;
   flex: 2 2;
 
   @media (min-width: $breakpointSmMin) {
     padding: 0 $spacingBase;
-  }
-
-  @media (max-width: $breakpointXsMax) {
-    padding: 0 $spacingSemi;
   }
 }
 
