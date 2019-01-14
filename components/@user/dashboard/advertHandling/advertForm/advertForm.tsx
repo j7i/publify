@@ -1,5 +1,5 @@
 import { FirebaseCollection, firestore } from '@config'
-import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input } from '@core'
+import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input, MapDisplayMode } from '@core'
 import { Button } from '@material-ui/core'
 import { IAdvertFormProps } from '@user/dashboard/types'
 import classNames from 'classnames'
@@ -22,7 +22,11 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
               <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
               <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
               <div className={styles.location}>
-                <GoogleMap handleLocationInput={formChildProps.handleLocation} initialLocation={initialValues && initialValues.location} />
+                <GoogleMap
+                  displayMode={MapDisplayMode.SINGLE_WITH_SEARCH}
+                  handleLocationInput={formChildProps.handleLocation}
+                  initialLocation={initialValues && initialValues.location}
+                />
               </div>
             </div>
 

@@ -1,5 +1,5 @@
+import { ILocation } from '@core'
 import { IFormChildProps, IFormHandlerProps, IFormHandlerState } from '@core/form/types'
-import { ILocation } from '@core/maps'
 import { AdvertType } from '@helpers'
 import { PureComponent } from 'react'
 

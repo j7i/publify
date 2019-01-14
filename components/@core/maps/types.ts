@@ -1,23 +1,21 @@
 import { ProvidedProps } from 'google-maps-react'
-
-// import { ReactNode } from 'react'
-
-// export interface IMapContainerProps {
-//   // tslint:disable-next-line:no-any
-//   children: (props: any) => ReactNode
-// }
+import { MapDisplayMode } from './enums'
 
 export interface IGoogleMapInternalProps extends ProvidedProps {
-  handleLocationInput?: (location: ILocation) => void
+  displayMode: MapDisplayMode
   initialLocation?: ILocation
-  locationBounds?: ILocation[]
-  isDetailPage?: boolean
+  locations?: ILocation[]
+  handleLocationInput?: (location: ILocation) => void
 }
 export interface IGoogleMapInternalState {
   radius: number
   initialCenter: ILocation
   selectedLocationName: string
-  newLocation?: ILocation
+  selectedLocation?: ILocation
+}
+
+export interface ICustomMarkerProps extends google.maps.MarkerOptions, google.maps.Symbol {
+  position: ILocation
 }
 
 export interface ILocation {

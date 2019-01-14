@@ -1,5 +1,5 @@
 import { AdvertCardElement, IAdvert } from '@advert'
-import { GoogleMap } from '@core'
+import { GoogleMap, MapDisplayMode } from '@core'
 import { PureComponent, ReactNode } from 'react'
 import { AdvertFilter } from './advertFilter/advertFilter'
 import { AdvertListController } from './advertListController/advertListController'
@@ -35,7 +35,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
                 </div>
               </section>
               <aside className={styles.advertMap}>
-                <GoogleMap locationBounds={adverts.map((advert: IAdvert) => advert.location)} />
+                <GoogleMap displayMode={MapDisplayMode.MULTIPLE_LOCATIONS} locations={adverts.map((advert: IAdvert) => advert.location)} />
               </aside>
             </div>
           )

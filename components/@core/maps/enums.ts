@@ -1,0 +1,5 @@
+export enum MapDisplayMode {
+  MULTIPLE_LOCATIONS,
+  SINGLE_WITH_SEARCH,
+  SINGLE_LOCKED
+}

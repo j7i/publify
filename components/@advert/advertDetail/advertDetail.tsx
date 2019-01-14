@@ -1,6 +1,6 @@
 import { UserSpecificContent } from '@auth'
 import { Chat } from '@communication'
-import { GoogleMap } from '@core'
+import { GoogleMap, MapDisplayMode } from '@core'
 import { AppBar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
@@ -25,7 +25,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
   public render(): ReactNode {
     const { isChatting } = this.state
     const { advert } = this.props
-    const { id, title, categories, description, userId, fullName, userImageURL } = advert
+    const { id, title, categories, description, userId, fullName, userImageURL, location } = advert
 
     return (
       <main className={classNames(styles.detailView, { [styles.centered]: !advert })}>
@@ -93,7 +93,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                   <Chat advertId={id} advertTitle={title} advertOwnerId={userId} advertOwnerName={fullName} advertOwnerImageURL={userImageURL} />
                 </div>
               ) : (
-                <GoogleMap isDetailPage />
+                <GoogleMap displayMode={MapDisplayMode.SINGLE_LOCKED} initialLocation={location} />
               )}
               <map className={styles.map} />
             </div>

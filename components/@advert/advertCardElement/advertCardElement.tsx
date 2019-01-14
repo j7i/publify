@@ -1,5 +1,5 @@
 import { FirebaseCollection, firestore } from '@config'
-import { Button, Card, CardActionArea, CardActions, CardContent, Chip, FormControlLabel, Switch, Typography } from '@material-ui/core'
+import { Avatar, Button, Card, CardActionArea, CardActions, CardContent, FormControlLabel, Switch, Typography } from '@material-ui/core'
 import Link from 'next/link'
 import { PureComponent } from 'react'
 import styles from './styles.css'
@@ -29,10 +29,13 @@ export class AdvertCardElement extends PureComponent<IAdvertCardElementProps, IA
               <Typography gutterBottom variant="h5" component="h2">
                 {advert.title}
               </Typography>
+              <Avatar alt={advert.fullName} src={advert.userImageURL} />
               <Typography component="p">{advert.type}</Typography>
               <div className={styles.categories}>
                 {advert.categories.map((categorie: string, index: number) => (
-                  <Chip className={styles.chip} key={index} label={categorie} variant="outlined" color="primary" />
+                  <span className={styles.chip} key={index}>
+                    #{categorie}
+                  </span>
                 ))}
               </div>
             </CardContent>

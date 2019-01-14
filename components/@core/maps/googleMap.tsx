@@ -1,106 +1,133 @@
+import classNames from 'classnames'
 import { GoogleApiWrapper, Map, MapProps, Marker } from 'google-maps-react'
 import getConfig from 'next/config'
 import { PureComponent, ReactNode } from 'react'
 import Geosuggest, { Suggest } from 'react-geosuggest'
+import { MapDisplayMode } from './enums'
 import './geoSuggestStyles.css'
 import styles from './mapsStyles.css'
 import { IGoogleMapInternalProps, IGoogleMapInternalState, ILocation } from './types'
 
 const { publicRuntimeConfig } = getConfig()
 const GoogleMapsApiKey = publicRuntimeConfig.GOOGLE_MAPS_API_KEY
+const defaultLocation = {
+  lat: 47.36667,
+  lng: 8.55
+}
 
-// tslint:disable-next-line:no-any
+/**
+ * Internal class due to named export with a wrapping HOC
+ */
 class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMapInternalState> {
   public state: IGoogleMapInternalState = {
-    selectedLocationName: 'Zurich',
+    selectedLocationName: '',
     radius: 14,
-    initialCenter: {
-      lat: 47.36667,
-      lng: 8.55
-    }
+    initialCenter: this.props.initialLocation || defaultLocation
   }
 
   public componentDidMount(): void {
-    const location = this.getLocation()
-    this.setLocationName(location)
+    const { displayMode, initialLocation, locations } = this.props
+
+    if (locations) {
+      this.setState({ initialCenter: locations[0] || defaultLocation })
+    }
+
+    if (displayMode === MapDisplayMode.SINGLE_WITH_SEARCH) {
+      const location = initialLocation ? initialLocation : defaultLocation
+      this.setLocationName(location)
+    }
   }
 
   public render(): ReactNode {
-    const { selectedLocationName, newLocation } = this.state
-    const { locationBounds, google, isDetailPage = false } = this.props
-    let mapBounds
+    const { selectedLocationName, selectedLocation, initialCenter } = this.state
+    const { locations, google, displayMode } = this.props
 
-    if (locationBounds) {
-      mapBounds = new google.maps.LatLngBounds()
-
-      for (let index = 0; index < locationBounds.length; index++) {
-        mapBounds.extend(locationBounds[index])
-      }
-    }
+    const isFront = displayMode === MapDisplayMode.MULTIPLE_LOCATIONS
+    const isForm = displayMode === MapDisplayMode.SINGLE_WITH_SEARCH
+    const isDetail = displayMode === MapDisplayMode.SINGLE_LOCKED
 
     return (
       <>
         <Geosuggest
-          placeholder={mapBounds ? 'Search for locations' : 'Add your location'}
-          initialValue={mapBounds ? '' : selectedLocationName}
+          placeholder={isFront ? 'Search for locations' : 'Add your location'}
+          initialValue={isFront ? '' : selectedLocationName}
           onSuggestSelect={this.onSuggestSelect}
-          disabled={isDetailPage}
+          disabled={isDetail}
+          className={classNames({ [styles.hidden]: isDetail })}
         />
-        <div className={styles.map}>
+        <div className={classNames(styles.map, { [styles.advertDetailMap]: isDetail })}>
           <Map
             google={google}
             streetViewControl={false}
             fullscreenControl={false}
             mapTypeControl={false}
-            scrollwheel={false}
+            gestureHandling="cooperative"
             zoom={15}
-            bounds={mapBounds && mapBounds}
-            initialCenter={this.getLocation()}
-            center={newLocation}
+            initialCenter={initialCenter}
+            center={isForm ? selectedLocation : undefined}
+            bounds={locations && this.getLatLngBounds(locations)}
             onClick={this.onMapClick}
             zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
           >
-            {locationBounds ? (
-              locationBounds.map((bound: ILocation, index: number) => <Marker key={index} position={bound} />)
-            ) : (
-              <Marker position={this.getLocation()} />
-            )}
+            {locations
+              ? locations.map((location: ILocation, index: number) => {
+                  return this.renderMarker(location, '#3f51b5', index)
+                })
+              : this.renderMarker(selectedLocation ? selectedLocation : initialCenter, '#3f51b5')}
           </Map>
         </div>
       </>
     )
   }
 
-  private getLocation = (): ILocation => {
-    const { initialCenter, newLocation } = this.state
-    const { initialLocation } = this.props
+  /**
+   * A LatLngBounds instance represents a rectangle in geographical coordinates,
+   * including one that crosses the 180 degrees longitudinal meridian. We use this function
+   * to provide an initial view of all published adverts on the map.
+   */
+  private getLatLngBounds = (locations: ILocation[]): google.maps.LatLngBounds => {
+    let mapBounds = new google.maps.LatLngBounds()
 
-    if (newLocation) {
-      return newLocation
-    } else if (initialLocation) {
-      return initialLocation
-    } else {
-      return initialCenter
+    for (let index = 0; index < locations.length; index++) {
+      mapBounds.extend(locations[index])
     }
+    return mapBounds
   }
 
+  /**
+   * Renders a custom GoogleMaps Marker by providing a location and color
+   */
+  private renderMarker = (location: ILocation, color: string, index?: number): ReactNode => (
+    <Marker
+      position={location}
+      key={index}
+      icon={{
+        anchor: new google.maps.Point(35.5, 105),
+        fillColor: color,
+        strokeColor: color,
+        fillOpacity: 1,
+        path:
+          'M53.345,9.155c-12.207-12.207-31.982-12.207-44.189,0c-12.207,12.201-12.207,31.995,0,44.189 c0,0,22.083,21.655,22.083,46.655c0-25,22.106-46.655,22.106-46.655C65.552,41.15,65.552,21.356,53.345,9.155z M31.238,43.769 c-6.897,0-12.488-5.591-12.488-12.5s5.591-12.5,12.488-12.5c6.921,0,12.512,5.591,12.512,12.5S38.159,43.769,31.238,43.769z',
+        scale: 0.5 // original-size: 71 x 105
+      }}
+    />
+  )
+
+  /**
+   * Translates a location into a name and sets a state "selectedLocationName"
+   * The translated location result is displayed in the Geosuggest search bar (e.g. onMount or onUpdate)
+   */
   private setLocationName = (location: ILocation): void => {
     const geocoder = new google.maps.Geocoder()
 
     geocoder.geocode({ location }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
       if (status === google.maps.GeocoderStatus.OK) {
         if (results[0]) {
-          // map.setZoom(11)
-          // let marker = new google.maps.Marker({
-          //   position: latlng,
-          //   map
-          // })
           this.setState({
             selectedLocationName: results[0].formatted_address
           })
-          // infowindow.open(map, marker)
         } else {
-          return `Your adress couldn't be recognized`
+          return `Your adress could not be recognized`
         }
       } else {
         // TODO: Notification
@@ -110,31 +137,11 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
     })
   }
 
-  private onMapClick = (_mapProps: MapProps, _map: google.maps.Map, event: google.maps.MouseEvent): void => {
-    const { handleLocationInput, locationBounds, isDetailPage } = this.props
-
-    if (locationBounds || isDetailPage) {
-      return
-    }
-
-    const newLocation = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng()
-    }
-
-    this.setState(
-      {
-        newLocation
-      },
-      () => {
-        this.setLocationName(newLocation)
-        if (handleLocationInput) {
-          handleLocationInput(newLocation)
-        }
-      }
-    )
-  }
-
+  /**
+   * onSuggestSelect is used by Geosuggest which will autosuggest locations while typing
+   * and will set the selected location as selectedLocation state.
+   * See {@link https://github.com/ubilabs/react-geosuggest}
+   */
   private onSuggestSelect = (place?: Suggest): void => {
     if (place) {
       const {
@@ -142,15 +149,51 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
       } = place
 
       this.setState({
-        initialCenter: {
+        selectedLocation: {
           lat: parseFloat(lat),
           lng: parseFloat(lng)
         }
       })
     }
   }
+
+  /**
+   * If a user is creating a new advert, he can click on the map to provide a more specific location.
+   * onClick will pass the location to the formController if a handleLocationInput event is provided.
+   * onClick will only be executed when the displayMode is set to MULTIPLE_LOCATIONS
+   * @type {(MapDisplayMode.MULTIPLE_LOCATIONS)}
+   */
+  private onMapClick = (_mapProps: MapProps, _map: google.maps.Map, event: google.maps.MouseEvent): void => {
+    const { handleLocationInput, displayMode } = this.props
+
+    if (displayMode === MapDisplayMode.MULTIPLE_LOCATIONS || displayMode === MapDisplayMode.SINGLE_LOCKED) {
+      return
+    }
+
+    const selectedLocation = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng()
+    }
+
+    this.setState(
+      {
+        selectedLocation
+      },
+      () => {
+        this.setLocationName(selectedLocation)
+        if (handleLocationInput) {
+          handleLocationInput(selectedLocation)
+        }
+      }
+    )
+  }
 }
 
+/**
+ * @function handleLocationInput will be passed in through a wrapping formController to gather a selected location.
+ * @helpers The GoogleMap component is using google-maps-react {@link https://github.com/fullstackreact/google-maps-react}
+ * and react-geosuggest {@link https://github.com/ubilabs/react-geosuggest}
+ */
 export const GoogleMap = GoogleApiWrapper({
   apiKey: GoogleMapsApiKey
 })(GoogleMapInternal)

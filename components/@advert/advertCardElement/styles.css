@@ -27,6 +27,8 @@
 
 .chip {
   margin: $spacingHalf;
+  font-weight: 600;
+  font-size: $fontSizeBase;
 
   &:first-of-type {
     margin-left: 0;
