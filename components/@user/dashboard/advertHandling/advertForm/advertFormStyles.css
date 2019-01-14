@@ -39,6 +39,14 @@
   }
 }
 
+.location {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 360px;
+  margin-top: $spacingBig;
+}
+
 .advertFormDescriptionTitle {
   margin-bottom: $spacingSemi;
 }

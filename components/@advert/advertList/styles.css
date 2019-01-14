@@ -1,12 +1,51 @@
 @lost gutter 0;
 
 .advertList {
-  padding-top: $spacingMedium;
-  max-width: $contentMaxWidth;
-  margin: 0 auto;
-  lost-utility: clearfix;
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 64px);
+
+  @media (min-width: $breakpointSmMin) {
+    padding: $spacingBase 0;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    padding: $spacingSemi 0;
+  }
 }
 
-.advertWrapper {
+.advertListArea {
+  display: flex;
+  height: inherit;
+  flex-direction: column;
+  flex: 2 2;
+
+  @media (min-width: $breakpointSmMin) {
+    padding: 0 $spacingBase;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    padding: 0 $spacingSemi;
+  }
+}
+
+.advertListTitle {
+  margin-top: $spacingMedium;
+}
+
+.advertListItems {
+  margin: 0 auto;
+  lost-utility: clearfix;
   lost-column: 1/1;
+}
+
+.advertMap {
+  position: relative;
+  display: flex;
+  flex: 1 1;
+  margin-bottom: -16px;
+
+  @media (max-width: $breakpointSmMax) {
+    display: none;
+  }
 }

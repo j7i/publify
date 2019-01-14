@@ -1,5 +1,5 @@
 import { FirebaseCollection, firestore } from '@config'
-import { Checkbox, Form, IFormChildProps, IFormValues, Input } from '@core'
+import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input } from '@core'
 import { Button } from '@material-ui/core'
 import { IAdvertFormProps } from '@user/dashboard/types'
 import classNames from 'classnames'
@@ -21,6 +21,9 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
               <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
               <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
               <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
+              <div className={styles.location}>
+                <GoogleMap handleLocationInput={formChildProps.handleLocation} initialLocation={initialValues && initialValues.location} />
+              </div>
             </div>
 
             <div className={classNames(styles.advertFormActions, { [styles.singleActionButton]: !documentToUpdate })}>

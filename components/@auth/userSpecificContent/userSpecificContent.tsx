@@ -9,7 +9,7 @@ export class UserSpecificContent extends PureComponent<IUserSpecificContentProps
     isAuthorizing: true
   }
 
-  public componentWillMount = (): void => {
+  public componentDidMount = (): void => {
     firebaseApp.auth().onAuthStateChanged((user: firebase.User) => {
       if (user) {
         this.setState({ user }, () => this.getUserInfos(user))

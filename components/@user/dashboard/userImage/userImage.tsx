@@ -84,8 +84,9 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
       .then((querySnapshot: firebase.firestore.QuerySnapshot) => {
         querySnapshot.forEach((doc: firebase.firestore.QueryDocumentSnapshot) => {
           let chatRef = firestore.collection(FirebaseCollection.CHATS).doc(doc.id)
-          let memberInfos = {}
-          memberInfos[userId] = { userImageURL: url }
+          let memberInfos = doc.data().memberInfos
+
+          memberInfos[userId].userImageURL = url
           documentsToUpdate.update(chatRef, { memberInfos })
         })
       })
@@ -101,15 +102,25 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
         })
       })
       .then(() => {
-        documentsToUpdate.commit().then(() => {
+        updateUserImages()
+      })
+      .catch((error: Error) => {
+        // tslint:disable-next-line:no-console
+        console.error('Error updating userImage: ', error)
+      })
+
+    const updateUserImages = (): void => {
+      documentsToUpdate
+        .commit()
+        .then(() => {
           // TODO: Notification - your adverts now have an image
           // tslint:disable-next-line:no-console
           console.log('batch commited to update userImageURLs')
         })
-      })
-      .catch((error: Error) => {
-        // tslint:disable-next-line:no-console
-        console.error('Error adding userImage: ', error)
-      })
+        .catch((error: Error) => {
+          // tslint:disable-next-line:no-console
+          console.error('Error updating userImage: ', error)
+        })
+    }
   }
 }

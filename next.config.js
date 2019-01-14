@@ -9,6 +9,9 @@ const babel = require('./.babelrc')
 const { PHASE_PRODUCTION_BUILD } = require('next/constants')
 
 const nextConfig = {
+  publicRuntimeConfig: {
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
+  },
   webpack(config, { isServer, dev, ...options }) {
     if (!isServer) {
       config.externals.push('fs')

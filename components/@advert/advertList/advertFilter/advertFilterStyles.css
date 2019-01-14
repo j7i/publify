@@ -1,10 +1,5 @@
 .advertFilter {
   width: 100%;
-  margin-top: $spacingMedium;
-
-  @media (max-width: $breakpointSmMax) {
-    margin-top: 0;
-  }
 }
 
 .filterWrapper {
@@ -13,7 +8,6 @@
   flex-wrap: nowrap;
   padding: $spacingSemi $spacingBase $spacingHalf;
   margin: 0 auto;
-  max-width: $contentMaxWidth;
   background-color: $white;
   border-radius: 2px;
   box-shadow: 0 3px 1px -2px $blackAlpha15, 0 2px 2px 0 $blackAlpha1, 0 1px 5px 0 $blackAlpha07;

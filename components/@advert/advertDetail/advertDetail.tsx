@@ -1,5 +1,6 @@
 import { UserSpecificContent } from '@auth'
 import { Chat } from '@communication'
+import { GoogleMap } from '@core'
 import { AppBar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
@@ -14,10 +15,10 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
     isChatting: false
   }
 
-  public startConversation = (): void => {
+  public toggleConversation = (): void => {
     window.location.hash = 'chat'
-    this.setState({
-      isChatting: true
+    this.setState((prevstate: IAdvertDetailState) => {
+      return { isChatting: !prevstate.isChatting }
     })
   }
 
@@ -62,24 +63,22 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                 <div className={styles.description}>{description}</div>
 
                 <div className={styles.callToAction}>
-                  {!isChatting && (
-                    <UserSpecificContent>
-                      {(user: firebase.User, userInfo: IUserInfo): ReactNode | null => {
-                        return user && userId !== user.uid ? (
-                          <Button variant="contained" color="primary" onClick={this.startConversation}>
-                            Write a message
-                          </Button>
-                        ) : userInfo ? (
-                          <Chip label={`This is yours, ${userInfo.firstName}`} variant="default" color="secondary" />
-                        ) : null
-                      }}
-                    </UserSpecificContent>
-                  )}
+                  <UserSpecificContent>
+                    {(user: firebase.User, userInfo: IUserInfo): ReactNode | null => {
+                      return user && userId !== user.uid ? (
+                        <Button variant="contained" color="primary" onClick={this.toggleConversation}>
+                          {isChatting ? 'Show map' : 'Write a message'}
+                        </Button>
+                      ) : userInfo ? (
+                        <Chip label={`This is yours, ${userInfo.firstName}`} variant="default" color="secondary" />
+                      ) : null
+                    }}
+                  </UserSpecificContent>
                 </div>
               </section>
             </div>
             <div className={classNames(styles.secondaryContent, { [styles.secondaryContentActive]: isChatting })}>
-              {isChatting && (
+              {isChatting ? (
                 <div className={styles.chatArea}>
                   <AppBar className={styles.chatAreaAppBar}>
                     <Toolbar>
@@ -93,6 +92,8 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                   </AppBar>
                   <Chat advertId={id} advertTitle={title} advertOwnerId={userId} advertOwnerName={fullName} advertOwnerImageURL={userImageURL} />
                 </div>
+              ) : (
+                <GoogleMap isDetailPage />
               )}
               <map className={styles.map} />
             </div>

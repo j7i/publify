@@ -1,6 +1,5 @@
 import { AdvertList } from '@advert'
 import { ErrorBoundary, IWelcomePageProps } from '@helpers'
-import { PageHeader } from '@layout'
 import fetch from 'isomorphic-unfetch'
 import { PureComponent } from 'react'
 
@@ -16,7 +15,6 @@ export default class Index extends PureComponent<IWelcomePageProps> {
 
     return (
       <ErrorBoundary>
-        <PageHeader />
         <AdvertList adverts={adverts} />
       </ErrorBoundary>
     )

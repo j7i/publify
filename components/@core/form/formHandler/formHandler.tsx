@@ -1,4 +1,5 @@
 import { IFormChildProps, IFormHandlerProps, IFormHandlerState } from '@core/form/types'
+import { ILocation } from '@core/maps'
 import { AdvertType } from '@helpers'
 import { PureComponent } from 'react'
 
@@ -76,6 +77,15 @@ export class FormHandler extends PureComponent<IFormHandlerProps, IFormHandlerSt
     }))
   }
 
+  public handleLocation = (location: ILocation): void => {
+    this.setState((prevState: IFormHandlerState) => ({
+      values: {
+        ...prevState.values,
+        location
+      }
+    }))
+  }
+
   public handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     // validate
@@ -92,6 +102,7 @@ export class FormHandler extends PureComponent<IFormHandlerProps, IFormHandlerSt
       handleBlur: this.handleBlur,
       handleCategories: this.handleCategories,
       handleAdvertType: this.handleAdvertType,
+      handleLocation: this.handleLocation,
       handleSubmit: this.handleSubmit
     }
 

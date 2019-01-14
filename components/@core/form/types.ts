@@ -1,4 +1,5 @@
 import { IAdvert } from '@advert'
+import { ILocation } from '@core'
 import { AdvertType } from '@helpers'
 import { IUserInfo } from '@user'
 
@@ -25,7 +26,7 @@ export interface IFormHandlerState {
 }
 
 export interface IFormValues {
-  [key: string]: string | boolean | string[]
+  [key: string]: string | boolean | string[] | ILocation
 }
 
 interface IFormTouched {
@@ -37,6 +38,7 @@ export interface IFormChildProps extends IFormHandlerState {
   handleBlur: (event: React.FocusEvent<HTMLInputElement>) => void
   handleCategories: (selection: string[]) => void
   handleAdvertType: (advertType: AdvertType) => void
+  handleLocation: (location: ILocation) => void
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
 

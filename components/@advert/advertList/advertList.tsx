@@ -1,4 +1,5 @@
 import { AdvertCardElement, IAdvert } from '@advert'
+import { GoogleMap } from '@core'
 import { PureComponent, ReactNode } from 'react'
 import { AdvertFilter } from './advertFilter/advertFilter'
 import { AdvertListController } from './advertListController/advertListController'
@@ -19,11 +20,11 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
           }
 
           return (
-            <div className="mainContent">
-              <AdvertFilter advertListRenderProps={advertListRenderProps} />
-              <section className={styles.advertList}>
-                <h1>Public Adverts</h1>
-                <section className={styles.advertWrapper}>
+            <div className={styles.advertList}>
+              <section className={styles.advertListArea}>
+                <AdvertFilter advertListRenderProps={advertListRenderProps} />
+                <h1 className={styles.advertListTitle}>Public Adverts</h1>
+                <div className={styles.advertListItems}>
                   {adverts.length ? (
                     adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} advert={advert} />)
                   ) : (
@@ -31,8 +32,11 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
                       <p>No adverts available</p>
                     </div>
                   )}
-                </section>
+                </div>
               </section>
+              <aside className={styles.advertMap}>
+                <GoogleMap locationBounds={adverts.map((advert: IAdvert) => advert.location)} />
+              </aside>
             </div>
           )
         }}

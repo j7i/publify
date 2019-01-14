@@ -1,0 +1,5 @@
+{
+  "SERVER_CREDENTIALS": "@server_credentials",
+  "GOOGLE_MAPS_API_KEY": "@google_maps_api_key",
+  "SESSION_SECRET": "@session_secret"
+}

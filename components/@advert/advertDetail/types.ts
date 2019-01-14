@@ -1,3 +1,5 @@
+import { ILocation } from '@core'
+
 export interface IAdvert {
   id: string
   type: string
@@ -8,6 +10,7 @@ export interface IAdvert {
   userId: string
   fullName: string
   userImageURL?: string
+  location: ILocation
 }
 
 export interface IAdvertDetailProps {
