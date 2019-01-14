@@ -6,7 +6,11 @@
   "engines": {
     "node": "9.x.x"
   },
-  "env": ["SERVER_CREDENTIALS", "GOOGLE_MAPS_API_KEY", "SESSION_SECRET"],
+  "env": {
+    "SERVER_CREDENTIALS": "@server_credentials",
+    "GOOGLE_MAPS_API_KEY": "@google_maps_api_key",
+    "SESSION_SECRET": "@session_secret"
+  },
   "scale": {
     "bru1": {
       "min": 1,
