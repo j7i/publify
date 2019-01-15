@@ -13,9 +13,14 @@
   }
 }
 
+/* stylelint-disable declaration-no-important */
 .userImage {
+  position: initial !important;
+  width: 100% !important;
+  height: 100% !important;
   border-radius: 50%;
 }
+/* stylelint-enable declaration-no-important */
 
 .userImageUploadButton {
   position: absolute;
@@ -42,6 +47,7 @@
 
     .uploadIcon {
       display: block;
+      color: $white;
     }
   }
 }

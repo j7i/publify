@@ -1,5 +1,5 @@
 import { FirebaseCollection, FirebaseStorage, firestore } from '@config'
-import { CircularProgress } from '@material-ui/core'
+import { Avatar, CircularProgress } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import classNames from 'classnames'
 import firebase from 'firebase'
@@ -32,7 +32,7 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
     return (
       <div className={styles.userImageArea}>
         <label className={styles.userImageUploadButton}>
-          <AddIcon className={classNames(styles.uploadIcon, { [styles.visibleUploadIcon]: !uploadedProfileImageURL })} />
+          <AddIcon className={classNames(styles.uploadIcon, { [styles.visibleUploadIcon]: !uploadedProfileImageURL && !userImageURL })} />
           <FileUploader
             hidden
             accept="image/*"
@@ -46,7 +46,7 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
           />
           {isUploading && <CircularProgress className={styles.uploadProgressCircle} variant="static" value={progress} />}
         </label>
-        <img className={styles.userImage} src={uploadedProfileImageURL ? uploadedProfileImageURL : userImageURL} />
+        <Avatar className={styles.userImage} src={uploadedProfileImageURL ? uploadedProfileImageURL : userImageURL} />
       </div>
     )
   }

@@ -3,85 +3,38 @@
   flex-direction: column;
   width: 100%;
   min-height: calc(100vh - 64px);
-  background-color: $grey1;
+  background-color: $grey2;
 
   @media (max-width: $breakpointXsMax) {
     min-height: calc(100vh - 56px);
   }
 }
 
-.dashboardSection {
-  /* margin-top: $spacingBase; */
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  background-color: $grey2;
-  padding: $spacingBase;
-
-  @media (max-width: $breakpointSmMax) {
-    padding: 0;
-  }
-}
-
-.myAdvert {
-  border-radius: 8px;
-  display: flex;
+.dashboardTopArea {
   width: 100%;
-  flex-basis: auto;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-direction: column;
-  margin: 0 auto;
+  margin: $spacingBase auto 0;
   max-width: $contentMaxWidth;
+  background-color: $white;
 
-  @media (max-width: $breakpointSmMax) {
-    border-radius: 0;
+  @media (max-width: $contentMaxWidth) {
+    margin-top: 0;
   }
 
-  .myAdvertHeader {
-    position: relative;
-    z-index: 2;
+  .dashboardUserInfo {
     display: flex;
-    height: 300px;
-    padding: $spacingHuge;
-    border-radius: 8px 8px 0 0;
-    background-color: $primary;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    @media (max-width: $breakpointSmMax) {
-      border-radius: 0;
-    }
-
-    @media (max-width: $breakpointXsMax) {
-      display: none;
-    }
-  }
-
-  .person {
-    position: relative;
-    top: -52px;
-    display: flex;
-    padding: 0 $spacingHuge $spacingMedium;
-    color: $white;
+    width: 100%;
+    padding: $spacingBase;
+    border-radius: 8px;
     flex-direction: row;
-    align-items: flex-start;
-    margin-bottom: -32px;
-    background-color: $white;
-    border-radius: 0 0 8px 8px;
 
-    @media (max-width: $breakpointXsMax) {
-      top: 0;
-      padding: 0 $spacingBase $spacingBig;
-      color: $black;
-      align-items: center;
+    @media (min-width: $breakpointMdMin) {
+      margin-bottom: -48px;
     }
 
     .personDetails {
       display: flex;
       margin-left: $spacingMedium;
-      justify-content: space-between;
+      justify-content: center;
       flex-direction: column;
       height: 104px;
       padding: $spacingSemi;
@@ -104,7 +57,7 @@
   }
 
   .myAdvertNavigation {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: calc(100% - 80px);
     margin: 0 auto;
@@ -113,6 +66,23 @@
     @media (max-width: $breakpointXsMax) {
       width: calc(100% - 32px);
     }
+  }
+}
+
+.advertArea {
+  display: flex;
+  width: 100%;
+  max-width: $contentMaxWidth;
+  background-color: $white;
+  padding: 0 $spacingBase $spacingBase;
+  margin: 0 auto;
+  margin-top: $spacingBase;
+  border-radius: 8px;
+  flex-direction: column;
+
+  @media (max-width: $breakpointSmMax) {
+    padding: 0;
+    border-radius: 0;
   }
 }
 
@@ -136,9 +106,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: $spacingMassive;
+  padding-top: $spacingMassive;
 
   @media (max-width: $breakpointXsMax) {
-    margin-top: 70%;
+    padding-top: 70%;
+    background-color: $grey2;
   }
 }

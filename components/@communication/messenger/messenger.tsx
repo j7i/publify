@@ -43,7 +43,7 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
           </AppBar>
         </div>
         <List
-          className={classNames(styles.chatList, { [styles.active]: !currentChat })}
+          className={classNames(styles.messengerChatList, { [styles.active]: !currentChat })}
           component="nav"
           subheader={
             <div>
@@ -69,7 +69,7 @@ export class Messenger extends PureComponent<IMessengerProps, IMessengerState> {
             })}
         </List>
         {currentChat && (
-          <div className={classNames(styles.chatArea, styles.active)}>
+          <div className={classNames(styles.messengerChatArea, styles.active)}>
             <Chat chatId={currentChat} key={currentChat} />
           </div>
         )}

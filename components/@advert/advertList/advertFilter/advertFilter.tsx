@@ -19,8 +19,6 @@ export class AdvertFilter extends PureComponent<IAdvertFilterProps, IAdvertFilte
     return (
       <section className={styles.advertFilter}>
         <div className={styles.filterWrapper}>
-          {/* <Tabs value={value} onChange={this.handleChange} scrollable scrollButtons="on" indicatorColor="primary" textColor="primary">
-          </Tabs> */}
           <div className={styles.filterPrimary}>
             <div className={styles.filterElement}>
               <FormControl variant="outlined">
@@ -39,20 +37,6 @@ export class AdvertFilter extends PureComponent<IAdvertFilterProps, IAdvertFilte
                 </Select>
               </FormControl>
             </div>
-            {/* <div className={styles.filterElement}>
-              <TextField
-                id="location"
-                type="text"
-                name="location"
-                label={'Location'}
-                value=""
-                // onChange={handleChange}
-                fullWidth
-                margin="normal"
-                variant="standard"
-              />
-            </div> */}
-            <div className={styles.filterElement}>Radius</div>
           </div>
           <div className={styles.filterSecondary}>
             {categorieFilterList.map((categorie: ICategorie, index: number) => (

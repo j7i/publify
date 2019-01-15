@@ -15,13 +15,16 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
       <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} userInfo={userInfo} className={styles.advertForm}>
         {(formChildProps: IFormChildProps): JSX.Element => (
           <>
-            <div className={styles.advertFormFields}>
-              <h2>Categories</h2>
-              <Categories formChildProps={formChildProps} />
-              <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
-              <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
-              <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
-              <div className={styles.location}>
+            <div className={styles.advertFormAreas}>
+              <div className={styles.advertFormMainFields}>
+                <h2>Categories</h2>
+                <Categories formChildProps={formChildProps} />
+                <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
+                <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
+                <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
+              </div>
+              <div className={styles.advertFormLocation}>
+                <h2>Location</h2>
                 <GoogleMap
                   displayMode={MapDisplayMode.SINGLE_WITH_SEARCH}
                   handleLocationInput={formChildProps.handleLocation}

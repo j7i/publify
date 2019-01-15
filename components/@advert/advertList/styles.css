@@ -2,8 +2,9 @@
 
 .advertList {
   display: flex;
+  overflow: hidden;
+  height: calc(100vh - 64px);
   flex-direction: row;
-  min-height: calc(100vh - 64px);
 
   @media (min-width: $breakpointSmMin) {
     padding: $spacingBase 0;
@@ -16,10 +17,15 @@
 
 .advertListArea {
   display: flex;
+  overflow: scroll;
   width: 100%;
   height: inherit;
   flex-direction: column;
   flex: 2 2;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (min-width: $breakpointSmMin) {
     padding: 0 $spacingBase;

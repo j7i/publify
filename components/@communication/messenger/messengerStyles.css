@@ -17,7 +17,7 @@
   }
 }
 
-.chatList {
+.messengerChatList {
   margin-top: $spacingBase;
   display: flex;
   flex-basis: 1;
@@ -50,13 +50,21 @@
   }
 }
 
-.chatArea {
+.messengerChatArea {
   flex-grow: 2;
   height: inherit;
 
   @media (max-width: $breakpointSmMax) {
     position: absolute;
     top: 56px;
+  }
+
+  @media (min-width: calc($contentMaxWidth)) {
+    height: calc(100vh - 96px);
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    height: calc(100vh - 112px);
   }
 }
 

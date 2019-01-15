@@ -1,7 +1,7 @@
 import { UserSpecificContent } from '@auth'
 import { Chat } from '@communication'
 import { GoogleMap, MapDisplayMode } from '@core'
-import { AppBar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
+import { AppBar, Avatar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import { IUserInfo } from '@user'
@@ -45,7 +45,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
               <section className={styles.person}>
                 {userImageURL && (
                   <div className={styles.userImageArea}>
-                    <img className={styles.userImage} src={userImageURL} />
+                    <Avatar className={styles.userImage} src={userImageURL} />
                   </div>
                 )}
                 <div className={styles.personDetails}>
