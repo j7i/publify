@@ -9,6 +9,7 @@ module.exports = {
         root: ['.'],
         cwd: 'babelrc',
         alias: {
+          '@static': './static',
           '@advert': './components/@advert',
           '@auth': './components/@auth',
           '@communication': './components/@communication',

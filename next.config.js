@@ -7,6 +7,7 @@ const withTypescript = require('@zeit/next-typescript')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const babel = require('./.babelrc')
 const { PHASE_PRODUCTION_BUILD } = require('next/constants')
+const reactSvgLoader = require.resolve('react-svg-loader')
 
 const nextConfig = {
   publicRuntimeConfig: {
@@ -33,6 +34,23 @@ const nextConfig = {
         return entries
       }
     }
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      exclude: /node_modules/,
+      use: [
+        'babel-loader',
+        {
+          loader: reactSvgLoader,
+          query: {
+            svgo: {
+              pretty: false,
+              plugins: [{ removeStyleElement: true }, { removeAttrs: { attrs: 'data.*' } }, { cleanupIDs: false }, { removeUselessDefs: true }]
+            }
+          }
+        }
+      ]
+    })
 
     // get aliases from .babelrc
     babel.plugins &&

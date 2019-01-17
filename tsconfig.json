@@ -16,6 +16,7 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
+      "@static/*": ["./static/*"],
       "@advert/*": ["./components/@advert/*"],
       "@advert": ["./components/@advert"],
       "@auth/*": ["./components/@auth/*"],

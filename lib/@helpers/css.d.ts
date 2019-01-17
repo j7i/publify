@@ -1,5 +1,5 @@
 declare module '*.css' {
   // tslint:disable-next-line:no-any
-  let css: any
+  const css: any
   export = css
 }

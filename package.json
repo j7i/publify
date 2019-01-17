@@ -51,6 +51,7 @@
     "react-geosuggest": "^2.9.0",
     "react-jss": "latest",
     "react-moment": "^0.8.4",
+    "react-svg-loader": "^2.1.0",
     "session-file-store": "^1.2.0",
     "tti-polyfill": "^0.2.2"
   },
