@@ -14,14 +14,14 @@ export interface IAdvertListControllerProps {
 
 export interface IAdvertListControllerState {
   filteredAdverts?: IAdvert[]
-  categorie: string
+  category: string
   type: string
   radius?: string
   location?: string
 }
 
 export interface IAdvertListRenderProps extends IAdvertListControllerState {
-  handleCategorieFilter: (categorie: string) => void
+  handleCategorieFilter: (category: string) => void
   handleTypeFilter: (type: string) => void
 }
 
@@ -30,6 +30,5 @@ export interface IAdvertFilterProps {
 }
 
 export interface IAdvertFilterState {
-  selectedCategorie: string
-  advertTypeSelection: string
+  isFilterAreaVisible: boolean
 }

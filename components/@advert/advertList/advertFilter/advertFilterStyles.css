@@ -3,17 +3,51 @@
   z-index: 1;
   top: 0;
   width: 100%;
+
+  @media (max-width: $breakpointXsMax) {
+    width: calc(100% + 24px);
+    margin: 0 -12px;
+  }
 }
 
 .filterWrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  padding: $spacingSemi $spacingBase $spacingHalf;
+  padding: $spacingSemi $spacingBase $spacingSemi;
   margin: 0 auto;
   background-color: $white;
   border-radius: 2px;
   box-shadow: 0 3px 1px -2px $blackAlpha15, 0 2px 2px 0 $blackAlpha1, 0 1px 5px 0 $blackAlpha07;
+
+  @media (max-width: $breakpointSmMax) {
+    flex-direction: column;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    position: fixed;
+    bottom: 56px;
+    min-height: 430px;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+    box-shadow: 0 -2px 8px 0 $blackAlpha1, 0 -1px 12px 0 $blackAlpha07;
+  }
+}
+
+.filterToggle {
+  position: absolute;
+  z-index: 10;
+  bottom: 56px;
+  width: calc(100% - 24px);
+  margin-bottom: 16px;
+
+  button {
+    width: 100%;
+  }
+
+  @media (min-width: $breakpointSmMin) {
+    display: none;
+  }
 }
 
 .filterPrimary,
@@ -24,12 +58,137 @@
 .filterPrimary {
   display: flex;
   flex-direction: row;
+  margin-right: $spacingBase;
+  padding-top: 1px;
+
+  @media (max-width: $breakpointSmMax) {
+    justify-content: center;
+    border-bottom: 1px solid $grey7;
+
+    .selectionArea {
+      margin-bottom: $spacingBase;
+    }
+  }
 }
 
-.filterSecondary {
-  margin-top: $spacingBase;
+.selectionArea {
+  display: flex;
+  width: 100%;
+  margin: $spacingBase 0;
+  border-radius: 4px;
+  max-width: 1024px;
 
-  .categorieChip {
-    margin: 0 $spacingSmall $spacingSmall 0;
+  @media (max-width: $breakpointSmMax) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 740px) {
+    border: 1px solid $grey5;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 4px;
+    margin-bottom: $spacingHalf;
+  }
+}
+
+.selection {
+  position: relative;
+  display: flex;
+  padding: 0 $spacingBase $spacingSemi;
+  border-left: 1px solid $grey5;
+  border-top: 1px solid $grey5;
+  border-bottom: 1px solid $grey5;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: $grey1;
+  flex: 1 1 0;
+
+  &:first-of-type {
+    border-radius: 4px 0 0 4px;
+
+    .advertCategorySelectionTitle {
+      position: static;
+      margin-top: $spacingBase;
+    }
+
+    &.selectionActive {
+      .advertCategorySelectionTitle {
+        color: $white;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &:last-of-type {
+    border-radius: 0 4px 4px 0;
+    border-right: 1px solid $grey5;
+  }
+
+  &:not(.selectionActive):hover {
+    background-color: $grey3;
+  }
+
+  @media (max-width: $breakpointSmMax) {
+    font-size: $fontSizeSmall;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    padding: 0 $spacingSemi $spacingSemi;
+  }
+
+  @media (max-width: 740px) {
+    flex: 0 0 33.33%;
+    flex-direction: column;
+    border-top: none;
+    border-bottom: 1px solid $grey5;
+
+    &:first-of-type {
+      border-radius: 4px 0 0 0;
+    }
+
+    &:nth-of-type(3) {
+      border-radius: 0 4px 0 0;
+    }
+
+    &:nth-of-type(7) {
+      border-radius: 0 0 0 4px;
+    }
+
+    &:nth-of-type(9) {
+      border-radius: 0 0 4px 0;
+      border-right: none;
+    }
+
+    .advertCategorySelectionTitle {
+      position: static;
+      margin-top: $spacingBase;
+    }
+  }
+}
+
+.advertCategorySelectionTitle {
+  position: absolute;
+  color: $black;
+  margin-top: $spacingHuge;
+}
+
+.advertTypeSelectionTitle {
+  padding-top: $spacingBase;
+}
+
+.selectionActive {
+  background-color: $primary;
+  color: $white;
+  border-color: $primary;
+
+  & + .selection {
+    border-left-color: $primary;
+  }
+
+  .advertTypeSelectionTitle,
+  .advertCategorySelectionTitle {
+    color: $white;
+    font-weight: 600;
   }
 }

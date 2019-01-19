@@ -1,5 +1,4 @@
-import amber from '@material-ui/core/colors/amber'
-import indigo from '@material-ui/core/colors/indigo'
+import { lime, teal } from '@material-ui/core/colors'
 import { createGenerateClassName, createMuiTheme } from '@material-ui/core/styles'
 import { SheetsRegistry } from 'jss'
 import { ICreatePageContext } from './types'
@@ -9,14 +8,14 @@ import { ICreatePageContext } from './types'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: indigo[300],
-      main: indigo[500],
-      dark: indigo[700]
+      light: teal[300],
+      main: teal[500],
+      dark: teal[700]
     },
     secondary: {
-      light: amber[300],
-      main: amber[500],
-      dark: amber[700]
+      light: lime[100],
+      main: lime[300],
+      dark: lime[600]
     }
   },
   typography: {

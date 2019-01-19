@@ -2,20 +2,23 @@
 
 .advertList {
   display: flex;
-  overflow: hidden;
+  flex-direction: column;
   height: calc(100vh - 64px);
-  flex-direction: row;
-
-  @media (min-width: $breakpointSmMin) {
-    padding: $spacingBase 0;
-  }
 
   @media (max-width: $breakpointXsMax) {
-    padding: $spacingSemi;
+    height: calc(100vh - 56px);
+    padding: $spacingSemi $spacingSemi 0;
   }
 }
 
-.advertListArea {
+.advertResults {
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  flex-direction: row;
+}
+
+.advertListItemArea {
   display: flex;
   overflow: scroll;
   width: 100%;
@@ -40,6 +43,10 @@
   margin: 0 auto;
   lost-utility: clearfix;
   lost-column: 1/1;
+
+  @media (max-width: $breakpointSmMax) {
+    margin-bottom: 52px;
+  }
 }
 
 .advertMap {

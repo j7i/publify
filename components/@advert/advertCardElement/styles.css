@@ -42,6 +42,34 @@
 }
 /* stylelint-enable declaration-no-important */
 
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $spacingBase;
+
+  & > div {
+    cursor: pointer;
+  }
+
+  @media (max-width: $breakpointXsMax) {
+    margin-top: $spacingSmall;
+  }
+}
+
+.categorie {
+  margin-right: $spacingSmall;
+  font-weight: 600;
+  font-size: $fontSizeBase;
+
+  &:only-of-type {
+    margin-right: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
 .cardContentDescription {
   margin-top: $spacingBase;
 
@@ -81,47 +109,4 @@
       right: 14px;
     }
   }
-}
-
-.media {
-  object-fit: cover;
-  background-color: $primary;
-  color: $white;
-}
-
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: $spacingBase;
-
-  & > div {
-    cursor: pointer;
-  }
-
-  @media (max-width: $breakpointXsMax) {
-    margin-top: $spacingSmall;
-  }
-}
-
-.categorie {
-  margin-right: $spacingSmall;
-  font-weight: 600;
-  font-size: $fontSizeBase;
-
-  &:only-of-type {
-    margin-right: 0;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-  }
-}
-
-.grow {
-  flex-grow: 1;
-}
-
-.preventMaterialAddingClassnameToNextLinkError {
-  position: absolute;
-  padding: 7px 20px;
 }

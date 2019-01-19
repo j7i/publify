@@ -1,17 +1,18 @@
 import { FirebaseCollection, firestore } from '@config'
+import { AdvertType } from '@helpers'
 import { PureComponent, ReactNode } from 'react'
 import { IAdvertListControllerProps, IAdvertListControllerState, IAdvertListRenderProps } from '../types'
 
 export class AdvertListController extends PureComponent<IAdvertListControllerProps, IAdvertListControllerState> {
   public state: IAdvertListControllerState = {
-    categorie: 'Alle',
-    type: 'Alle'
+    category: 'Alle',
+    type: AdvertType.DEMAND
   }
 
-  public handleCategorieFilter = (categorie: string): void => {
+  public handleCategorieFilter = (category: string): void => {
     this.setState(
       {
-        categorie
+        category
       },
       () => this.getAdverts()
     )
@@ -43,19 +44,15 @@ export class AdvertListController extends PureComponent<IAdvertListControllerPro
     let adverts: any[] = []
     let advertsRef = firestore.collection(FirebaseCollection.ADVERTS)
     let advertsQuery
-    const { type, categorie } = this.state
+    const { type, category } = this.state
 
-    if (categorie === 'Alle' && type === 'Alle') {
-      advertsQuery = advertsRef.where('published', '==', true)
-    } else if (categorie !== 'Alle' && type === 'Alle') {
-      advertsQuery = advertsRef.where('published', '==', true).where('categories', 'array-contains', categorie)
-    } else if (type !== 'Alle' && categorie === 'Alle') {
+    if (category === 'Alle') {
       advertsQuery = advertsRef.where('published', '==', true).where('type', '==', type)
     } else {
       advertsQuery = advertsRef
         .where('published', '==', true)
         .where('type', '==', type)
-        .where('categories', 'array-contains', categorie)
+        .where('categories', 'array-contains', category)
     }
 
     advertsQuery

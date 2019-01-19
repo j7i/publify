@@ -1,34 +1,40 @@
-import { faBalanceScale, faBroom, faCarSide, faDesktop, faLeaf, faShoppingBasket, faUserTie } from '@fortawesome/free-solid-svg-icons'
+// import { faBalanceScale, faBroom, faCarSide, faDesktop, faLeaf, faShoppingBasket, faUserTie } from '@fortawesome/free-solid-svg-icons'
 import { Categorie } from '@helpers'
 import { ICategorie } from '@user/dashboard/types'
+
+import { AuthoritiesIcon, FinanceIcon, GardenIcon, HouseholdIcon, MultimediaIcon, ShoppingIcon, SpecialIcon, TransportationIcon } from '@core'
 
 export const categorieList: ICategorie[] = [
   {
     name: Categorie.HOUSEHOLD,
-    icon: faBroom
+    icon: HouseholdIcon
   },
   {
     name: Categorie.GARDEN,
-    icon: faLeaf
+    icon: GardenIcon
   },
   {
     name: Categorie.SHOPPING,
-    icon: faShoppingBasket
+    icon: ShoppingIcon
   },
   {
     name: Categorie.FINANCE,
-    icon: faBalanceScale
+    icon: FinanceIcon
   },
   {
     name: Categorie.AUTHORITIES,
-    icon: faUserTie
+    icon: AuthoritiesIcon
   },
   {
     name: Categorie.MULTIMEDIA,
-    icon: faDesktop
+    icon: MultimediaIcon
   },
   {
     name: Categorie.TRANSPORTATION,
-    icon: faCarSide
+    icon: TransportationIcon
+  },
+  {
+    name: Categorie.SPECIAL,
+    icon: SpecialIcon
   }
 ]

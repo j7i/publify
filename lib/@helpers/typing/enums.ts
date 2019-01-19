@@ -4,11 +4,12 @@ export enum _AdvertType {
 }
 
 export enum _Categorie {
-  HOUSEHOLD = 'Haushalt',
-  GARDEN = 'Garten',
-  SHOPPING = 'Einkaufen',
-  FINANCE = 'Finanzen',
-  AUTHORITIES = 'Behörden',
-  MULTIMEDIA = 'PC/Handy',
-  TRANSPORTATION = 'Transport'
+  HOUSEHOLD = 'Household',
+  GARDEN = 'Garden',
+  SHOPPING = 'Shopping',
+  FINANCE = 'Finance',
+  AUTHORITIES = 'Authorities',
+  MULTIMEDIA = 'PC/Mobile',
+  TRANSPORTATION = 'Transport',
+  SPECIAL = 'Special'
 }

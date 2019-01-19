@@ -16,7 +16,7 @@ type JsxOrNull = JSX.Element | null
 export const wrapIcon = (Icon: any, { width = 16, height = 16, className }: IIconProps): JsxOrNull => (
   <Icon width={width} height={height} className={classNames(styles.icon, className)} />
 )
-
+export { IIconProps } from './types'
 export const AuthoritiesIcon: React.SFC<IIconProps> = (props: IIconProps): JsxOrNull => wrapIcon(authorities, props)
 export const FinanceIcon: React.SFC<IIconProps> = (props: IIconProps): JsxOrNull => wrapIcon(finance, props)
 export const GardenIcon: React.SFC<IIconProps> = (props: IIconProps): JsxOrNull => wrapIcon(garden, props)

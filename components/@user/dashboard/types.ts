@@ -1,6 +1,5 @@
 import { IAdvert } from '@advert'
-import { IFormChildProps } from '@core'
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
+import { IFormChildProps, IIconProps } from '@core'
 import { AdvertType } from '@helpers'
 
 export interface IDashboardProps {
@@ -65,7 +64,7 @@ export interface ISelection {
 
 export interface ICategorie {
   name: string
-  icon: IconProp
+  icon?: React.SFC<IIconProps>
 }
 
 export interface IUserImageProps {

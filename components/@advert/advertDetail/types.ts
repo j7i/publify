@@ -1,9 +1,10 @@
 import { ILocation } from '@core'
+import { Categorie } from '@helpers'
 
 export interface IAdvert {
   id: string
   type: string
-  categories: string[]
+  categories: Categorie[]
   title: string
   description: string
   published: boolean

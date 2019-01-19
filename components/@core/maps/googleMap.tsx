@@ -41,6 +41,7 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
   public render(): ReactNode {
     const { selectedLocationName, selectedLocation, initialCenter } = this.state
     const { locations, google, displayMode } = this.props
+    const markerColor = '#009688'
 
     const isFront = displayMode === MapDisplayMode.MULTIPLE_LOCATIONS
     const isForm = displayMode === MapDisplayMode.SINGLE_WITH_SEARCH
@@ -53,9 +54,9 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
           initialValue={isFront ? '' : selectedLocationName}
           onSuggestSelect={this.onSuggestSelect}
           disabled={isDetail}
-          className={classNames({ [styles.hidden]: isDetail })}
+          className={classNames({ [styles.hidden]: isDetail || isFront })}
         />
-        <div className={classNames(styles.map, { [styles.advertDetailMap]: isDetail })}>
+        <div className={classNames(styles.map, { [styles.fullHeightMap]: isDetail || isFront })}>
           <Map
             google={google}
             streetViewControl={false}
@@ -71,9 +72,9 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
           >
             {locations
               ? locations.map((location: ILocation, index: number) => {
-                  return this.renderMarker(location, '#3f51b5', index)
+                  return this.renderMarker(location, markerColor, index)
                 })
-              : this.renderMarker(selectedLocation ? selectedLocation : initialCenter, '#3f51b5')}
+              : this.renderMarker(selectedLocation ? selectedLocation : initialCenter, markerColor)}
           </Map>
         </div>
       </>

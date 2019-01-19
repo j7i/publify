@@ -21,22 +21,24 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
 
           return (
             <div className={styles.advertList}>
-              <section className={styles.advertListArea}>
-                <AdvertFilter advertListRenderProps={advertListRenderProps} />
-                <h1 className={styles.advertListTitle}>Public Adverts</h1>
-                <div className={styles.advertListItems}>
-                  {adverts.length ? (
-                    adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} advert={advert} />)
-                  ) : (
-                    <div>
-                      <p>No adverts available</p>
-                    </div>
-                  )}
-                </div>
-              </section>
-              <aside className={styles.advertMap}>
-                <GoogleMap displayMode={MapDisplayMode.MULTIPLE_LOCATIONS} locations={adverts.map((advert: IAdvert) => advert.location)} />
-              </aside>
+              <AdvertFilter advertListRenderProps={advertListRenderProps} />
+              <div className={styles.advertResults}>
+                <section className={styles.advertListItemArea}>
+                  <h1 className={styles.advertListTitle}>Public Adverts</h1>
+                  <div className={styles.advertListItems}>
+                    {adverts.length ? (
+                      adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} advert={advert} />)
+                    ) : (
+                      <div>
+                        <p>No adverts available</p>
+                      </div>
+                    )}
+                  </div>
+                </section>
+                <aside className={styles.advertMap}>
+                  <GoogleMap displayMode={MapDisplayMode.MULTIPLE_LOCATIONS} locations={adverts.map((advert: IAdvert) => advert.location)} />
+                </aside>
+              </div>
             </div>
           )
         }}

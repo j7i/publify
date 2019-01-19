@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IIconProps } from '@core'
 import { ICategorie, ICategorieProps, ICategorieState } from '@user/dashboard/types'
 import classNames from 'classnames'
-import { PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { categorieList } from './categorieList'
 import styles from './categoriesStyles.css'
 
@@ -57,16 +57,16 @@ export class Categories extends PureComponent<ICategorieProps, ICategorieState> 
     return (
       <>
         <div className={styles.categories}>
-          {categorieList.map((categorie: ICategorie, index: number) => (
+          {categorieList.map((category: ICategorie, index: number) => (
             <div
               key={index}
               onClick={this.handleSelection}
-              data-selection={categorie.name}
-              className={classNames(styles.categorie, { [styles.selected]: this.state.selected[categorie.name] })}
+              data-selection={category.name}
+              className={classNames(styles.categorie, { [styles.selected]: this.state.selected[category.name] })}
             >
               <div className={styles.categorieInner}>
-                <FontAwesomeIcon icon={categorie.icon} size="2x" />
-                <span className={styles.categorieName}>{categorie.name}</span>
+                {category.icon && React.createElement<IIconProps>(category.icon, { width: 36, height: 36, className: styles.categorieIcon })}
+                <span className={styles.categorieName}>{category.name}</span>
               </div>
             </div>
           ))}
