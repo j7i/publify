@@ -83,10 +83,6 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
     this.firestoreChat()
       .collection(FirebaseCollection.CHAT_MESSAGES)
       .add({ ...message })
-      .then(() => {
-        // tslint:disable-next-line:no-console
-        console.log('Message sent')
-      })
       .catch((error: Error) => {
         // tslint:disable-next-line:no-console
         console.error('Error adding message: ', error)
