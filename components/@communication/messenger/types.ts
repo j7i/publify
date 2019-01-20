@@ -1,4 +1,5 @@
 import { IMessage } from '@communication/chat/types'
+import { ReactNode } from 'react'
 
 export interface IMessengerProps {
   user: firebase.User
@@ -7,6 +8,7 @@ export interface IMessengerProps {
 export interface IMessengerState {
   currentChat?: string
   chats: IChat[]
+  notification: ReactNode
 }
 
 export interface IChat {

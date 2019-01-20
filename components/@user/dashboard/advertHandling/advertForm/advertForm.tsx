@@ -75,11 +75,19 @@ export class AdvertForm extends PureComponent<IAdvertFormProps, IAdvertFormState
 
   private handleSubmit = async (values: IFormValues): Promise<void> => {
     const { userInfo, documentToUpdate } = this.props
-    const { id, firstName, lastName } = userInfo
+    const { id, firstName, lastName, imageURL } = userInfo
     const advert = {
       ...values,
       userId: id,
-      fullName: `${firstName} ${lastName}`
+      fullName: `${firstName} ${lastName}`,
+      imageURL
+    }
+
+    if (!values.location) {
+      this.setState({
+        notification: <SnackbarNotification key={Date.now() + Math.random()} message={`Please add a location`} severity={NotificationSeverity.WARNING} />
+      })
+      return Promise.resolve()
     }
 
     if (documentToUpdate) {

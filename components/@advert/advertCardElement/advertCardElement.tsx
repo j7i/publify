@@ -3,8 +3,8 @@ import Link from 'next/link'
 import styles from './styles.css'
 import { IAdvertCardElementProps } from './types'
 
-export const AdvertCardElement = ({ advert, key }: IAdvertCardElementProps): JSX.Element => (
-  <Card className={styles.card} key={key}>
+export const AdvertCardElement = ({ advert, index }: IAdvertCardElementProps): JSX.Element => (
+  <Card className={styles.card} key={index}>
     <Link as={`/detail/${advert.id}`} href={`/detail?id=${advert.id}`}>
       <CardActionArea>
         <CardContent className={styles.cardContent}>
@@ -13,9 +13,9 @@ export const AdvertCardElement = ({ advert, key }: IAdvertCardElementProps): JSX
             <div className={styles.cardContentTeaser}>
               <h2>{advert.title}</h2>
               <div className={styles.categories}>
-                {advert.categories.map((categorie: string, index: number) => (
-                  <span className={styles.categorie} key={index}>
-                    #{categorie}
+                {advert.categories.map((category: string, categoryIndex: number) => (
+                  <span className={styles.category} key={categoryIndex}>
+                    #{category}
                   </span>
                 ))}
               </div>

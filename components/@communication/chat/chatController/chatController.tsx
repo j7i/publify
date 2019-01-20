@@ -1,6 +1,6 @@
 import { FirebaseCollection, firestore } from '@config'
 import { PureComponent, ReactNode } from 'react'
-import { IChatControllerProps, IChatControllerState, IChatRenderProps, IMessage } from '../types'
+import { IChatControllerProps, IChatControllerState, IChatRenderProps, IMemberInfo, IMessage } from '../types'
 
 export class ChatController extends PureComponent<IChatControllerProps, IChatControllerState> {
   public state: IChatControllerState = {
@@ -18,12 +18,22 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
         if (docSnapshot.exists) {
           this.startChatConversation()
         } else if (advertOwnerId) {
+          const memberInfos: IMemberInfo = {
+            [advertOwnerId]: { name: advertOwnerName! },
+            [loggedInUserId]: { name: loggedInUserName }
+          }
+
+          if (advertOwnerImageURL) {
+            memberInfos[advertOwnerId].userImageURL = advertOwnerImageURL
+          }
+
+          if (advertOwnerImageURL) {
+            memberInfos[loggedInUserId].userImageURL = loggedInUserImageURL
+          }
+
           this.firestoreChat()
             .set({
-              memberInfos: {
-                [advertOwnerId]: { name: advertOwnerName, userImageURL: advertOwnerImageURL },
-                [loggedInUserId]: { name: loggedInUserName, userImageURL: loggedInUserImageURL }
-              },
+              memberInfos,
               members: [advertOwnerId, loggedInUserId],
               advertId,
               advertTitle

@@ -27,7 +27,14 @@ export interface IMessage {
   uid: string
   date: IFirestoreTimeStamp
   content: string
-  // status?: MessageStatus
+  memberInfos: IMemberInfo[]
+}
+
+export interface IMemberInfo {
+  [key: string]: {
+    name: string
+    userImageURL?: string
+  }
 }
 
 export interface IChatControllerState {

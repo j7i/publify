@@ -125,10 +125,11 @@
   align-items: flex-start;
   margin-bottom: -32px;
   background-color: $white;
+  border-bottom: 1px solid $grey5;
 
   @media (max-width: $breakpointXsMax) {
     top: 56px;
-    padding: 0 $spacingBase $spacingBig;
+    padding: 0 $spacingBase;
     color: $black;
     align-items: center;
   }
@@ -143,6 +144,7 @@
 
     @media (max-width: $breakpointXsMax) {
       justify-content: center;
+      padding-left: $spacingBase;
     }
 
     .name {
@@ -180,12 +182,14 @@
 .content {
   flex-grow: 1;
   background-color: $white;
-  padding: $spacingHuge $spacingHuge $spacingMedium;
+  padding: 0 $spacingHuge $spacingMedium;
   border-radius: 0 0 0 8px;
   margin-top: -20px;
 
   @media (max-width: $breakpointXsMax) {
     margin-top: $spacingMassive;
+    padding: $spacingBase;
+    padding-top: $spacingMassive;
   }
 
   .description {

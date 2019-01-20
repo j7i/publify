@@ -49,8 +49,7 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                   </div>
                 )}
                 <div className={styles.personDetails}>
-                  <h2 className={styles.name}>{title}</h2>
-                  {/* <address className={styles.adress}>Some fancy Adress, 8000 Zurich</address> */}
+                  <h2 className={styles.name}>{fullName}</h2>
                   <div className={styles.categories}>
                     {categories.map((categorie: string, index: number) => (
                       <Chip key={index} className={styles.categorie} label={categorie} variant="outlined" color="primary" />
@@ -60,7 +59,9 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                 <div className={styles.categories} />
               </section>
               <section className={styles.content}>
+                <h2>{title}</h2>
                 <div className={styles.description}>{description}</div>
+                {/* <address className={styles.adress}>Some fancy Adress, 8000 Zurich</address> */}
 
                 <div className={styles.callToAction}>
                   <UserSpecificContent>

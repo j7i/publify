@@ -1,4 +1,5 @@
 import { FirebaseCollection, FirebaseStorage, firestore } from '@config'
+import { NotificationSeverity, SnackbarNotification } from '@core'
 import { Avatar, CircularProgress } from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add'
 import classNames from 'classnames'
@@ -8,26 +9,29 @@ import FileUploader from 'react-firebase-file-uploader'
 import { IUserImageProps, IUserImageState } from '../types'
 import styles from './userImageStyles.css'
 
+/**
+ * Provides functionality to show and upload a userImage
+ * {@link https://github.com/fris-fruitig/react-firebase-file-uploader}
+ */
 export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
   public state: IUserImageState = {
     isUploading: false,
-    progress: 0
+    progress: 0,
+    notification: null
   }
 
   public handleUploadStart = (): void => this.setState({ isUploading: true, progress: 0 })
   public handleProgress = (progress: number): void => this.setState({ progress })
   public handleUploadError = (error: Error): void => {
     this.setState({ isUploading: false })
-    // tslint:disable-next-line:no-console
-    console.error(error)
+    this.setState({
+      notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+    })
   }
 
   public render(): JSX.Element {
     const { userImageURL } = this.props
     const { isUploading, progress, uploadedProfileImageURL } = this.state
-
-    // file-uploader:
-    // https://github.com/fris-fruitig/react-firebase-file-uploader
 
     return (
       <div className={styles.userImageArea}>
@@ -67,13 +71,26 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
       )
   }
 
-  // batched writes:
-  // https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes
-
+  /**
+   * Committing a batch of writes to update the userImageUrl in all relevant files
+   * {@link https://firebase.google.com/docs/firestore/manage-data/transactions#batched-writes}
+   */
   private updateUserImageUrl = async (url: string): Promise<void> => {
     const { userId } = this.props
     const documentsToUpdate = firestore.batch()
     const userRef = firestore.collection(FirebaseCollection.USERS).doc(userId)
+
+    const showErrorMessage = (error: Error): void => {
+      this.setState({
+        notification: (
+          <SnackbarNotification
+            key={Date.now() + Math.random()}
+            message={`Something went wrong with uploading your image: ${error.message}`}
+            severity={NotificationSeverity.ERROR}
+          />
+        )
+      })
+    }
 
     documentsToUpdate.update(userRef, { imageURL: url })
 
@@ -105,21 +122,21 @@ export class UserImage extends PureComponent<IUserImageProps, IUserImageState> {
         updateUserImages()
       })
       .catch((error: Error) => {
-        // tslint:disable-next-line:no-console
-        console.error('Error updating userImage: ', error)
+        showErrorMessage(error)
       })
 
     const updateUserImages = (): void => {
       documentsToUpdate
         .commit()
         .then(() => {
-          // TODO: Notification - your adverts now have an image
-          // tslint:disable-next-line:no-console
-          console.log('batch commited to update userImageURLs')
+          this.setState({
+            notification: (
+              <SnackbarNotification key={Date.now() + Math.random()} message={'Successfully updated your image'} severity={NotificationSeverity.SUCCESS} />
+            )
+          })
         })
         .catch((error: Error) => {
-          // tslint:disable-next-line:no-console
-          console.error('Error updating userImage: ', error)
+          showErrorMessage(error)
         })
     }
   }

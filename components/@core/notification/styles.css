@@ -11,6 +11,7 @@
 
 .warning {
   background-color: $warning !important;
+  color: $black !important;
 }
 
 .info {

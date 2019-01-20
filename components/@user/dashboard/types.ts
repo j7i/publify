@@ -82,4 +82,5 @@ export interface IUserImageState {
   isUploading: boolean
   progress: number
   uploadedProfileImageURL?: string
+  notification: ReactNode
 }
