@@ -125,13 +125,13 @@
   align-items: flex-start;
   margin-bottom: -32px;
   background-color: $white;
-  border-bottom: 1px solid $grey5;
 
   @media (max-width: $breakpointXsMax) {
     top: 56px;
     padding: 0 $spacingBase;
     color: $black;
     align-items: center;
+    border-bottom: 1px solid $grey5;
   }
 
   .personDetails {

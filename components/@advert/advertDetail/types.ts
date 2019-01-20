@@ -10,7 +10,7 @@ export interface IAdvert {
   published: boolean
   userId: string
   fullName: string
-  userImageURL?: string
+  userImageURL?: string | null
   location: ILocation
 }
 

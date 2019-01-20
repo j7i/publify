@@ -1,3 +1,4 @@
+import { IAdvert } from '@advert'
 import { FirebaseCollection, firestore } from '@config'
 import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input, MapDisplayMode, NotificationSeverity, SnackbarNotification } from '@core'
 import { Button } from '@material-ui/core'
@@ -76,11 +77,16 @@ export class AdvertForm extends PureComponent<IAdvertFormProps, IAdvertFormState
   private handleSubmit = async (values: IFormValues): Promise<void> => {
     const { userInfo, documentToUpdate } = this.props
     const { id, firstName, lastName, imageURL } = userInfo
-    const advert = {
+    // tslint:disable-next-line:no-any unsafe spread
+    const advert: any | IAdvert = {
       ...values,
       userId: id,
       fullName: `${firstName} ${lastName}`,
-      imageURL
+      userImageURL: null
+    }
+
+    if (imageURL) {
+      advert.userImageURL = imageURL || null
     }
 
     if (!values.location) {

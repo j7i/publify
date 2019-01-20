@@ -93,7 +93,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
     this.setState({ isSignUp: !this.state.isSignUp })
   }
 
-  // private handleLogin = (): void => {
+  // private handleSubmit = (): void => {
   //   firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
   // }
 
@@ -116,6 +116,9 @@ export class SignIn extends PureComponent<{}, ISignInState> {
                 initials: firstName[0] + lastName[0],
                 email
               })
+          })
+          .then(() => {
+            Router.push('/dashboard')
           })
           .catch((error: firebase.auth.Error) => {
             // Handle Errors here.

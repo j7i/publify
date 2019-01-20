@@ -19,15 +19,15 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
           this.startChatConversation()
         } else if (advertOwnerId) {
           const memberInfos: IMemberInfo = {
-            [advertOwnerId]: { name: advertOwnerName! },
-            [loggedInUserId]: { name: loggedInUserName }
+            [advertOwnerId]: { name: advertOwnerName!, userImageURL: null },
+            [loggedInUserId]: { name: loggedInUserName, userImageURL: null }
           }
 
           if (advertOwnerImageURL) {
             memberInfos[advertOwnerId].userImageURL = advertOwnerImageURL
           }
 
-          if (advertOwnerImageURL) {
+          if (loggedInUserImageURL) {
             memberInfos[loggedInUserId].userImageURL = loggedInUserImageURL
           }
 

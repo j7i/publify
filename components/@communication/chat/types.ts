@@ -6,7 +6,7 @@ export interface IChatProps {
   advertTitle?: string
   advertOwnerId?: string
   advertOwnerName?: string
-  advertOwnerImageURL?: string
+  advertOwnerImageURL?: string | null
   chatId?: string
 }
 
@@ -33,7 +33,7 @@ export interface IMessage {
 export interface IMemberInfo {
   [key: string]: {
     name: string
-    userImageURL?: string
+    userImageURL: string | null
   }
 }
 

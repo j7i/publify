@@ -12,6 +12,6 @@ export enum PathName {
   START = 'start',
   DASHBOARD = 'dashboard',
   MESSAGES = 'messages',
-  SETTINGS = 'settings',
+  ACCOUNT = 'account',
   DETAIL = 'detail'
 }
