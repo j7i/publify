@@ -1,0 +1,43 @@
+.userSettings {
+  display: flex;
+  padding: $spacingBase;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.divider {
+  border: 1px solid $grey4;
+  margin: $spacingBase 0;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.settingsForm {
+  width: 100%;
+}
+
+.settingsSubmit {
+  float: right;
+}
+
+.accountActions {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: $breakpointXsMax) {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    button:first-of-type {
+      margin-top: $spacingBase;
+      order: 2;
+    }
+  }
+}

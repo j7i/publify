@@ -43,6 +43,9 @@ export class InternalNavigation extends React.PureComponent<INavigationProps, IN
                         <Link href="/messages">
                           <Button color="inherit">Messages</Button>
                         </Link>
+                        <Link href="/settings">
+                          <Button color="inherit">Settings</Button>
+                        </Link>
                       </>
                     )}
                     <Link href="/login">
@@ -61,7 +64,7 @@ export class InternalNavigation extends React.PureComponent<INavigationProps, IN
             <BottomNavigationAction label="Start" value={PathName.START} icon={<PageviewIcon />} />
             <BottomNavigationAction label="Dashboard" value={PathName.DASHBOARD} icon={<DashboardIcon />} />
             <BottomNavigationAction label="Messages" value={PathName.MESSAGES} icon={<ChatIcon />} />
-            <BottomNavigationAction label="Login" value={PathName.LOGIN} icon={<AccountBoxIcon />} />
+            <BottomNavigationAction label="Settings" value={PathName.SETTINGS} icon={<AccountBoxIcon />} />
           </BottomNavigation>
         </div>
       </div>

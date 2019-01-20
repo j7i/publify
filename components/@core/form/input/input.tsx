@@ -13,17 +13,6 @@ export class Input extends PureComponent<IInputProps> {
       value = values[name]
     }
 
-    // switch (type) {
-    //   case 'email':
-    //     validityHint = `Please type in a valid Email`
-    //     break
-    //   case 'password':
-    //     validityHint = 'Needs to have at least 8 characters'
-    //     break
-    //   default:
-    //     validityHint = 'This field seems invalid'
-    // }
-
     return (
       <TextField
         id={id ? id : name}
