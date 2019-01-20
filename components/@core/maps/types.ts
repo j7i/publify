@@ -1,4 +1,5 @@
 import { ProvidedProps } from 'google-maps-react'
+import { ReactNode } from 'react'
 import { MapDisplayMode } from './enums'
 
 export interface IGoogleMapInternalProps extends ProvidedProps {
@@ -12,6 +13,7 @@ export interface IGoogleMapInternalState {
   initialCenter: ILocation
   selectedLocationName: string
   selectedLocation?: ILocation
+  notification?: ReactNode
 }
 
 export interface ICustomMarkerProps extends google.maps.MarkerOptions, google.maps.Symbol {

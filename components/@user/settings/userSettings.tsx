@@ -1,7 +1,6 @@
 import { handleLogout } from '@auth'
 import { firebaseApp } from '@config'
-import { Form, IFormChildProps, Input, SnackbarNotification } from '@core'
-import { NotificationSeverity } from '@core/notification/enums'
+import { Form, IFormChildProps, Input, NotificationSeverity, SnackbarNotification } from '@core'
 import { Button } from '@material-ui/core'
 import { UserImage } from '@user/dashboard/userImage/userImage'
 import { PureComponent } from 'react'

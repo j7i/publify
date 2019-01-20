@@ -1,6 +1,7 @@
 import { IAdvert } from '@advert'
 import { IFormChildProps, IIconProps } from '@core'
 import { AdvertType } from '@helpers'
+import { ReactNode } from 'react'
 
 export interface IDashboardProps {
   user: firebase.User
@@ -48,6 +49,11 @@ export interface IAdvertFormProps {
   initialValues?: IAdvert
   advertType?: AdvertType
   userInfo: IUserInfo
+}
+
+export interface IAdvertFormState {
+  notification: ReactNode
+  documentToUpdate?: string
 }
 
 export interface ICategorieState {

@@ -21,7 +21,7 @@ export class SnackbarNotification extends PureComponent<INotificationProps> {
             vertical: 'bottom',
             horizontal: 'center'
           }}
-          open={this.state.open}
+          open={open}
           autoHideDuration={6000}
         >
           <SnackbarContent

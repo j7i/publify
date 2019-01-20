@@ -1,54 +1,60 @@
 import { FirebaseCollection, firestore } from '@config'
-import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input, MapDisplayMode } from '@core'
+import { Checkbox, Form, GoogleMap, IFormChildProps, IFormValues, Input, MapDisplayMode, NotificationSeverity, SnackbarNotification } from '@core'
 import { Button } from '@material-ui/core'
-import { IAdvertFormProps } from '@user/dashboard/types'
+import { IAdvertFormProps, IAdvertFormState } from '@user/dashboard/types'
 import classNames from 'classnames'
-import Router from 'next/router'
 import { PureComponent } from 'react'
 import styles from './advertFormStyles.css'
 import { Categories } from './categories/categories'
 
-export class AdvertForm extends PureComponent<IAdvertFormProps> {
-  public render(): JSX.Element {
-    const { initialValues, documentToUpdate, advertType, userInfo } = this.props
-    return (
-      <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} userInfo={userInfo} className={styles.advertForm}>
-        {(formChildProps: IFormChildProps): JSX.Element => (
-          <>
-            <div className={styles.advertFormAreas}>
-              <div className={styles.advertFormMainFields}>
-                <h2>Categories</h2>
-                <Categories formChildProps={formChildProps} />
-                <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
-                <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
-                <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
-              </div>
-              <div className={styles.advertFormLocation}>
-                <h2>Location</h2>
-                <GoogleMap
-                  displayMode={MapDisplayMode.SINGLE_WITH_SEARCH}
-                  handleLocationInput={formChildProps.handleLocation}
-                  initialLocation={initialValues && initialValues.location}
-                />
-              </div>
-            </div>
-
-            <div className={classNames(styles.advertFormActions, { [styles.singleActionButton]: !documentToUpdate })}>
-              <Checkbox name="published" label="Published" formChildProps={formChildProps} />
-              <div className={styles.advertFormActionButtons}>
-                {documentToUpdate && <Button onClick={this.handleDelete}>Delete</Button>}
-                <Button type="submit" variant="contained" color="primary">
-                  {documentToUpdate ? `Update` : `Create new`}
-                </Button>
-              </div>
-            </div>
-          </>
-        )}
-      </Form>
-    )
+export class AdvertForm extends PureComponent<IAdvertFormProps, IAdvertFormState> {
+  public state: IAdvertFormState = {
+    notification: null,
+    documentToUpdate: this.props.documentToUpdate
   }
 
-  // tslint:disable:no-any no-console
+  public render(): JSX.Element {
+    const { initialValues, advertType, userInfo } = this.props
+    const { notification, documentToUpdate } = this.state
+    return (
+      <>
+        <Form onSubmit={this.handleSubmit} initialValues={initialValues} advertType={advertType} userInfo={userInfo} className={styles.advertForm}>
+          {(formChildProps: IFormChildProps): JSX.Element => (
+            <>
+              <div className={styles.advertFormAreas}>
+                <div className={styles.advertFormMainFields}>
+                  <h2>Categories</h2>
+                  <Categories formChildProps={formChildProps} />
+                  <h2 className={styles.advertFormDescriptionTitle}>Describe your Advert</h2>
+                  <Input required type={'text'} name="title" label={'Title'} formChildProps={formChildProps} />
+                  <Input required type={'text'} multiline name="description" label={'Description'} formChildProps={formChildProps} />
+                </div>
+                <div className={styles.advertFormLocation}>
+                  <h2>Location</h2>
+                  <GoogleMap
+                    displayMode={MapDisplayMode.SINGLE_WITH_SEARCH}
+                    handleLocationInput={formChildProps.handleLocation}
+                    initialLocation={initialValues && initialValues.location}
+                  />
+                </div>
+              </div>
+
+              <div className={classNames(styles.advertFormActions, { [styles.singleActionButton]: !documentToUpdate })}>
+                <Checkbox name="published" label="Published" formChildProps={formChildProps} />
+                <div className={styles.advertFormActionButtons}>
+                  {documentToUpdate && <Button onClick={this.handleDelete}>Delete</Button>}
+                  <Button type="submit" variant="contained" color="primary">
+                    {documentToUpdate ? `Update` : `Create new`}
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </Form>
+        {notification && notification}
+      </>
+    )
+  }
 
   private handleDelete = (): void => {
     const { documentToUpdate } = this.props
@@ -58,11 +64,12 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
       .doc(documentToUpdate)
       .delete()
       .then(() => {
-        console.log('Document deleted with ID: ', documentToUpdate)
-        Router.push('/dashboard')
+        window.location.reload()
       })
-      .catch((error: any) => {
-        console.error('Error deleting document: ', error)
+      .catch((error: Error) => {
+        this.setState({
+          notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+        })
       })
   }
 
@@ -83,11 +90,14 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
           ...advert
         })
         .then(() => {
-          console.log('Document updated with ID: ', documentToUpdate)
-          Router.push('/dashboard')
+          this.setState({
+            notification: <SnackbarNotification key={Date.now() + Math.random()} message={`Successfully updated`} severity={NotificationSeverity.SUCCESS} />
+          })
         })
-        .catch((error: any) => {
-          console.error('Error updating document: ', error)
+        .catch((error: Error) => {
+          this.setState({
+            notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+          })
         })
     } else {
       firestore
@@ -95,12 +105,18 @@ export class AdvertForm extends PureComponent<IAdvertFormProps> {
         .add({
           ...advert
         })
-        .then((docRef: any) => {
-          console.log('Document written with ID: ', docRef.id)
-          Router.push('/dashboard')
+        .then((docRef: firebase.firestore.DocumentReference) => {
+          this.setState({
+            notification: (
+              <SnackbarNotification key={Date.now() + Math.random()} message={`Awesome, successfully created`} severity={NotificationSeverity.SUCCESS} />
+            ),
+            documentToUpdate: docRef.id
+          })
         })
-        .catch((error: any) => {
-          console.error('Error adding document: ', error)
+        .catch((error: Error) => {
+          this.setState({
+            notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+          })
         })
     }
   }

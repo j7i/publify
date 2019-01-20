@@ -1,3 +1,4 @@
+import { NotificationSeverity, SnackbarNotification } from '@core'
 import classNames from 'classnames'
 import { GoogleApiWrapper, Map, MapProps, Marker } from 'google-maps-react'
 import getConfig from 'next/config'
@@ -22,7 +23,8 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
   public state: IGoogleMapInternalState = {
     selectedLocationName: '',
     radius: 14,
-    initialCenter: this.props.initialLocation || defaultLocation
+    initialCenter: this.props.initialLocation || defaultLocation,
+    notification: null
   }
 
   public componentDidMount(): void {
@@ -33,8 +35,9 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
     }
 
     if (displayMode === MapDisplayMode.SINGLE_WITH_SEARCH) {
-      const location = initialLocation ? initialLocation : defaultLocation
-      this.setLocationName(location)
+      if (initialLocation) {
+        this.setLocationName(initialLocation)
+      }
     }
   }
 
@@ -49,13 +52,7 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
 
     return (
       <>
-        <Geosuggest
-          placeholder={isFront ? 'Search for locations' : 'Add your location'}
-          initialValue={isFront ? '' : selectedLocationName}
-          onSuggestSelect={this.onSuggestSelect}
-          disabled={isDetail}
-          className={classNames({ [styles.hidden]: isDetail || isFront })}
-        />
+        {isForm && <Geosuggest placeholder={'Type to add your location...'} initialValue={selectedLocationName} onSuggestSelect={this.onSuggestSelect} />}
         <div className={classNames(styles.map, { [styles.fullHeightMap]: isDetail || isFront })}>
           <Map
             google={google}
@@ -131,9 +128,11 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
           return `Your adress could not be recognized`
         }
       } else {
-        // TODO: Notification
-        window.alert('Geocoder failed due to: ' + status)
-        return 'Something went wrong'
+        this.setState({
+          notification: (
+            <SnackbarNotification key={Date.now() + Math.random()} message={`Geocoder failed due to: ${status}`} severity={NotificationSeverity.ERROR} />
+          )
+        })
       }
     })
   }
@@ -148,13 +147,20 @@ class GoogleMapInternal extends PureComponent<IGoogleMapInternalProps, IGoogleMa
       const {
         location: { lat, lng }
       } = place
+      const { handleLocationInput } = this.props
+
+      const selectedLocation = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng)
+      }
 
       this.setState({
-        selectedLocation: {
-          lat: parseFloat(lat),
-          lng: parseFloat(lng)
-        }
+        selectedLocation
       })
+
+      if (handleLocationInput) {
+        handleLocationInput(selectedLocation)
+      }
     }
   }
 
