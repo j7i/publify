@@ -117,14 +117,7 @@ export class SignIn extends PureComponent<{}, ISignInState> {
                 email
               })
           })
-          .then(() => {
-            Router.push('/dashboard')
-          })
           .catch((error: firebase.auth.Error) => {
-            // Handle Errors here.
-            // const errorCode = error.code
-            // const errorMessage = error.message
-            // ...
             // tslint:disable-next-line:no-console
             console.log(error)
           })

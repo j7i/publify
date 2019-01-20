@@ -1,11 +1,13 @@
 import { UserSpecificContent } from '@auth'
 import { Chat } from '@communication'
 import { GoogleMap, MapDisplayMode } from '@core'
+import { PathName } from '@layout/navigation/types'
 import { AppBar, Avatar, Button, Chip, IconButton, Toolbar } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace'
 import { IUserInfo } from '@user'
 import classNames from 'classnames'
+import Link from 'next/link'
 import { PureComponent, ReactNode } from 'react'
 import styles from './styles.css'
 import { IAdvertDetailProps, IAdvertDetailState } from './types'
@@ -51,9 +53,10 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                 <div className={styles.personDetails}>
                   <h2 className={styles.name}>{fullName}</h2>
                   <div className={styles.categories}>
-                    {categories.map((categorie: string, index: number) => (
-                      <Chip key={index} className={styles.categorie} label={categorie} variant="outlined" color="primary" />
-                    ))}
+                    {categories &&
+                      categories.map((categorie: string, index: number) => (
+                        <Chip key={index} className={styles.categorie} label={categorie} variant="outlined" color="primary" />
+                      ))}
                   </div>
                 </div>
                 <div className={styles.categories} />
@@ -72,7 +75,13 @@ export class AdvertDetail extends PureComponent<IAdvertDetailProps, IAdvertDetai
                         </Button>
                       ) : userInfo ? (
                         <Chip label={`This is yours, ${userInfo.firstName}`} variant="default" color="secondary" />
-                      ) : null
+                      ) : (
+                        <Link href={`/${PathName.ACCOUNT}`}>
+                          <Button variant="contained" color="primary" onClick={this.toggleConversation}>
+                            Login to write a message
+                          </Button>
+                        </Link>
+                      )
                     }}
                   </UserSpecificContent>
                 </div>

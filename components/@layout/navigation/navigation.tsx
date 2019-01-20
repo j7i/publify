@@ -37,18 +37,21 @@ export class InternalNavigation extends React.PureComponent<INavigationProps, IN
                   <>
                     {user && (
                       <>
-                        <Link href={PathName.DASHBOARD}>
+                        <Link href={`/${PathName.START}`}>
+                          <Button color="inherit">Adverts</Button>
+                        </Link>
+                        <Link href={`/${PathName.DASHBOARD}`}>
                           <Button color="inherit">Dashboard</Button>
                         </Link>
-                        <Link href={PathName.MESSAGES}>
+                        <Link href={`/${PathName.MESSAGES}`}>
                           <Button color="inherit">Messages</Button>
                         </Link>
-                        <Link href={PathName.ACCOUNT}>
+                        <Link href={`/${PathName.ACCOUNT}`}>
                           <Button color="inherit">Settings</Button>
                         </Link>
                       </>
                     )}
-                    <Link href={PathName.ACCOUNT}>
+                    <Link href={`/${PathName.ACCOUNT}`}>
                       <Button onClick={user && handleLogout} color="inherit">
                         {user ? 'Logout' : 'Login'}
                       </Button>

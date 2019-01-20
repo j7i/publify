@@ -27,7 +27,7 @@ export class AdvertList extends PureComponent<IAdvertListProps, IAdvertListState
                   <h1 className={styles.advertListTitle}>Public Adverts</h1>
                   <div className={styles.advertListItems}>
                     {adverts.length ? (
-                      adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} advert={advert} />)
+                      adverts.map((advert: IAdvert, index: number) => <AdvertCardElement key={index} index={index} advert={advert} />)
                     ) : (
                       <div>
                         <p>No adverts available</p>

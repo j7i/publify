@@ -27,6 +27,7 @@
   max-width: 400px;
   min-width: 300px;
   background-color: $white;
+  overflow: auto;
 
   .chatListItem {
     &[class*='selected'] {
