@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import { IUserInfo } from '../dashboard'
 
 export interface IUserSettingsProps {
@@ -5,8 +6,7 @@ export interface IUserSettingsProps {
 }
 
 export interface IUserSettingsState {
-  firstName: string
-  lastName: string
+  notification?: ReactNode
 }
 
 export interface IUserSettingsValues {

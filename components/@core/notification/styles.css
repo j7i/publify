@@ -1,0 +1,22 @@
+.notification {
+  display: flex;
+  align-items: center;
+  color: $white;
+}
+
+/* stylelint-disable declaration-no-important */
+.error {
+  background-color: $error !important;
+}
+
+.warning {
+  background-color: $warning !important;
+}
+
+.info {
+  background-color: $primary !important;
+}
+
+.success {
+  background-color: $success !important;
+}

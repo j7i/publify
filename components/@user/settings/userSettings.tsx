@@ -1,22 +1,24 @@
 import { handleLogout } from '@auth'
 import { firebaseApp } from '@config'
-import { Form, IFormChildProps, Input } from '@core'
+import { Form, IFormChildProps, Input, SnackbarNotification } from '@core'
+import { NotificationSeverity } from '@core/notification/enums'
 import { Button } from '@material-ui/core'
 import { UserImage } from '@user/dashboard/userImage/userImage'
 import { PureComponent } from 'react'
 import styles from './styles.css'
 import { IUserSettingsProps, IUserSettingsState, IUserSettingsValues } from './types'
 
-export class UserSettings extends PureComponent<IUserSettingsProps> {
+export class UserSettings extends PureComponent<IUserSettingsProps, IUserSettingsState> {
   public state: IUserSettingsState = {
-    firstName: this.props.userInfo.firstName,
-    lastName: this.props.userInfo.lastName
+    notification: null
   }
 
   public render(): JSX.Element {
     const { id, imageURL } = this.props.userInfo
     const { firstName, lastName, email } = this.props.userInfo
     const initialValues = { firstName, lastName, email }
+
+    const { notification } = this.state
 
     return (
       <section className={styles.userSettings}>
@@ -40,10 +42,11 @@ export class UserSettings extends PureComponent<IUserSettingsProps> {
           <Button className={styles.signInUpLogoutButton} variant="text" color="default" type="button" onClick={this.deleteUser}>
             Delete your account
           </Button>
-          <Button className={styles.signInUpLogoutButton} variant="flat" color="primary" type="button" onClick={handleLogout}>
+          <Button className={styles.signInUpLogoutButton} variant="text" color="primary" type="button" onClick={handleLogout}>
             Logout
           </Button>
         </div>
+        {notification && notification}
       </section>
     )
   }
@@ -51,6 +54,16 @@ export class UserSettings extends PureComponent<IUserSettingsProps> {
   private handleSubmit = async (values: IUserSettingsValues): Promise<void> => {
     const { firstName, lastName, email } = values
     const firestore = firebaseApp.firestore()
+
+    const updateMail = (): Promise<void> | undefined => {
+      if (email !== firebaseApp.auth().currentUser!.email) {
+        return this.updateEmail(email)
+      } else {
+        Promise.resolve()
+      }
+    }
+
+    await updateMail()
 
     firestore
       .collection('users')
@@ -62,17 +75,14 @@ export class UserSettings extends PureComponent<IUserSettingsProps> {
         initials: firstName[0] + lastName[0]
       })
       .then(() => {
-        // TODO: Log successfull update from userName
-        if (email !== firebaseApp.auth().currentUser!.email) {
-          this.updateEmail(email)
-          // tslint:disable-next-line:no-console
-          console.log('new: ', email, 'old: ', this.props.userInfo.email)
-        }
+        this.setState({
+          notification: <SnackbarNotification key={Date.now() + Math.random()} message={'Updated successfully'} severity={NotificationSeverity.SUCCESS} />
+        })
       })
       .catch((error: firebase.auth.Error) => {
-        // TODO: Log error
-        // tslint:disable-next-line:no-console
-        console.log(error)
+        this.setState({
+          notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+        })
       })
   }
 
@@ -80,18 +90,13 @@ export class UserSettings extends PureComponent<IUserSettingsProps> {
     const user = firebaseApp.auth().currentUser
 
     if (user) {
-      user
-        .updateEmail(email)
-        .then(() => {
-          // Update successful.
-          // tslint:disable-next-line:no-console
-          console.log('Updated email')
+      user.updateEmail(email).catch((error: Error) => {
+        this.setState({
+          notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
         })
-        .catch((error: Error) => {
-          // TODO:
-          // tslint:disable-next-line:no-console
-          console.log(error)
-        })
+      })
+    } else {
+      throw new Error('Something went wrong. Please reload your browser.')
     }
   }
 
@@ -102,12 +107,16 @@ export class UserSettings extends PureComponent<IUserSettingsProps> {
       user
         .delete()
         .then(() => {
-          // User deleted.
+          this.setState({
+            notification: (
+              <SnackbarNotification key={Date.now() + Math.random()} message={'User deleted successfully'} severity={NotificationSeverity.SUCCESS} />
+            )
+          })
         })
         .catch((error: Error) => {
-          // TODO: Log error
-          // tslint:disable-next-line:no-console
-          console.log(error)
+          this.setState({
+            notification: <SnackbarNotification key={Date.now() + Math.random()} message={error.message} severity={NotificationSeverity.ERROR} />
+          })
         })
     }
   }
