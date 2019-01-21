@@ -1,5 +1,5 @@
 import { UserSpecificContent } from '@auth'
-import { IChatRenderProps } from '@communication/chat/types'
+import { IChatViewRenderProps } from '@communication/chat/types'
 import { IUserInfo } from '@user'
 import { PureComponent, ReactNode } from 'react'
 import { ChatController } from './chatController/chatController'
@@ -25,8 +25,8 @@ export class Chat extends PureComponent<IChatProps> {
               loggedInUserImageURL={userInfo.imageURL}
               chatId={chatId}
             >
-              {(chatRenderProps: IChatRenderProps): ReactNode => {
-                return <ChatView chatRenderProps={chatRenderProps} />
+              {(chatViewRenderProps: IChatViewRenderProps): ReactNode => {
+                return <ChatView chatViewRenderProps={chatViewRenderProps} />
               }}
             </ChatController>
           ) : (

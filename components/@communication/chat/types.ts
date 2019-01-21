@@ -14,11 +14,35 @@ export interface IChatControllerProps extends IChatProps {
   loggedInUserId: string
   loggedInUserName: string
   loggedInUserImageURL?: string
-  children: (chatRenderProps: IChatRenderProps) => ReactNode
+  children: (chatViewRenderProps: IChatViewRenderProps) => ReactNode
 }
 
-export interface IChatRenderProps extends IChatControllerState {
+export interface IChatControllerState {
+  message: string
+  messages: IMessage[] | firebase.firestore.DocumentData
+  loading: boolean
+}
+
+export interface IChatViewProps {
+  chatViewRenderProps: IChatViewRenderProps
+  displayMode?: string
+}
+
+export interface IChatViewRenderProps extends IChatControllerState {
   loggedInUserId: string
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
+}
+
+export interface IChatConversationProps {
+  loading: boolean
+  loggedInUserId: string
+  fetchedMessages: IMessage[]
+  displayMode?: string
+}
+
+export interface IChatTriggerProps {
+  message: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
 }
@@ -35,28 +59,4 @@ export interface IMemberInfo {
     name: string
     userImageURL: string | null
   }
-}
-
-export interface IChatControllerState {
-  message: string
-  messages: IMessage[] | firebase.firestore.DocumentData
-  loading: boolean
-}
-
-export interface IChatViewProps {
-  chatRenderProps: IChatRenderProps
-  displayMode?: string
-}
-
-export interface IChatConversationProps {
-  loading: boolean
-  loggedInUserId: string
-  fetchedMessages: IMessage[]
-  displayMode?: string
-}
-
-export interface IChatTriggerProps {
-  message: string
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
 }

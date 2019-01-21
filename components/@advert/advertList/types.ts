@@ -9,7 +9,7 @@ export interface IAdvertListState {
 }
 
 export interface IAdvertListControllerProps {
-  children: (chatRenderProps: IAdvertListRenderProps) => ReactNode
+  children: (chatViewRenderProps: IAdvertListRenderProps) => ReactNode
 }
 
 export interface IAdvertListControllerState {

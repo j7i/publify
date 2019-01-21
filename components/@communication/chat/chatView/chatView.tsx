@@ -7,7 +7,7 @@ import styles from './chatViewStyles.css'
 
 export class ChatView extends PureComponent<IChatViewProps> {
   public render(): ReactNode {
-    const { message, messages, loading, handleChange, sendMessage, loggedInUserId } = this.props.chatRenderProps
+    const { message, messages, loading, handleChange, sendMessage, loggedInUserId } = this.props.chatViewRenderProps
 
     let fetchedMessages
     if (messages) {

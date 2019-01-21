@@ -1,6 +1,6 @@
 import { FirebaseCollection, firestore } from '@config'
 import { PureComponent, ReactNode } from 'react'
-import { IChatControllerProps, IChatControllerState, IChatRenderProps, IMemberInfo, IMessage } from '../types'
+import { IChatControllerProps, IChatControllerState, IChatViewRenderProps, IMemberInfo, IMessage } from '../types'
 
 export class ChatController extends PureComponent<IChatControllerProps, IChatControllerState> {
   public state: IChatControllerState = {
@@ -83,10 +83,6 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
     this.firestoreChat()
       .collection(FirebaseCollection.CHAT_MESSAGES)
       .add({ ...message })
-      .then(() => {
-        // tslint:disable-next-line:no-console
-        console.log('Message sent')
-      })
       .catch((error: Error) => {
         // tslint:disable-next-line:no-console
         console.error('Error adding message: ', error)
@@ -96,14 +92,14 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
   public render(): ReactNode {
     const { children, loggedInUserId } = this.props
 
-    const chatRenderProps: IChatRenderProps = {
+    const chatViewRenderProps: IChatViewRenderProps = {
       ...this.state,
       loggedInUserId,
       handleChange: this.handleChange,
       sendMessage: this.sendMessage
     }
 
-    return children(chatRenderProps)
+    return children(chatViewRenderProps)
   }
 
   private firestoreChat = (): firebase.firestore.DocumentReference => {

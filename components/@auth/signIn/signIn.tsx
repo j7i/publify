@@ -117,6 +117,9 @@ export class SignIn extends PureComponent<{}, ISignInState> {
                 email
               })
           })
+          .then(() => {
+            window.location.reload()
+          })
           .catch((error: firebase.auth.Error) => {
             // tslint:disable-next-line:no-console
             console.log(error)
