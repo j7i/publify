@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "shinnn.stylelint",
     "visualstudioexptteam.vscodeintellicode",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "orta.vscode-jest"
   ]
 }
