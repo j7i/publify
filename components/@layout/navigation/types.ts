@@ -9,7 +9,7 @@ export interface INavigationState {
 }
 
 export enum PathName {
-  START = 'start',
+  START = '',
   DASHBOARD = 'dashboard',
   MESSAGES = 'messages',
   ACCOUNT = 'account',
