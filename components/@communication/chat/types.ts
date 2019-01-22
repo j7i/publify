@@ -47,11 +47,18 @@ export interface IChatTriggerProps {
   sendMessage: (event: React.FormEvent<HTMLFormElement>) => void
 }
 
+export interface IChat {
+  advertId: string
+  advertTitle: string
+  memberInfos: IMemberInfo[]
+  members: string[]
+  messages: IMessage[]
+}
+
 export interface IMessage {
   uid: string
   date: IFirestoreTimeStamp
   content: string
-  memberInfos: IMemberInfo[]
 }
 
 export interface IMemberInfo {

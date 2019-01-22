@@ -17,7 +17,6 @@ export class ChatView extends PureComponent<IChatViewProps> {
     return (
       <section className={styles.chat}>
         <div className={styles.chatInner}>
-          {/* <ChatHeader /> */}
           <ChatConversation loading={loading} fetchedMessages={fetchedMessages} loggedInUserId={loggedInUserId} />
           <ChatTrigger message={message} handleChange={handleChange} sendMessage={sendMessage} />
         </div>

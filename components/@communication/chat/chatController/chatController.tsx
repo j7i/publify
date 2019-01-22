@@ -1,6 +1,7 @@
 import { FirebaseCollection, firestore } from '@config'
 import { PureComponent, ReactNode } from 'react'
 import { IChatControllerProps, IChatControllerState, IChatViewRenderProps, IMemberInfo, IMessage } from '../types'
+import { sortMessageByTimeStamp } from './helpers'
 
 export class ChatController extends PureComponent<IChatControllerProps, IChatControllerState> {
   public state: IChatControllerState = {
@@ -120,11 +121,7 @@ export class ChatController extends PureComponent<IChatControllerProps, IChatCon
             messages.push(doc.data())
           })
 
-          messages.sort((a: IMessage, b: IMessage) => {
-            let timeA = `${a.date.seconds}${a.date.nanoseconds}`
-            let timeB = `${b.date.seconds}${b.date.nanoseconds}`
-            return parseInt(timeA, 10) - parseInt(timeB, 10)
-          })
+          messages = sortMessageByTimeStamp(messages as IMessage[])
 
           this.setState({
             messages,

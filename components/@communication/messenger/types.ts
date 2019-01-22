@@ -5,10 +5,26 @@ export interface IMessengerProps {
   user: firebase.User
 }
 
-export interface IMessengerState {
-  currentChat?: string
+export interface IMessengerControllerProps extends IMessengerProps {
+  children: (renderProps: IMessengerViewRenderProps) => ReactNode
+}
+
+export interface IMessengerControllerState {
+  currentChat: string
   chats: IChat[]
   notification: ReactNode
+}
+
+export interface IMessengerViewProps {
+  renderProps: IMessengerViewRenderProps
+}
+
+export interface IMessengerViewRenderProps {
+  user: firebase.User
+  chats: IChat[]
+  currentChat: string
+  clearCurrentConversation: () => void
+  startConversation: (id: string) => void
 }
 
 export interface IChat {
