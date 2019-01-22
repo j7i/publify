@@ -64,6 +64,7 @@ export class MessengerView extends PureComponent<IMessengerViewProps> {
 
   private renderChatList = (): ReactNode => {
     const { currentChat, chats, user, startConversation } = this.props.renderProps
+
     return (
       <List
         className={classNames(styles.messengerChatList, { [styles.active]: !currentChat })}
@@ -79,6 +80,7 @@ export class MessengerView extends PureComponent<IMessengerViewProps> {
           const chatPartnerId = chat.members.filter((member: string) => member !== user.uid)
           const { name: chatPartnerFullName, userImageURL: chatPartnerImageURL } = chat.memberInfos[chatPartnerId[0]]
           const { id, advertTitle } = chat
+
           return (
             <Fragment key={index}>
               <ListItem className={styles.chatListItem} key={index} selected={id === currentChat} button onClick={(): void => startConversation(id)}>

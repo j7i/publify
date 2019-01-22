@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@communication/messenger: should render a messenger list with two listItems: Representing a basic messenger component with two availabel chats. 1`] = `
+<div>
+  <div
+    class="MuiPaper-root-77 MuiPaper-elevation2-81 MuiPaper-rounded-78 messenger"
+  >
+    <div
+      class="messengerAppBar"
+    >
+      <header
+        class="MuiPaper-root-77 MuiPaper-elevation4-83 MuiAppBar-root-104 MuiAppBar-positionFixed-105 MuiAppBar-colorPrimary-111 mui-fixed"
+      >
+        <div
+          class="MuiToolbar-root-113 MuiToolbar-regular-115 MuiToolbar-gutters-114"
+        >
+          Messages
+        </div>
+      </header>
+    </div>
+    <nav
+      class="MuiList-root-117 MuiList-padding-118 MuiList-subheader-120 messengerChatList active"
+    >
+      <div>
+        <li
+          class="MuiListSubheader-root-121 MuiListSubheader-sticky-126 MuiListSubheader-gutters-124 chatListSubheader"
+        >
+          Messages
+        </li>
+        <hr
+          class="MuiDivider-root-127"
+        />
+      </div>
+      <li
+        class="MuiListItem-container-132"
+      >
+        <div
+          class="MuiButtonBase-root-142 MuiListItem-root-131 MuiListItem-default-134 MuiListItem-gutters-138 MuiListItem-button-139 MuiListItem-secondaryAction-140 chatListItem"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemIcon-root-145"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root-146"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiListItemText-root-155"
+          >
+            <span
+              class="MuiTypography-root-161 MuiTypography-subheading-168 MuiListItemText-primary-158"
+            >
+              Le
+            </span>
+            <p
+              class="MuiTypography-root-161 MuiTypography-body1-170 MuiTypography-colorTextSecondary-194 MuiListItemText-secondary-159"
+            >
+              I need to be tested
+            </p>
+          </div>
+          <span
+            class="MuiTouchRipple-root-203"
+          />
+        </div>
+        <div
+          class="MuiListItemSecondaryAction-root-196"
+        >
+          <button
+            aria-label="Delete"
+            class="MuiButtonBase-root-142 MuiIconButton-root-197"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label-202"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root-146"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root-203"
+            />
+          </button>
+        </div>
+      </li>
+      <hr
+        class="MuiDivider-root-127"
+      />
+      <li
+        class="MuiListItem-container-132"
+      >
+        <div
+          class="MuiButtonBase-root-142 MuiListItem-root-131 MuiListItem-default-134 MuiListItem-gutters-138 MuiListItem-button-139 MuiListItem-secondaryAction-140 chatListItem"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemIcon-root-145"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root-146"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
+              />
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <div
+            class="MuiListItemText-root-155"
+          >
+            <span
+              class="MuiTypography-root-161 MuiTypography-subheading-168 MuiListItemText-primary-158"
+            >
+              Naru
+            </span>
+            <p
+              class="MuiTypography-root-161 MuiTypography-body1-170 MuiTypography-colorTextSecondary-194 MuiListItemText-secondary-159"
+            >
+              I need to be mocked
+            </p>
+          </div>
+          <span
+            class="MuiTouchRipple-root-203"
+          />
+        </div>
+        <div
+          class="MuiListItemSecondaryAction-root-196"
+        >
+          <button
+            aria-label="Delete"
+            class="MuiButtonBase-root-142 MuiIconButton-root-197"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label-202"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root-146"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root-203"
+            />
+          </button>
+        </div>
+      </li>
+      <hr
+        class="MuiDivider-root-127"
+      />
+    </nav>
+    
+  </div>
+</div>
+`;
+
+exports[`@communication/messenger: should render the messenger empty state: Representing the empty state without chats. 1`] = `
+<div>
+  <div
+    class="MuiPaper-root-1 MuiPaper-elevation2-5 MuiPaper-rounded-2 messenger"
+  >
+    <div
+      class="messengerAppBar"
+    >
+      <header
+        class="MuiPaper-root-1 MuiPaper-elevation4-7 MuiAppBar-root-28 MuiAppBar-positionFixed-29 MuiAppBar-colorPrimary-35 mui-fixed"
+      >
+        <div
+          class="MuiToolbar-root-37 MuiToolbar-regular-39 MuiToolbar-gutters-38"
+        >
+          Messages
+        </div>
+      </header>
+    </div>
+    <div
+      class="emptyState"
+    >
+      <div
+        class="emptystateItems"
+      >
+        <h2>
+          You actually have no active conversations.
+        </h2>
+        <button
+          class="MuiButtonBase-root-67 MuiButton-root-41 MuiButton-contained-52 MuiButton-containedPrimary-53 MuiButton-raised-55 MuiButton-raisedPrimary-56"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label-42"
+          >
+            Find an advert
+          </span>
+          <span
+            class="MuiTouchRipple-root-70"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

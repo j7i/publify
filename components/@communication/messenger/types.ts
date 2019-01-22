@@ -42,5 +42,5 @@ interface IMemberInfos {
 
 interface IMemberInfo {
   name: string
-  userImageURL: string
+  userImageURL?: string
 }

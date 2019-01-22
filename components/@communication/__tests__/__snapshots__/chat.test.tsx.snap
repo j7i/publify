@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@communication/chat: ChatConversation should render a loading animation while loading: Representing a loading chat conversation. 1`] = `
+<div>
+  <div
+    class="conversation chat isLoading"
+  >
+    <div
+      class="MuiCircularProgress-root-1 MuiCircularProgress-colorPrimary-4 MuiCircularProgress-indeterminate-3 loadingSpinner"
+      role="progressbar"
+      style="width: 40px; height: 40px;"
+    >
+      <svg
+        class="MuiCircularProgress-svg-6"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle-7 MuiCircularProgress-circleIndeterminate-9"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`@communication/chat: ChatConversation should render correctly: Representing a basic chat conversation with two participants. 1`] = `
+<div>
+  <div
+    class="conversation chat"
+  >
+    <div
+      class="scrollable"
+    >
+      <div
+        class="messages self"
+      >
+        <div
+          class="text"
+        >
+          I wrote this message, so it is mine.
+          <span
+            class="time"
+          >
+            <time
+              datetime="1548022013000"
+            >
+              23:06
+            </time>
+          </span>
+        </div>
+      </div>
+      <div
+        class="messages others"
+      >
+        <div
+          class="text"
+        >
+          So then I can have mine too..
+          <span
+            class="time"
+          >
+            <time
+              datetime="1548022016000"
+            >
+              23:06
+            </time>
+          </span>
+        </div>
+      </div>
+      <div
+        class="messages self"
+      >
+        <div
+          class="text"
+        >
+          Yeah sure,s we are kind of the same :)
+          <span
+            class="time"
+          >
+            <time
+              datetime="1548022020000"
+            >
+              23:07
+            </time>
+          </span>
+        </div>
+      </div>
+      <div />
+    </div>
+  </div>
+</div>
+`;
